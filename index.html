@@ -118,95 +118,262 @@
 
                 <!-- Service Management Panel -->
                 <div id="servicePanel" class="bg-white/5 rounded-xl p-6 mb-6 design-panel">
-                    <h3 class="text-xl font-semibold text-white mb-4">⚙️ Services verwalten</h3>
+                    <h3 class="text-xl font-semibold text-white mb-4">⚙️ Services einzeln bearbeiten</h3>
                     
                     <!-- Add New Service -->
-                    <div class="bg-white/5 rounded-lg p-4 mb-4">
-                        <h4 class="text-white font-medium mb-3">Neuen Service hinzufügen</h4>
-                        <div class="grid md:grid-cols-4 gap-3">
-                            <input type="text" id="newServiceName" placeholder="Service Name" class="p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
-                            <input type="text" id="newServiceDescription" placeholder="Beschreibung" class="p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
-                            <input type="number" id="newServicePrice" placeholder="Preis €" class="p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
-                            <input type="number" id="newServiceDuration" placeholder="Dauer Min" class="p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                    <div class="bg-white/5 rounded-lg p-4 mb-6">
+                        <h4 class="text-white font-medium mb-3">➕ Neuen Service hinzufügen</h4>
+                        <div class="grid md:grid-cols-2 gap-3">
+                            <input type="text" id="newServiceName" placeholder="Service Name" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                            <input type="text" id="newServiceDescription" placeholder="Beschreibung" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
                         </div>
-                        <div class="mt-3 flex gap-2">
-                            <input type="text" id="newServiceEmoji" placeholder="Emoji (z.B. ✂️)" class="p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none w-24">
-                            <button id="addServiceBtn" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition-all">
-                                ➕ Hinzufügen
+                        <div class="grid md:grid-cols-3 gap-3 mt-3">
+                            <input type="number" id="newServicePrice" placeholder="Preis €" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                            <input type="number" id="newServiceDuration" placeholder="Dauer Min" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                            <input type="text" id="newServiceEmoji" placeholder="Emoji (z.B. ✂️)" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                        </div>
+                        <div class="mt-4">
+                            <button id="addServiceBtn" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-all">
+                                ➕ Service hinzufügen
                             </button>
                         </div>
                     </div>
 
-                    <!-- Services List -->
-                    <div id="adminServicesList" class="space-y-2">
-                        <!-- Admin services list will be loaded here -->
+                    <!-- Individual Service Editing -->
+                    <div id="serviceEditingSections" class="space-y-4">
+                        <!-- Service editing sections will be loaded here -->
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-6 flex gap-4">
+                        <button id="saveAllServices" class="bg-white text-purple-600 font-semibold py-2 px-6 rounded-lg hover:bg-white/90 transition-all">
+                            💾 Alle Services speichern
+                        </button>
+                        <button id="previewAllServices" class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all">
+                            👁️ Alle Änderungen vorschauen
+                        </button>
+                        <button id="resetAllServices" class="bg-red-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-red-700 transition-all">
+                            🔄 Alle Services zurücksetzen
+                        </button>
                     </div>
                 </div>
 
                 <!-- Design Panel -->
                 <div id="designPanel" class="bg-white/5 rounded-xl p-6 mb-6 design-panel">
-                    <h3 class="text-xl font-semibold text-white mb-4">🎨 Design anpassen</h3>
+                    <h3 class="text-xl font-semibold text-white mb-4">🎨 Design & Texte bearbeiten</h3>
                     
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <!-- Logo Upload -->
-                        <div>
-                            <label class="block text-white font-medium mb-3">Logo hochladen</label>
-                            <input type="file" id="logoUpload" accept="image/*" class="w-full p-3 rounded-lg bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-white file:text-purple-600 hover:file:bg-gray-100">
-                            <p class="text-white/60 text-sm mt-2">JPG, PNG oder GIF (max. 2MB)</p>
-                        </div>
+                    <div class="space-y-6">
+                        <!-- Logo & Business Name Section -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-4">🏪 Logo & Geschäftsname</h4>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <!-- Logo Upload -->
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-2">Logo hochladen</label>
+                                    <input type="file" id="logoUpload" accept="image/*" class="w-full p-2 rounded-lg bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none file:mr-4 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-white file:text-purple-600 hover:file:bg-gray-100">
+                                    <p class="text-white/50 text-xs mt-1">JPG, PNG oder GIF (max. 2MB)</p>
+                                </div>
 
-                        <!-- Business Name -->
-                        <div>
-                            <label class="block text-white font-medium mb-3">Geschäftsname</label>
-                            <input type="text" id="businessNameInput" placeholder="Barbershop Elite" class="w-full p-3 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
-                        </div>
-
-                        <!-- Custom Colors -->
-                        <div>
-                            <label class="block text-white font-medium mb-3">Hauptfarbe (Hex)</label>
-                            <div class="flex gap-2">
-                                <input type="text" id="primaryColorInput" placeholder="#2563eb" class="flex-1 p-3 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
-                                <input type="color" id="primaryColorPicker" class="w-12 h-12 rounded-lg border border-white/20 bg-white/10">
+                                <!-- Business Name -->
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-2">Geschäftsname</label>
+                                    <input type="text" id="businessNameInput" placeholder="Barbershop Elite" class="w-full p-2 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                </div>
                             </div>
                         </div>
 
-                        <div>
-                            <label class="block text-white font-medium mb-3">Zweitfarbe (Hex)</label>
-                            <div class="flex gap-2">
-                                <input type="text" id="secondaryColorInput" placeholder="#1e40af" class="flex-1 p-3 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
-                                <input type="color" id="secondaryColorPicker" class="w-12 h-12 rounded-lg border border-white/20 bg-white/10">
+                        <!-- Main Title Section -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-4">📝 Haupttitel bearbeiten</h4>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-1">Titel-Text</label>
+                                    <input type="text" id="editMainTitleDesign" placeholder="Barbershop Elite" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schriftgröße (rem)</label>
+                                        <input type="number" id="mainTitleSizeDesign" value="2.5" step="0.1" min="1" max="5" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schriftart</label>
+                                        <select id="mainTitleFontDesign" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                            <option value="Squada One">Squada One</option>
+                                            <option value="Oswald">Oswald</option>
+                                            <option value="Bebas Neue">Bebas Neue</option>
+                                            <option value="Anton">Anton</option>
+                                            <option value="Inter">Inter</option>
+                                            <option value="Poppins">Poppins</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button id="applyMainTitle" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-all">
+                                    ✨ Sofort anwenden
+                                </button>
                             </div>
                         </div>
 
-                        <!-- Title Font Selection -->
-                        <div>
-                            <label class="block text-white font-medium mb-3">Titel-Schriftart</label>
-                            <select id="titleFontSelect" class="w-full p-3 rounded-lg bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
-                                <option value="Squada One">Squada One (Standard)</option>
-                                <option value="Oswald">Oswald (Stark)</option>
-                                <option value="Bebas Neue">Bebas Neue (Modern)</option>
-                                <option value="Anton">Anton (Bold)</option>
-                            </select>
+                        <!-- Subtitle Section -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-4">📄 Untertitel bearbeiten</h4>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-1">Untertitel-Text</label>
+                                    <input type="text" id="editSubtitleDesign" placeholder="Professionelle Herrenfriseur-Services" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schriftgröße (rem)</label>
+                                        <input type="number" id="subtitleSizeDesign" value="1.125" step="0.1" min="0.5" max="3" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schriftart</label>
+                                        <select id="subtitleFontDesign" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                            <option value="Inter">Inter</option>
+                                            <option value="Poppins">Poppins</option>
+                                            <option value="Roboto">Roboto</option>
+                                            <option value="Open Sans">Open Sans</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button id="applySubtitle" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-all">
+                                    ✨ Sofort anwenden
+                                </button>
+                            </div>
                         </div>
 
-                        <!-- Text Font Selection -->
-                        <div>
-                            <label class="block text-white font-medium mb-3">Text-Schriftart</label>
-                            <select id="textFontSelect" class="w-full p-3 rounded-lg bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
-                                <option value="Inter">Inter (Passend zu Squada One)</option>
-                                <option value="Poppins">Poppins (Freundlich)</option>
-                                <option value="Roboto">Roboto (Klassisch)</option>
-                                <option value="Open Sans">Open Sans (Sauber)</option>
-                            </select>
+                        <!-- Booking Form Title Section -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-4">🗓️ Buchungsformular Titel</h4>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-1">Formular-Titel</label>
+                                    <input type="text" id="editBookingTitleDesign" placeholder="🗓️ Termin buchen" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schriftgröße (rem)</label>
+                                        <input type="number" id="bookingTitleSizeDesign" value="1.5" step="0.1" min="0.5" max="3" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schriftart</label>
+                                        <select id="bookingTitleFontDesign" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                            <option value="Inter">Inter</option>
+                                            <option value="Poppins">Poppins</option>
+                                            <option value="Squada One">Squada One</option>
+                                            <option value="Oswald">Oswald</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button id="applyBookingTitle" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-all">
+                                    ✨ Sofort anwenden
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Form Labels Section -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-4">🏷️ Formularlabels bearbeiten</h4>
+                            <div class="space-y-3">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Service-Label</label>
+                                        <input type="text" id="editServiceLabelDesign" placeholder="Service wählen" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Datum-Label</label>
+                                        <input type="text" id="editDateLabelDesign" placeholder="Datum & Uhrzeit" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Name-Platzhalter</label>
+                                        <input type="text" id="editNamePlaceholderDesign" placeholder="Ihr Name" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Telefon-Platzhalter</label>
+                                        <input type="text" id="editPhonePlaceholderDesign" placeholder="Telefonnummer" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Label-Schriftgröße (rem)</label>
+                                        <input type="number" id="labelSizeDesign" value="1" step="0.1" min="0.5" max="2" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Label-Schriftart</label>
+                                        <select id="labelFontDesign" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                            <option value="Inter">Inter</option>
+                                            <option value="Poppins">Poppins</option>
+                                            <option value="Roboto">Roboto</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button id="applyLabels" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-all">
+                                    ✨ Sofort anwenden
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Button Text Section -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-4">🔘 Button-Text bearbeiten</h4>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-1">Button-Text</label>
+                                    <input type="text" id="editButtonTextDesign" placeholder="Termin buchen" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schriftgröße (rem)</label>
+                                        <input type="number" id="buttonTextSizeDesign" value="1" step="0.1" min="0.5" max="2" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schriftart</label>
+                                        <select id="buttonTextFontDesign" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                            <option value="Inter">Inter</option>
+                                            <option value="Poppins">Poppins</option>
+                                            <option value="Roboto">Roboto</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button id="applyButton" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-all">
+                                    ✨ Sofort anwenden
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Colors Section -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-4">🎨 Farben anpassen</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-2">Hauptfarbe</label>
+                                    <div class="flex gap-2">
+                                        <input type="text" id="primaryColorInput" placeholder="#2563eb" class="flex-1 p-2 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                        <input type="color" id="primaryColorPicker" class="w-10 h-10 rounded border border-white/20 bg-white/10">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-2">Zweitfarbe</label>
+                                    <div class="flex gap-2">
+                                        <input type="text" id="secondaryColorInput" placeholder="#1e40af" class="flex-1 p-2 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                        <input type="color" id="secondaryColorPicker" class="w-10 h-10 rounded border border-white/20 bg-white/10">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="mt-6 flex gap-4">
                         <button id="saveDesign" class="bg-white text-purple-600 font-semibold py-2 px-6 rounded-lg hover:bg-white/90 transition-all">
-                            💾 Design speichern
+                            💾 Alles speichern
                         </button>
                         <button id="resetDesign" class="bg-white/20 text-white font-semibold py-2 px-6 rounded-lg hover:bg-white/30 transition-all">
                             🔄 Zurücksetzen
+                        </button>
+                        <button id="previewAllChanges" class="bg-green-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-green-700 transition-all">
+                            👁️ Alle Änderungen vorschauen
                         </button>
                     </div>
                 </div>
@@ -564,9 +731,86 @@ Kunde: {name}
         let selectedTime = null;
         let bookings = JSON.parse(localStorage.getItem('barbershop_bookings')) || [];
         let services = JSON.parse(localStorage.getItem('barbershop_services')) || [
-            { id: 1, name: 'Herrenhaarschnitt', description: 'Klassischer Schnitt mit Styling', price: 25, duration: 30, emoji: '✂️' },
-            { id: 2, name: 'Bartpflege', description: 'Trimmen und Styling', price: 15, duration: 20, emoji: '🧔' },
-            { id: 3, name: 'Komplett-Paket', description: 'Haarschnitt + Bartpflege', price: 35, duration: 45, emoji: '💫' }
+            {
+                id: 1,
+                name: 'Fade',
+                emoji: '✂️',
+                type: 'category',
+                subcategories: [
+                    {
+                        id: 11,
+                        name: 'Mit Taper',
+                        type: 'subcategory',
+                        options: [
+                            { id: 111, name: 'Low Fade + Taper', price: 30, duration: 45, description: 'Niedriger Fade mit Taper-Übergang' },
+                            { id: 112, name: 'Mid Fade + Taper', price: 32, duration: 45, description: 'Mittlerer Fade mit Taper-Übergang' },
+                            { id: 113, name: 'High Fade + Taper', price: 35, duration: 50, description: 'Hoher Fade mit Taper-Übergang' }
+                        ]
+                    },
+                    {
+                        id: 12,
+                        name: 'Ohne Taper',
+                        type: 'subcategory',
+                        options: [
+                            { id: 121, name: 'Low Fade', price: 25, duration: 40, description: 'Niedriger Fade ohne Taper' },
+                            { id: 122, name: 'Mid Fade', price: 28, duration: 40, description: 'Mittlerer Fade ohne Taper' },
+                            { id: 123, name: 'High Fade', price: 30, duration: 45, description: 'Hoher Fade ohne Taper' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 2,
+                name: 'Klassische Schnitte',
+                emoji: '💼',
+                type: 'category',
+                subcategories: [
+                    {
+                        id: 21,
+                        name: 'Business',
+                        type: 'subcategory',
+                        options: [
+                            { id: 211, name: 'Business Cut', price: 25, duration: 30, description: 'Klassischer Business-Haarschnitt' },
+                            { id: 212, name: 'Executive Style', price: 35, duration: 40, description: 'Premium Business-Styling' }
+                        ]
+                    },
+                    {
+                        id: 22,
+                        name: 'Casual',
+                        type: 'subcategory',
+                        options: [
+                            { id: 221, name: 'Casual Cut', price: 20, duration: 25, description: 'Entspannter Alltagsschnitt' },
+                            { id: 222, name: 'Textured Cut', price: 28, duration: 35, description: 'Strukturierter moderner Schnitt' }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 3,
+                name: 'Bartpflege',
+                emoji: '🧔',
+                type: 'simple',
+                price: 15,
+                duration: 20,
+                description: 'Professionelle Bartpflege und Styling'
+            },
+            {
+                id: 4,
+                name: 'Komplett-Pakete',
+                emoji: '💫',
+                type: 'category',
+                subcategories: [
+                    {
+                        id: 41,
+                        name: 'Premium',
+                        type: 'subcategory',
+                        options: [
+                            { id: 411, name: 'Fade + Bart + Styling', price: 45, duration: 60, description: 'Komplettes Premium-Paket' },
+                            { id: 412, name: 'Cut + Bart + Waschen', price: 40, duration: 55, description: 'Vollservice mit Haarwäsche' }
+                        ]
+                    }
+                ]
+            }
         ];
 
         // Initialize app
@@ -600,85 +844,263 @@ Kunde: {name}
             document.getElementById('bookingDate').min = today;
         }
 
+        let currentServicePath = [];
+        let serviceNavigationStack = [];
+
         function loadServices() {
             const servicesList = document.getElementById('servicesList');
             servicesList.innerHTML = '';
             
-            services.forEach(service => {
+            // Add navigation breadcrumb if we're in a subcategory
+            if (currentServicePath.length > 0) {
+                const breadcrumb = document.createElement('div');
+                breadcrumb.className = 'mb-4 flex items-center gap-2 text-white/70 text-sm';
+                breadcrumb.innerHTML = `
+                    <button onclick="goBackInServices()" class="bg-white/10 hover:bg-white/20 px-3 py-1 rounded transition-all">
+                        ← Zurück
+                    </button>
+                    <span>${currentServicePath.join(' > ')}</span>
+                `;
+                servicesList.appendChild(breadcrumb);
+            }
+            
+            const currentServices = getCurrentServices();
+            
+            currentServices.forEach(service => {
                 const serviceElement = document.createElement('div');
                 serviceElement.className = 'service-option bg-white/10 rounded-lg p-4 cursor-pointer hover:bg-white/20 transition-all';
-                serviceElement.dataset.serviceId = service.id;
-                serviceElement.innerHTML = `
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h3 class="text-white font-medium">${service.emoji} ${service.name}</h3>
-                            <p class="text-white/70 text-sm">${service.description}</p>
+                
+                if (service.type === 'category') {
+                    // Category - shows subcategories
+                    serviceElement.dataset.serviceId = service.id;
+                    serviceElement.innerHTML = `
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="text-white font-medium">${service.emoji} ${service.name}</h3>
+                                <p class="text-white/70 text-sm">Kategorie wählen →</p>
+                            </div>
+                            <div class="text-white/50">
+                                <span class="text-2xl">→</span>
+                            </div>
                         </div>
-                        <div class="text-right">
-                            <p class="text-white font-bold">${service.price}€</p>
-                            <p class="text-white/70 text-sm">${service.duration} Min</p>
+                    `;
+                    serviceElement.addEventListener('click', () => navigateToCategory(service));
+                } else if (service.type === 'subcategory') {
+                    // Subcategory - shows final options
+                    serviceElement.dataset.serviceId = service.id;
+                    serviceElement.innerHTML = `
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="text-white font-medium">📋 ${service.name}</h3>
+                                <p class="text-white/70 text-sm">Optionen anzeigen →</p>
+                            </div>
+                            <div class="text-white/50">
+                                <span class="text-2xl">→</span>
+                            </div>
                         </div>
-                    </div>
-                `;
+                    `;
+                    serviceElement.addEventListener('click', () => navigateToSubcategory(service));
+                } else {
+                    // Final service option or simple service
+                    serviceElement.dataset.serviceId = service.id;
+                    serviceElement.innerHTML = `
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="text-white font-medium">${service.emoji || '✂️'} ${service.name}</h3>
+                                <p class="text-white/70 text-sm">${service.description}</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-white font-bold">${service.price}€</p>
+                                <p class="text-white/70 text-sm">${service.duration} Min</p>
+                            </div>
+                        </div>
+                    `;
+                    serviceElement.addEventListener('click', () => selectFinalService(service));
+                }
+                
                 servicesList.appendChild(serviceElement);
             });
+        }
+
+        function getCurrentServices() {
+            if (currentServicePath.length === 0) {
+                // Show main categories and simple services
+                return services;
+            } else if (currentServicePath.length === 1) {
+                // Show subcategories of selected category
+                const category = services.find(s => s.name === currentServicePath[0]);
+                return category ? category.subcategories : [];
+            } else if (currentServicePath.length === 2) {
+                // Show final options of selected subcategory
+                const category = services.find(s => s.name === currentServicePath[0]);
+                if (category && category.subcategories) {
+                    const subcategory = category.subcategories.find(s => s.name === currentServicePath[1]);
+                    return subcategory ? subcategory.options : [];
+                }
+            }
+            return [];
+        }
+
+        function navigateToCategory(category) {
+            serviceNavigationStack.push([...currentServicePath]);
+            currentServicePath = [category.name];
+            loadServices();
+        }
+
+        function navigateToSubcategory(subcategory) {
+            serviceNavigationStack.push([...currentServicePath]);
+            currentServicePath.push(subcategory.name);
+            loadServices();
+        }
+
+        function selectFinalService(service) {
+            // Remove previous selection
+            document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('ring-2', 'ring-white'));
             
-            setupServiceSelection();
+            // Add selection to clicked option
+            event.target.closest('.service-option').classList.add('ring-2', 'ring-white');
+            
+            selectedService = {
+                id: service.id,
+                name: service.name,
+                price: service.price,
+                duration: service.duration,
+                emoji: service.emoji || '✂️',
+                fullPath: currentServicePath.length > 0 ? currentServicePath.join(' > ') + ' > ' + service.name : service.name
+            };
+            
+            updateBookingSummary();
+            checkBookingComplete();
+        }
+
+        function goBackInServices() {
+            if (serviceNavigationStack.length > 0) {
+                currentServicePath = serviceNavigationStack.pop();
+            } else {
+                currentServicePath = [];
+            }
+            
+            // Clear selection when navigating back
+            selectedService = null;
+            updateBookingSummary();
+            checkBookingComplete();
+            
+            loadServices();
         }
 
         function loadAdminServices() {
-            const adminServicesList = document.getElementById('adminServicesList');
-            adminServicesList.innerHTML = '';
+            const serviceEditingSections = document.getElementById('serviceEditingSections');
+            serviceEditingSections.innerHTML = '';
             
-            services.forEach(service => {
-                const serviceElement = document.createElement('div');
-                serviceElement.className = 'bg-white/10 rounded-lg p-3 flex justify-between items-center';
-                serviceElement.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <span class="text-xl">${service.emoji}</span>
-                        <div>
-                            <h4 class="text-white font-medium">${service.name}</h4>
-                            <p class="text-white/70 text-sm">${service.description} - ${service.price}€ (${service.duration} Min)</p>
+            // Add info about the new category system
+            const infoSection = document.createElement('div');
+            infoSection.className = 'bg-blue-500/20 rounded-lg p-4 mb-4';
+            infoSection.innerHTML = `
+                <h4 class="text-white font-medium mb-2">ℹ️ Neues Kategorie-System</h4>
+                <p class="text-white/80 text-sm mb-2">
+                    Das Service-System wurde auf ein mehrstufiges Kategorie-System umgestellt:
+                </p>
+                <ul class="text-white/70 text-sm space-y-1 ml-4">
+                    <li>• <strong>Fade</strong> → Mit/Ohne Taper → Low/Mid/High</li>
+                    <li>• <strong>Klassische Schnitte</strong> → Business/Casual → Verschiedene Optionen</li>
+                    <li>• <strong>Bartpflege</strong> → Direkter Service</li>
+                    <li>• <strong>Komplett-Pakete</strong> → Premium-Optionen</li>
+                </ul>
+                <p class="text-white/60 text-xs mt-2">
+                    Für erweiterte Anpassungen der Kategorien ist eine manuelle Code-Bearbeitung erforderlich.
+                </p>
+            `;
+            serviceEditingSections.appendChild(infoSection);
+            
+            // Show all final services (flattened view for admin)
+            const allFinalServices = getAllFinalServices();
+            
+            allFinalServices.forEach(service => {
+                const serviceSection = document.createElement('div');
+                serviceSection.className = 'bg-white/5 rounded-lg p-4';
+                serviceSection.innerHTML = `
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="text-white font-medium flex items-center gap-2">
+                            <span class="text-xl">${service.emoji || '✂️'}</span>
+                            ${service.fullPath || service.name}
+                        </h4>
+                        <div class="text-white/60 text-xs">
+                            ID: ${service.id}
                         </div>
                     </div>
-                    <div class="flex gap-2">
-                        <button onclick="editService(${service.id})" class="text-blue-400 hover:text-blue-300 text-sm px-2 py-1 rounded bg-blue-500/20">
-                            ✏️ Bearbeiten
-                        </button>
-                        <button onclick="deleteService(${service.id})" class="text-red-400 hover:text-red-300 text-sm px-2 py-1 rounded bg-red-500/20">
-                            🗑️ Löschen
-                        </button>
+                    
+                    <div class="space-y-3">
+                        <!-- Service Name -->
+                        <div>
+                            <label class="block text-white/70 text-sm mb-1">Service Name</label>
+                            <input type="text" id="serviceName_${service.id}" value="${service.name}" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                        </div>
+                        
+                        <!-- Service Description -->
+                        <div>
+                            <label class="block text-white/70 text-sm mb-1">Beschreibung</label>
+                            <input type="text" id="serviceDescription_${service.id}" value="${service.description || ''}" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                        </div>
+                        
+                        <!-- Price and Duration -->
+                        <div class="grid grid-cols-3 gap-3">
+                            <div>
+                                <label class="block text-white/70 text-sm mb-1">Preis (€)</label>
+                                <input type="number" id="servicePrice_${service.id}" value="${service.price}" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-white/70 text-sm mb-1">Dauer (Min)</label>
+                                <input type="number" id="serviceDuration_${service.id}" value="${service.duration}" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-white/70 text-sm mb-1">Emoji</label>
+                                <input type="text" id="serviceEmoji_${service.id}" value="${service.emoji || '✂️'}" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                            </div>
+                        </div>
+                        
+                        <!-- Apply Button -->
+                        <div class="mt-3">
+                            <button onclick="applyServiceChanges(${service.id})" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-all">
+                                ✨ Sofort anwenden
+                            </button>
+                        </div>
                     </div>
                 `;
-                adminServicesList.appendChild(serviceElement);
+                serviceEditingSections.appendChild(serviceSection);
             });
         }
 
-        function setupServiceSelection() {
-            const serviceOptions = document.querySelectorAll('.service-option');
-            serviceOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    // Remove previous selection
-                    serviceOptions.forEach(opt => opt.classList.remove('ring-2', 'ring-white'));
-                    
-                    // Add selection to clicked option
-                    this.classList.add('ring-2', 'ring-white');
-                    
-                    const serviceId = parseInt(this.dataset.serviceId);
-                    const service = services.find(s => s.id === serviceId);
-                    
-                    selectedService = {
-                        id: service.id,
-                        name: service.name,
-                        price: service.price,
-                        duration: service.duration,
-                        emoji: service.emoji
-                    };
-                    
-                    updateBookingSummary();
-                    checkBookingComplete();
-                });
+        function getAllFinalServices() {
+            const finalServices = [];
+            
+            services.forEach(service => {
+                if (service.type === 'simple') {
+                    // Simple service - add directly
+                    finalServices.push({
+                        ...service,
+                        fullPath: service.name
+                    });
+                } else if (service.type === 'category' && service.subcategories) {
+                    // Category with subcategories
+                    service.subcategories.forEach(subcategory => {
+                        if (subcategory.options) {
+                            subcategory.options.forEach(option => {
+                                finalServices.push({
+                                    ...option,
+                                    fullPath: `${service.name} > ${subcategory.name} > ${option.name}`
+                                });
+                            });
+                        }
+                    });
+                }
             });
+            
+            return finalServices;
+        }
+
+        function setupServiceSelection() {
+            // Service selection is now handled directly in loadServices()
+            // No additional setup needed as each service type has its own click handler
         }
 
         function setupDateSelection() {
@@ -816,7 +1238,7 @@ Kunde: {name}
                 content.innerHTML = `
                     <div class="flex justify-between items-center">
                         <div>
-                            <p><strong>${selectedService.name}</strong></p>
+                            <p><strong>${selectedService.fullPath || selectedService.name}</strong></p>
                             <p>${selectedDate} um ${selectedTime}</p>
                             <p>Dauer: ${selectedService.duration} Minuten</p>
                         </div>
@@ -1137,8 +1559,101 @@ Kunde: {name}
 
                 loadServices();
                 loadAdminServices();
-                alert('✅ Service hinzugefügt!');
+                showNotification('✅ Service hinzugefügt!');
             });
+
+            // Save all services button
+            document.getElementById('saveAllServices').addEventListener('click', function() {
+                services.forEach(service => {
+                    applyServiceChanges(service.id);
+                });
+                setTimeout(() => {
+                    showNotification('💾 Alle Services gespeichert!');
+                }, 500);
+            });
+
+            // Preview all services button
+            document.getElementById('previewAllServices').addEventListener('click', function() {
+                services.forEach(service => {
+                    applyServiceChanges(service.id);
+                });
+                setTimeout(() => {
+                    showNotification('👁️ Alle Service-Änderungen angewendet!');
+                }, 500);
+            });
+
+            // Reset all services button
+            document.getElementById('resetAllServices').addEventListener('click', function() {
+                if (confirm('Wirklich alle Services auf Standard zurücksetzen? Diese Aktion kann nicht rückgängig gemacht werden!')) {
+                    services = [
+                        { id: 1, name: 'Herrenhaarschnitt', description: 'Klassischer Schnitt mit Styling', price: 25, duration: 30, emoji: '✂️' },
+                        { id: 2, name: 'Bartpflege', description: 'Trimmen und Styling', price: 15, duration: 20, emoji: '🧔' },
+                        { id: 3, name: 'Komplett-Paket', description: 'Haarschnitt + Bartpflege', price: 35, duration: 45, emoji: '💫' }
+                    ];
+                    localStorage.setItem('barbershop_services', JSON.stringify(services));
+                    loadServices();
+                    loadAdminServices();
+                    showNotification('🔄 Alle Services zurückgesetzt!');
+                }
+            });
+        }
+
+        // Apply changes to individual service
+        function applyServiceChanges(serviceId) {
+            const name = document.getElementById(`serviceName_${serviceId}`).value;
+            const description = document.getElementById(`serviceDescription_${serviceId}`).value;
+            const price = parseInt(document.getElementById(`servicePrice_${serviceId}`).value);
+            const duration = parseInt(document.getElementById(`serviceDuration_${serviceId}`).value);
+            const emoji = document.getElementById(`serviceEmoji_${serviceId}`).value;
+
+            if (!name || !price || !duration || !emoji) {
+                alert('Bitte alle Pflichtfelder ausfüllen!');
+                return;
+            }
+
+            // Find and update the service in the nested structure
+            let updated = false;
+            
+            services.forEach(service => {
+                if (service.type === 'simple' && service.id === serviceId) {
+                    // Update simple service
+                    service.name = name;
+                    service.description = description;
+                    service.price = price;
+                    service.duration = duration;
+                    service.emoji = emoji;
+                    updated = true;
+                } else if (service.type === 'category' && service.subcategories) {
+                    // Update service in category
+                    service.subcategories.forEach(subcategory => {
+                        if (subcategory.options) {
+                            subcategory.options.forEach(option => {
+                                if (option.id === serviceId) {
+                                    option.name = name;
+                                    option.description = description;
+                                    option.price = price;
+                                    option.duration = duration;
+                                    option.emoji = emoji;
+                                    updated = true;
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+
+            if (updated) {
+                // Save to localStorage
+                localStorage.setItem('barbershop_services', JSON.stringify(services));
+
+                // Reload services display
+                loadServices();
+                loadAdminServices();
+
+                showNotification(`✨ ${name} aktualisiert!`);
+            } else {
+                alert('Service nicht gefunden!');
+            }
         }
 
         // Working Hours Panel Setup
@@ -1556,6 +2071,9 @@ ${businessName} - Admin System`;
             document.getElementById('designToggle').addEventListener('click', function() {
                 const designPanel = document.getElementById('designPanel');
                 designPanel.classList.toggle('open');
+                if (designPanel.classList.contains('open')) {
+                    loadDesignTextSettings();
+                }
             });
 
             // Logo upload
@@ -1582,6 +2100,128 @@ ${businessName} - Admin System`;
                 const name = this.value || 'Barbershop Elite';
                 document.getElementById('businessName').textContent = name;
                 localStorage.setItem('barbershop_name', name);
+            });
+
+            // Individual text element buttons
+            document.getElementById('applyMainTitle').addEventListener('click', function() {
+                const text = document.getElementById('editMainTitleDesign').value || 'Barbershop Elite';
+                const size = document.getElementById('mainTitleSizeDesign').value;
+                const font = document.getElementById('mainTitleFontDesign').value;
+                
+                const element = document.getElementById('businessName');
+                element.textContent = text;
+                element.style.fontSize = size + 'rem';
+                element.style.fontFamily = font;
+                
+                // Save to localStorage
+                localStorage.setItem('barbershop_main_title', text);
+                localStorage.setItem('barbershop_main_title_size', size);
+                localStorage.setItem('barbershop_main_title_font', font);
+                
+                showNotification('✨ Haupttitel aktualisiert!');
+            });
+
+            document.getElementById('applySubtitle').addEventListener('click', function() {
+                const text = document.getElementById('editSubtitleDesign').value || 'Professionelle Herrenfriseur-Services';
+                const size = document.getElementById('subtitleSizeDesign').value;
+                const font = document.getElementById('subtitleFontDesign').value;
+                
+                const element = document.querySelector('.text-white\\/80.text-lg');
+                if (element) {
+                    element.textContent = text;
+                    element.style.fontSize = size + 'rem';
+                    element.style.fontFamily = font;
+                }
+                
+                localStorage.setItem('barbershop_subtitle', text);
+                localStorage.setItem('barbershop_subtitle_size', size);
+                localStorage.setItem('barbershop_subtitle_font', font);
+                
+                showNotification('✨ Untertitel aktualisiert!');
+            });
+
+            document.getElementById('applyBookingTitle').addEventListener('click', function() {
+                const text = document.getElementById('editBookingTitleDesign').value || '🗓️ Termin buchen';
+                const size = document.getElementById('bookingTitleSizeDesign').value;
+                const font = document.getElementById('bookingTitleFontDesign').value;
+                
+                const element = document.querySelector('#bookingForm h2');
+                if (element) {
+                    element.textContent = text;
+                    element.style.fontSize = size + 'rem';
+                    element.style.fontFamily = font;
+                }
+                
+                localStorage.setItem('barbershop_booking_title', text);
+                localStorage.setItem('barbershop_booking_title_size', size);
+                localStorage.setItem('barbershop_booking_title_font', font);
+                
+                showNotification('✨ Buchungstitel aktualisiert!');
+            });
+
+            document.getElementById('applyLabels').addEventListener('click', function() {
+                const serviceLabel = document.getElementById('editServiceLabelDesign').value || 'Service wählen';
+                const dateLabel = document.getElementById('editDateLabelDesign').value || 'Datum & Uhrzeit';
+                const namePlaceholder = document.getElementById('editNamePlaceholderDesign').value || 'Ihr Name';
+                const phonePlaceholder = document.getElementById('editPhonePlaceholderDesign').value || 'Telefonnummer';
+                const size = document.getElementById('labelSizeDesign').value;
+                const font = document.getElementById('labelFontDesign').value;
+                
+                // Update labels
+                const labels = document.querySelectorAll('#bookingForm label');
+                if (labels[0]) {
+                    labels[0].textContent = serviceLabel;
+                    labels[0].style.fontSize = size + 'rem';
+                    labels[0].style.fontFamily = font;
+                }
+                if (labels[1]) {
+                    labels[1].textContent = dateLabel;
+                    labels[1].style.fontSize = size + 'rem';
+                    labels[1].style.fontFamily = font;
+                }
+                
+                // Update placeholders
+                document.getElementById('customerName').placeholder = namePlaceholder;
+                document.getElementById('customerPhone').placeholder = phonePlaceholder;
+                
+                // Save to localStorage
+                localStorage.setItem('barbershop_service_label', serviceLabel);
+                localStorage.setItem('barbershop_date_label', dateLabel);
+                localStorage.setItem('barbershop_name_placeholder', namePlaceholder);
+                localStorage.setItem('barbershop_phone_placeholder', phonePlaceholder);
+                localStorage.setItem('barbershop_label_size', size);
+                localStorage.setItem('barbershop_label_font', font);
+                
+                showNotification('✨ Labels aktualisiert!');
+            });
+
+            document.getElementById('applyButton').addEventListener('click', function() {
+                const text = document.getElementById('editButtonTextDesign').value || 'Termin buchen';
+                const size = document.getElementById('buttonTextSizeDesign').value;
+                const font = document.getElementById('buttonTextFontDesign').value;
+                
+                const element = document.getElementById('bookButton');
+                element.textContent = text;
+                element.style.fontSize = size + 'rem';
+                element.style.fontFamily = font;
+                
+                localStorage.setItem('barbershop_button_text', text);
+                localStorage.setItem('barbershop_button_size', size);
+                localStorage.setItem('barbershop_button_font', font);
+                
+                showNotification('✨ Button aktualisiert!');
+            });
+
+            // Preview all changes
+            document.getElementById('previewAllChanges').addEventListener('click', function() {
+                // Apply all changes at once
+                document.getElementById('applyMainTitle').click();
+                setTimeout(() => document.getElementById('applySubtitle').click(), 100);
+                setTimeout(() => document.getElementById('applyBookingTitle').click(), 200);
+                setTimeout(() => document.getElementById('applyLabels').click(), 300);
+                setTimeout(() => document.getElementById('applyButton').click(), 400);
+                
+                setTimeout(() => showNotification('👁️ Alle Änderungen angewendet!'), 500);
             });
 
             // Custom color inputs
@@ -1617,49 +2257,86 @@ ${businessName} - Admin System`;
                 localStorage.setItem('barbershop_secondary_color', color);
             });
 
-            // Title font selection
-            document.getElementById('titleFontSelect').addEventListener('change', function() {
-                const font = this.value;
-                document.documentElement.style.setProperty('--title-font', font);
-                localStorage.setItem('barbershop_title_font', font);
-            });
-
-            // Text font selection
-            document.getElementById('textFontSelect').addEventListener('change', function() {
-                const font = this.value;
-                document.documentElement.style.setProperty('--text-font', font);
-                localStorage.setItem('barbershop_text_font', font);
-            });
-
-            // WhatsApp settings
-            document.getElementById('ownerWhatsApp').addEventListener('input', function() {
-                localStorage.setItem('barbershop_owner_whatsapp', this.value);
-            });
-
-            document.getElementById('autoNotifyOwner').addEventListener('change', function() {
-                localStorage.setItem('barbershop_auto_notify', this.checked);
-            });
-
             // Save design
             document.getElementById('saveDesign').addEventListener('click', function() {
-                alert('✅ Design gespeichert!');
+                // Save all current values
+                document.getElementById('applyMainTitle').click();
+                setTimeout(() => document.getElementById('applySubtitle').click(), 100);
+                setTimeout(() => document.getElementById('applyBookingTitle').click(), 200);
+                setTimeout(() => document.getElementById('applyLabels').click(), 300);
+                setTimeout(() => document.getElementById('applyButton').click(), 400);
+                
+                setTimeout(() => {
+                    alert('✅ Alle Texte und Design-Einstellungen gespeichert!');
+                }, 600);
             });
 
             // Reset design
             document.getElementById('resetDesign').addEventListener('click', function() {
-                if (confirm('Design wirklich zurücksetzen?')) {
-                    localStorage.removeItem('barbershop_logo');
-                    localStorage.removeItem('barbershop_name');
-                    localStorage.removeItem('barbershop_primary_color');
-                    localStorage.removeItem('barbershop_secondary_color');
-                    localStorage.removeItem('barbershop_title_font');
-                    localStorage.removeItem('barbershop_text_font');
-                    localStorage.removeItem('barbershop_owner_whatsapp');
-                    localStorage.removeItem('barbershop_auto_notify');
+                if (confirm('Design und alle Texte wirklich zurücksetzen?')) {
+                    // Remove all design and text settings
+                    const keysToRemove = [
+                        'barbershop_logo', 'barbershop_name', 'barbershop_primary_color', 'barbershop_secondary_color',
+                        'barbershop_main_title', 'barbershop_main_title_size', 'barbershop_main_title_font',
+                        'barbershop_subtitle', 'barbershop_subtitle_size', 'barbershop_subtitle_font',
+                        'barbershop_booking_title', 'barbershop_booking_title_size', 'barbershop_booking_title_font',
+                        'barbershop_service_label', 'barbershop_date_label', 'barbershop_name_placeholder', 
+                        'barbershop_phone_placeholder', 'barbershop_label_size', 'barbershop_label_font',
+                        'barbershop_button_text', 'barbershop_button_size', 'barbershop_button_font'
+                    ];
                     
+                    keysToRemove.forEach(key => localStorage.removeItem(key));
                     location.reload();
                 }
             });
+        }
+
+        function loadDesignTextSettings() {
+            // Load main title settings
+            document.getElementById('editMainTitleDesign').value = localStorage.getItem('barbershop_main_title') || '';
+            document.getElementById('mainTitleSizeDesign').value = localStorage.getItem('barbershop_main_title_size') || '2.5';
+            document.getElementById('mainTitleFontDesign').value = localStorage.getItem('barbershop_main_title_font') || 'Squada One';
+            
+            // Load subtitle settings
+            document.getElementById('editSubtitleDesign').value = localStorage.getItem('barbershop_subtitle') || '';
+            document.getElementById('subtitleSizeDesign').value = localStorage.getItem('barbershop_subtitle_size') || '1.125';
+            document.getElementById('subtitleFontDesign').value = localStorage.getItem('barbershop_subtitle_font') || 'Inter';
+            
+            // Load booking title settings
+            document.getElementById('editBookingTitleDesign').value = localStorage.getItem('barbershop_booking_title') || '';
+            document.getElementById('bookingTitleSizeDesign').value = localStorage.getItem('barbershop_booking_title_size') || '1.5';
+            document.getElementById('bookingTitleFontDesign').value = localStorage.getItem('barbershop_booking_title_font') || 'Inter';
+            
+            // Load label settings
+            document.getElementById('editServiceLabelDesign').value = localStorage.getItem('barbershop_service_label') || '';
+            document.getElementById('editDateLabelDesign').value = localStorage.getItem('barbershop_date_label') || '';
+            document.getElementById('editNamePlaceholderDesign').value = localStorage.getItem('barbershop_name_placeholder') || '';
+            document.getElementById('editPhonePlaceholderDesign').value = localStorage.getItem('barbershop_phone_placeholder') || '';
+            document.getElementById('labelSizeDesign').value = localStorage.getItem('barbershop_label_size') || '1';
+            document.getElementById('labelFontDesign').value = localStorage.getItem('barbershop_label_font') || 'Inter';
+            
+            // Load button settings
+            document.getElementById('editButtonTextDesign').value = localStorage.getItem('barbershop_button_text') || '';
+            document.getElementById('buttonTextSizeDesign').value = localStorage.getItem('barbershop_button_size') || '1';
+            document.getElementById('buttonTextFontDesign').value = localStorage.getItem('barbershop_button_font') || 'Inter';
+        }
+
+        function showNotification(message) {
+            // Create a temporary notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Remove after 2 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 2000);
         }
 
         function isValidHexColor(hex) {
@@ -1680,6 +2357,78 @@ ${businessName} - Admin System`;
                 document.getElementById('businessNameInput').value = savedName;
             }
 
+            // Load and apply saved text settings
+            const savedMainTitle = localStorage.getItem('barbershop_main_title');
+            const savedMainTitleSize = localStorage.getItem('barbershop_main_title_size');
+            const savedMainTitleFont = localStorage.getItem('barbershop_main_title_font');
+            if (savedMainTitle || savedMainTitleSize || savedMainTitleFont) {
+                const element = document.getElementById('businessName');
+                if (savedMainTitle) element.textContent = savedMainTitle;
+                if (savedMainTitleSize) element.style.fontSize = savedMainTitleSize + 'rem';
+                if (savedMainTitleFont) element.style.fontFamily = savedMainTitleFont;
+            }
+
+            const savedSubtitle = localStorage.getItem('barbershop_subtitle');
+            const savedSubtitleSize = localStorage.getItem('barbershop_subtitle_size');
+            const savedSubtitleFont = localStorage.getItem('barbershop_subtitle_font');
+            if (savedSubtitle || savedSubtitleSize || savedSubtitleFont) {
+                const element = document.querySelector('.text-white\\/80.text-lg');
+                if (element) {
+                    if (savedSubtitle) element.textContent = savedSubtitle;
+                    if (savedSubtitleSize) element.style.fontSize = savedSubtitleSize + 'rem';
+                    if (savedSubtitleFont) element.style.fontFamily = savedSubtitleFont;
+                }
+            }
+
+            const savedBookingTitle = localStorage.getItem('barbershop_booking_title');
+            const savedBookingTitleSize = localStorage.getItem('barbershop_booking_title_size');
+            const savedBookingTitleFont = localStorage.getItem('barbershop_booking_title_font');
+            if (savedBookingTitle || savedBookingTitleSize || savedBookingTitleFont) {
+                const element = document.querySelector('#bookingForm h2');
+                if (element) {
+                    if (savedBookingTitle) element.textContent = savedBookingTitle;
+                    if (savedBookingTitleSize) element.style.fontSize = savedBookingTitleSize + 'rem';
+                    if (savedBookingTitleFont) element.style.fontFamily = savedBookingTitleFont;
+                }
+            }
+
+            const savedServiceLabel = localStorage.getItem('barbershop_service_label');
+            const savedDateLabel = localStorage.getItem('barbershop_date_label');
+            const savedLabelSize = localStorage.getItem('barbershop_label_size');
+            const savedLabelFont = localStorage.getItem('barbershop_label_font');
+            if (savedServiceLabel || savedDateLabel || savedLabelSize || savedLabelFont) {
+                const labels = document.querySelectorAll('#bookingForm label');
+                if (labels[0]) {
+                    if (savedServiceLabel) labels[0].textContent = savedServiceLabel;
+                    if (savedLabelSize) labels[0].style.fontSize = savedLabelSize + 'rem';
+                    if (savedLabelFont) labels[0].style.fontFamily = savedLabelFont;
+                }
+                if (labels[1]) {
+                    if (savedDateLabel) labels[1].textContent = savedDateLabel;
+                    if (savedLabelSize) labels[1].style.fontSize = savedLabelSize + 'rem';
+                    if (savedLabelFont) labels[1].style.fontFamily = savedLabelFont;
+                }
+            }
+
+            const savedNamePlaceholder = localStorage.getItem('barbershop_name_placeholder');
+            const savedPhonePlaceholder = localStorage.getItem('barbershop_phone_placeholder');
+            if (savedNamePlaceholder) {
+                document.getElementById('customerName').placeholder = savedNamePlaceholder;
+            }
+            if (savedPhonePlaceholder) {
+                document.getElementById('customerPhone').placeholder = savedPhonePlaceholder;
+            }
+
+            const savedButtonText = localStorage.getItem('barbershop_button_text');
+            const savedButtonSize = localStorage.getItem('barbershop_button_size');
+            const savedButtonFont = localStorage.getItem('barbershop_button_font');
+            if (savedButtonText || savedButtonSize || savedButtonFont) {
+                const element = document.getElementById('bookButton');
+                if (savedButtonText) element.textContent = savedButtonText;
+                if (savedButtonSize) element.style.fontSize = savedButtonSize + 'rem';
+                if (savedButtonFont) element.style.fontFamily = savedButtonFont;
+            }
+
             // Load colors
             const savedPrimary = localStorage.getItem('barbershop_primary_color');
             const savedSecondary = localStorage.getItem('barbershop_secondary_color');
@@ -1692,19 +2441,6 @@ ${businessName} - Admin System`;
                 document.documentElement.style.setProperty('--secondary-color', savedSecondary);
                 document.getElementById('secondaryColorInput').value = savedSecondary;
                 document.getElementById('secondaryColorPicker').value = savedSecondary;
-            }
-
-            // Load fonts
-            const savedTitleFont = localStorage.getItem('barbershop_title_font');
-            if (savedTitleFont) {
-                document.documentElement.style.setProperty('--title-font', savedTitleFont);
-                document.getElementById('titleFontSelect').value = savedTitleFont;
-            }
-
-            const savedTextFont = localStorage.getItem('barbershop_text_font');
-            if (savedTextFont) {
-                document.documentElement.style.setProperty('--text-font', savedTextFont);
-                document.getElementById('textFontSelect').value = savedTextFont;
             }
 
             // Load WhatsApp settings
@@ -1734,5 +2470,5 @@ ${businessName} - Admin System`;
         document.getElementById('customerName').addEventListener('input', checkBookingComplete);
         document.getElementById('customerPhone').addEventListener('input', checkBookingComplete);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97aee34a71275da5',t:'MTc1NzE3MTM3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97aefdd977d8be8b',t:'MTc1NzE3MjQ1OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
