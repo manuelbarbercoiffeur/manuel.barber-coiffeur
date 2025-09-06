@@ -74,6 +74,27 @@
                     </div>
                 </div>
 
+                <!-- Additional Services -->
+                <div class="mt-6">
+                    <label class="block text-white font-medium mb-3" id="additionalServicesLabel">Zusätzliche Services (optional)</label>
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <label class="flex items-center text-white bg-white/5 rounded-lg p-3 hover:bg-white/10 transition-all cursor-pointer">
+                            <input type="checkbox" id="designService" class="mr-3 w-4 h-4 accent-purple-600">
+                            <div>
+                                <span class="font-medium" id="designServiceName">🎨 Premium Design</span>
+                                <p class="text-white/70 text-sm" id="designServiceDesc">Spezielle Styling-Beratung (+<span id="designServicePrice">15</span>€)</p>
+                            </div>
+                        </label>
+                        <label class="flex items-center text-white bg-white/5 rounded-lg p-3 hover:bg-white/10 transition-all cursor-pointer">
+                            <input type="checkbox" id="stylingService" class="mr-3 w-4 h-4 accent-purple-600">
+                            <div>
+                                <span class="font-medium" id="stylingServiceName">✨ Styling Service</span>
+                                <p class="text-white/70 text-sm" id="stylingServiceDesc">Komplettes Haarstyling (+<span id="stylingServicePrice">20</span>€)</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
                 <!-- Customer Info -->
                 <div class="mt-6 grid md:grid-cols-2 gap-4">
                     <input type="text" id="customerName" placeholder="Ihr Name" class="p-3 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
@@ -184,6 +205,13 @@
                                     <option value="">Kategorie wählen</option>
                                     <option value="simple">Einfacher Service</option>
                                 </select>
+                            </div>
+                            <div class="mt-3">
+                                <label class="flex items-center text-white">
+                                    <input type="checkbox" id="newServiceFeatured" class="mr-3 w-4 h-4 accent-purple-600">
+                                    🎨 Premium Design (Service hervorheben)
+                                </label>
+                                <p class="text-white/60 text-xs mt-1">Aktiviert spezielle Styling-Effekte für diesen Service</p>
                             </div>
                             <div class="grid md:grid-cols-2 gap-3 mt-3" id="subcategorySelection" style="display: none;">
                                 <select id="newServiceSubcategory" class="p-3 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
@@ -416,6 +444,60 @@
                                     </div>
                                 </div>
                                 <button id="applyButton" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-all">
+                                    ✨ Sofort anwenden
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Additional Services Section -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-4">🎯 Zusätzliche Services bearbeiten</h4>
+                            <div class="space-y-4">
+                                <!-- Section Title -->
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-1">Bereich-Titel</label>
+                                    <input type="text" id="editAdditionalServicesLabel" placeholder="Zusätzliche Services (optional)" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                </div>
+                                
+                                <!-- Design Service -->
+                                <div class="border border-white/10 rounded-lg p-3">
+                                    <h5 class="text-white/80 font-medium mb-2">Service 1 (Premium Design)</h5>
+                                    <div class="grid grid-cols-2 gap-3 mb-2">
+                                        <div>
+                                            <label class="block text-white/70 text-xs mb-1">Name</label>
+                                            <input type="text" id="editDesignServiceName" placeholder="🎨 Premium Design" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none text-sm">
+                                        </div>
+                                        <div>
+                                            <label class="block text-white/70 text-xs mb-1">Preis (€)</label>
+                                            <input type="number" id="editDesignServicePrice" value="15" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none text-sm">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/70 text-xs mb-1">Beschreibung</label>
+                                        <input type="text" id="editDesignServiceDesc" placeholder="Spezielle Styling-Beratung" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none text-sm">
+                                    </div>
+                                </div>
+                                
+                                <!-- Styling Service -->
+                                <div class="border border-white/10 rounded-lg p-3">
+                                    <h5 class="text-white/80 font-medium mb-2">Service 2 (Styling Service)</h5>
+                                    <div class="grid grid-cols-2 gap-3 mb-2">
+                                        <div>
+                                            <label class="block text-white/70 text-xs mb-1">Name</label>
+                                            <input type="text" id="editStylingServiceName" placeholder="✨ Styling Service" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none text-sm">
+                                        </div>
+                                        <div>
+                                            <label class="block text-white/70 text-xs mb-1">Preis (€)</label>
+                                            <input type="number" id="editStylingServicePrice" value="20" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none text-sm">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/70 text-xs mb-1">Beschreibung</label>
+                                        <input type="text" id="editStylingServiceDesc" placeholder="Komplettes Haarstyling" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none text-sm">
+                                    </div>
+                                </div>
+                                
+                                <button id="applyAdditionalServices" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-all">
                                     ✨ Sofort anwenden
                                 </button>
                             </div>
@@ -829,12 +911,19 @@ Kunde: {name}
             updateAdminStats();
             setMinDate();
             updateCategoryDropdowns();
+            setupAdditionalServices();
             
             // Load saved text settings on startup
             const savedTextSettings = localStorage.getItem('barbershop_textSettings');
             if (savedTextSettings) {
                 applyTextSettings(JSON.parse(savedTextSettings));
             }
+        }
+
+        function setupAdditionalServices() {
+            // Add event listeners for additional service checkboxes
+            document.getElementById('designService').addEventListener('change', updateBookingSummary);
+            document.getElementById('stylingService').addEventListener('change', updateBookingSummary);
         }
 
         function updateCategoryDropdowns() {
@@ -941,14 +1030,21 @@ Kunde: {name}
                 } else {
                     // Final service option or simple service
                     serviceElement.dataset.serviceId = service.id;
+                    // Apply premium styling if featured
+                    const premiumClass = service.featured ? 'ring-2 ring-yellow-400 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 shadow-lg' : '';
+                    const premiumIcon = service.featured ? '⭐ ' : '';
+                    
+                    serviceElement.className = `service-option bg-white/10 rounded-lg p-4 cursor-pointer hover:bg-white/20 transition-all ${premiumClass}`;
+                    
                     serviceElement.innerHTML = `
                         <div class="flex justify-between items-center">
                             <div>
-                                <h3 class="text-white font-medium">${service.emoji || '✂️'} ${service.name}</h3>
+                                <h3 class="text-white font-medium">${premiumIcon}${service.emoji || '✂️'} ${service.name}</h3>
                                 <p class="text-white/70 text-sm">${service.description}</p>
+                                ${service.featured ? '<p class="text-yellow-400 text-xs font-medium mt-1">✨ Premium Service</p>' : ''}
                             </div>
                             <div class="text-right">
-                                <p class="text-white font-bold">${service.price}€</p>
+                                <p class="text-white font-bold ${service.featured ? 'text-yellow-400' : ''}">${service.price}€</p>
                                 <p class="text-white/70 text-sm">${service.duration} Min</p>
                             </div>
                         </div>
@@ -1122,6 +1218,15 @@ Kunde: {name}
                                 <label class="block text-white/70 text-sm mb-1">Emoji</label>
                                 <input type="text" id="serviceEmoji_${service.id}" value="${service.emoji || '✂️'}" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
                             </div>
+                        </div>
+                        
+                        <!-- Design Toggle -->
+                        <div class="mt-3">
+                            <label class="flex items-center text-white mb-3">
+                                <input type="checkbox" id="serviceDesign_${service.id}" ${service.featured ? 'checked' : ''} class="mr-3 w-4 h-4 accent-purple-600">
+                                🎨 Premium Design (Hervorhebung)
+                            </label>
+                            <p class="text-white/60 text-xs mb-3">Aktiviert spezielle Styling-Effekte für diesen Service</p>
                         </div>
                         
                         <!-- Apply Button -->
@@ -1300,16 +1405,38 @@ Kunde: {name}
             const content = document.getElementById('summaryContent');
             
             if (selectedService && selectedDate && selectedTime) {
+                // Calculate additional services with saved prices
+                let additionalServices = [];
+                let additionalPrice = 0;
+                
+                if (document.getElementById('designService').checked) {
+                    const designPrice = parseInt(localStorage.getItem('barbershop_design_service_price') || '15');
+                    const designName = localStorage.getItem('barbershop_design_service_name') || '🎨 Premium Design';
+                    additionalServices.push(`${designName} (+${designPrice}€)`);
+                    additionalPrice += designPrice;
+                }
+                
+                if (document.getElementById('stylingService').checked) {
+                    const stylingPrice = parseInt(localStorage.getItem('barbershop_styling_service_price') || '20');
+                    const stylingName = localStorage.getItem('barbershop_styling_service_name') || '✨ Styling Service';
+                    additionalServices.push(`${stylingName} (+${stylingPrice}€)`);
+                    additionalPrice += stylingPrice;
+                }
+                
+                const totalPrice = selectedService.price + additionalPrice;
+                
                 summary.classList.remove('hidden');
                 content.innerHTML = `
                     <div class="flex justify-between items-center">
                         <div>
                             <p><strong>${selectedService.fullPath || selectedService.name}</strong></p>
+                            ${additionalServices.length > 0 ? `<p class="text-white/80 text-sm">${additionalServices.join(', ')}</p>` : ''}
                             <p>${selectedDate} um ${selectedTime}</p>
                             <p>Dauer: ${selectedService.duration} Minuten</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl font-bold">${selectedService.price}€</p>
+                            <p class="text-xl font-bold">${totalPrice}€</p>
+                            ${additionalPrice > 0 ? `<p class="text-white/70 text-sm">(Basis: ${selectedService.price}€ + ${additionalPrice}€)</p>` : ''}
                         </div>
                     </div>
                 `;
@@ -1340,9 +1467,31 @@ Kunde: {name}
                 return;
             }
             
+            // Calculate additional services with saved prices
+            let additionalServices = [];
+            let additionalPrice = 0;
+            
+            if (document.getElementById('designService').checked) {
+                const designPrice = parseInt(localStorage.getItem('barbershop_design_service_price') || '15');
+                const designName = localStorage.getItem('barbershop_design_service_name') || 'Premium Design';
+                additionalServices.push({ name: designName.replace(/🎨\s*/, ''), price: designPrice });
+                additionalPrice += designPrice;
+            }
+            
+            if (document.getElementById('stylingService').checked) {
+                const stylingPrice = parseInt(localStorage.getItem('barbershop_styling_service_price') || '20');
+                const stylingName = localStorage.getItem('barbershop_styling_service_name') || 'Styling Service';
+                additionalServices.push({ name: stylingName.replace(/✨\s*/, ''), price: stylingPrice });
+                additionalPrice += stylingPrice;
+            }
+            
+            const totalPrice = selectedService.price + additionalPrice;
+            
             const booking = {
                 id: Date.now(),
                 service: selectedService,
+                additionalServices: additionalServices,
+                totalPrice: totalPrice,
                 date: selectedDate,
                 time: selectedTime,
                 customer: { name, phone },
@@ -1355,7 +1504,10 @@ Kunde: {name}
             // Send automatic notifications
             sendBookingNotifications(booking);
             
-            alert(`✅ Termin erfolgreich gebucht!\n\n${selectedService.name}\n${selectedDate} um ${selectedTime}\n\nWir freuen uns auf Ihren Besuch!`);
+            const additionalText = additionalServices.length > 0 ? 
+                `\nZusätzliche Services: ${additionalServices.map(s => s.name).join(', ')}` : '';
+            
+            alert(`✅ Termin erfolgreich gebucht!\n\n${selectedService.name}${additionalText}\n${selectedDate} um ${selectedTime}\nGesamtpreis: ${totalPrice}€\n\nWir freuen uns auf Ihren Besuch!`);
             
             // Reset form
             resetForm();
@@ -1374,6 +1526,8 @@ Kunde: {name}
             document.getElementById('bookingDate').value = '';
             document.getElementById('customerName').value = '';
             document.getElementById('customerPhone').value = '';
+            document.getElementById('designService').checked = false;
+            document.getElementById('stylingService').checked = false;
             document.getElementById('timeSlots').innerHTML = '';
             document.getElementById('bookingSummary').classList.add('hidden');
             document.getElementById('bookButton').disabled = true;
@@ -1426,29 +1580,38 @@ Kunde: {name}
             
             bookingsList.innerHTML = todayBookings
                 .sort((a, b) => a.time.localeCompare(b.time))
-                .map(booking => `
-                    <div class="booking-card bg-white/10 rounded-lg p-4">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="text-white font-medium">${booking.customer.name}</h4>
-                                <p class="text-white/70 text-sm">${booking.service.name}</p>
-                                <p class="text-white/70 text-sm">📞 ${booking.customer.phone}</p>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-white font-bold">${booking.time}</p>
-                                <p class="text-white/70 text-sm">${booking.service.price}€</p>
-                                <div class="mt-2 space-x-2">
-                                    <button onclick="sendWhatsApp('${booking.customer.phone}', '${booking.customer.name}', '${booking.service.name}', '${booking.date}', '${booking.time}')" class="whatsapp-btn text-xs px-2 py-1 rounded">
-                                        📱 WhatsApp
-                                    </button>
-                                    <button onclick="cancelBooking(${booking.id})" class="text-red-400 hover:text-red-300 text-xs px-2 py-1 rounded bg-red-500/20">
-                                        ❌ Stornieren
-                                    </button>
+                .map(booking => {
+                    const additionalServicesText = booking.additionalServices && booking.additionalServices.length > 0 
+                        ? `<p class="text-white/60 text-xs">+ ${booking.additionalServices.map(s => s.name).join(', ')}</p>`
+                        : '';
+                    
+                    const displayPrice = booking.totalPrice || booking.service.price;
+                    
+                    return `
+                        <div class="booking-card bg-white/10 rounded-lg p-4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h4 class="text-white font-medium">${booking.customer.name}</h4>
+                                    <p class="text-white/70 text-sm">${booking.service.name}</p>
+                                    ${additionalServicesText}
+                                    <p class="text-white/70 text-sm">📞 ${booking.customer.phone}</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-white font-bold">${booking.time}</p>
+                                    <p class="text-white/70 text-sm">${displayPrice}€</p>
+                                    <div class="mt-2 space-x-2">
+                                        <button onclick="sendWhatsApp('${booking.customer.phone}', '${booking.customer.name}', '${booking.service.name}', '${booking.date}', '${booking.time}')" class="whatsapp-btn text-xs px-2 py-1 rounded">
+                                            📱 WhatsApp
+                                        </button>
+                                        <button onclick="cancelBooking(${booking.id})" class="text-red-400 hover:text-red-300 text-xs px-2 py-1 rounded bg-red-500/20">
+                                            ❌ Stornieren
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                `).join('');
+                    `;
+                }).join('');
         }
 
         function sendWhatsApp(phone, name, service, date, time) {
@@ -1575,7 +1738,9 @@ Kunde: {name}
         function updateAdminStats() {
             const today = new Date().toISOString().split('T')[0];
             const todayBookings = bookings.filter(booking => booking.date === today);
-            const todayRevenue = todayBookings.reduce((sum, booking) => sum + booking.service.price, 0);
+            const todayRevenue = todayBookings.reduce((sum, booking) => {
+                return sum + (booking.totalPrice || booking.service.price);
+            }, 0);
             
             document.getElementById('todayBookings').textContent = todayBookings.length;
             document.getElementById('todayRevenue').textContent = todayRevenue + '€';
@@ -1703,6 +1868,7 @@ Kunde: {name}
                 const emoji = document.getElementById('newServiceEmoji').value || '⭐';
                 const categoryId = document.getElementById('newServiceCategory').value;
                 const subcategoryId = document.getElementById('newServiceSubcategory').value;
+                const featured = document.getElementById('newServiceFeatured').checked;
 
                 if (!name || !description || !price || !duration) {
                     alert('Bitte alle Felder ausfüllen!');
@@ -1715,7 +1881,8 @@ Kunde: {name}
                     description,
                     price,
                     duration,
-                    emoji
+                    emoji,
+                    featured
                 };
 
                 // Add service to appropriate location
@@ -1761,6 +1928,7 @@ Kunde: {name}
                 document.getElementById('newServiceEmoji').value = '';
                 document.getElementById('newServiceCategory').value = '';
                 document.getElementById('newServiceSubcategory').value = '';
+                document.getElementById('newServiceFeatured').checked = false;
                 document.getElementById('subcategorySelection').style.display = 'none';
 
                 loadServices();
@@ -1807,6 +1975,7 @@ Kunde: {name}
             const price = parseInt(document.getElementById(`servicePrice_${serviceId}`).value);
             const duration = parseInt(document.getElementById(`serviceDuration_${serviceId}`).value);
             const emoji = document.getElementById(`serviceEmoji_${serviceId}`).value;
+            const featured = document.getElementById(`serviceDesign_${serviceId}`).checked;
 
             if (!name || !price || !duration || !emoji) {
                 alert('Bitte alle Pflichtfelder ausfüllen!');
@@ -1824,6 +1993,7 @@ Kunde: {name}
                     service.price = price;
                     service.duration = duration;
                     service.emoji = emoji;
+                    service.featured = featured;
                     updated = true;
                 } else if (service.type === 'category' && service.subcategories) {
                     // Update service in category
@@ -1836,6 +2006,7 @@ Kunde: {name}
                                     option.price = price;
                                     option.duration = duration;
                                     option.emoji = emoji;
+                                    option.featured = featured;
                                     updated = true;
                                 }
                             });
@@ -2416,6 +2587,41 @@ ${businessName} - Admin System`;
                 showNotification('✨ Button aktualisiert!');
             });
 
+            // Additional Services Apply Button
+            document.getElementById('applyAdditionalServices').addEventListener('click', function() {
+                const sectionTitle = document.getElementById('editAdditionalServicesLabel').value || 'Zusätzliche Services (optional)';
+                const designName = document.getElementById('editDesignServiceName').value || '🎨 Premium Design';
+                const designPrice = document.getElementById('editDesignServicePrice').value || '15';
+                const designDesc = document.getElementById('editDesignServiceDesc').value || 'Spezielle Styling-Beratung';
+                const stylingName = document.getElementById('editStylingServiceName').value || '✨ Styling Service';
+                const stylingPrice = document.getElementById('editStylingServicePrice').value || '20';
+                const stylingDesc = document.getElementById('editStylingServiceDesc').value || 'Komplettes Haarstyling';
+                
+                // Update section title
+                document.getElementById('additionalServicesLabel').textContent = sectionTitle;
+                
+                // Update design service
+                document.getElementById('designServiceName').textContent = designName;
+                document.getElementById('designServicePrice').textContent = designPrice;
+                document.getElementById('designServiceDesc').innerHTML = `${designDesc} (+<span id="designServicePrice">${designPrice}</span>€)`;
+                
+                // Update styling service
+                document.getElementById('stylingServiceName').textContent = stylingName;
+                document.getElementById('stylingServicePrice').textContent = stylingPrice;
+                document.getElementById('stylingServiceDesc').innerHTML = `${stylingDesc} (+<span id="stylingServicePrice">${stylingPrice}</span>€)`;
+                
+                // Save to localStorage
+                localStorage.setItem('barbershop_additional_section_title', sectionTitle);
+                localStorage.setItem('barbershop_design_service_name', designName);
+                localStorage.setItem('barbershop_design_service_price', designPrice);
+                localStorage.setItem('barbershop_design_service_desc', designDesc);
+                localStorage.setItem('barbershop_styling_service_name', stylingName);
+                localStorage.setItem('barbershop_styling_service_price', stylingPrice);
+                localStorage.setItem('barbershop_styling_service_desc', stylingDesc);
+                
+                showNotification('✨ Zusätzliche Services aktualisiert!');
+            });
+
             // Preview all changes
             document.getElementById('previewAllChanges').addEventListener('click', function() {
                 // Apply all changes at once
@@ -2523,6 +2729,15 @@ ${businessName} - Admin System`;
             document.getElementById('editButtonTextDesign').value = localStorage.getItem('barbershop_button_text') || '';
             document.getElementById('buttonTextSizeDesign').value = localStorage.getItem('barbershop_button_size') || '1';
             document.getElementById('buttonTextFontDesign').value = localStorage.getItem('barbershop_button_font') || 'Inter';
+            
+            // Load additional services settings
+            document.getElementById('editAdditionalServicesLabel').value = localStorage.getItem('barbershop_additional_section_title') || '';
+            document.getElementById('editDesignServiceName').value = localStorage.getItem('barbershop_design_service_name') || '';
+            document.getElementById('editDesignServicePrice').value = localStorage.getItem('barbershop_design_service_price') || '15';
+            document.getElementById('editDesignServiceDesc').value = localStorage.getItem('barbershop_design_service_desc') || '';
+            document.getElementById('editStylingServiceName').value = localStorage.getItem('barbershop_styling_service_name') || '';
+            document.getElementById('editStylingServicePrice').value = localStorage.getItem('barbershop_styling_service_price') || '20';
+            document.getElementById('editStylingServiceDesc').value = localStorage.getItem('barbershop_styling_service_desc') || '';
         }
 
         function showNotification(message) {
@@ -2570,6 +2785,34 @@ ${businessName} - Admin System`;
                 if (savedMainTitle) element.textContent = savedMainTitle;
                 if (savedMainTitleSize) element.style.fontSize = savedMainTitleSize + 'rem';
                 if (savedMainTitleFont) element.style.fontFamily = savedMainTitleFont;
+            }
+
+            // Load additional services settings
+            const savedSectionTitle = localStorage.getItem('barbershop_additional_section_title');
+            if (savedSectionTitle) {
+                document.getElementById('additionalServicesLabel').textContent = savedSectionTitle;
+            }
+
+            const savedDesignName = localStorage.getItem('barbershop_design_service_name');
+            const savedDesignPrice = localStorage.getItem('barbershop_design_service_price');
+            const savedDesignDesc = localStorage.getItem('barbershop_design_service_desc');
+            if (savedDesignName) document.getElementById('designServiceName').textContent = savedDesignName;
+            if (savedDesignPrice) {
+                document.getElementById('designServicePrice').textContent = savedDesignPrice;
+            }
+            if (savedDesignDesc && savedDesignPrice) {
+                document.getElementById('designServiceDesc').innerHTML = `${savedDesignDesc} (+<span id="designServicePrice">${savedDesignPrice}</span>€)`;
+            }
+
+            const savedStylingName = localStorage.getItem('barbershop_styling_service_name');
+            const savedStylingPrice = localStorage.getItem('barbershop_styling_service_price');
+            const savedStylingDesc = localStorage.getItem('barbershop_styling_service_desc');
+            if (savedStylingName) document.getElementById('stylingServiceName').textContent = savedStylingName;
+            if (savedStylingPrice) {
+                document.getElementById('stylingServicePrice').textContent = savedStylingPrice;
+            }
+            if (savedStylingDesc && savedStylingPrice) {
+                document.getElementById('stylingServiceDesc').innerHTML = `${savedStylingDesc} (+<span id="stylingServicePrice">${savedStylingPrice}</span>€)`;
             }
 
             const savedSubtitle = localStorage.getItem('barbershop_subtitle');
@@ -3009,5 +3252,5 @@ ${businessName} - Admin System`;
             input.value = formatted;
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97af2e8ea10cbe8b',t:'MTc1NzE3NDQ1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97af3ef7218cbe8b',t:'MTc1NzE3NTEyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
