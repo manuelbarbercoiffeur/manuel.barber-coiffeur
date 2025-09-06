@@ -47,17 +47,17 @@
 
         <div class="max-w-4xl mx-auto">
             <div id="bookingForm" class="glass-effect rounded-2xl p-8 mb-8">
-                <h2 class="text-2xl font-semibold text-white mb-6">🗓️ Termin buchen</h2>
+                <h2 class="text-2xl font-semibold text-white mb-6" id="bookingTitle">🗓️ Termin buchen</h2>
                 
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-white font-medium mb-3">Service wählen</label>
+                        <label class="block text-white font-medium mb-3" id="serviceLabel">Service wählen</label>
                         <div id="servicesList" class="space-y-3">
                             </div>
                     </div>
 
                     <div>
-                        <label class="block text-white font-medium mb-3">Datum & Uhrzeit</label>
+                        <label class="block text-white font-medium mb-3" id="dateLabel">Datum & Uhrzeit</label>
                         <div class="space-y-4">
                             <input type="date" id="bookingDate" class="w-full p-3 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
                             
@@ -537,11 +537,22 @@
             const adminToggle = document.getElementById('adminToggle');
             const adminPanel = document.getElementById('adminPanel');
             const saveAllServicesBtn = document.getElementById('saveAllServices');
+            const ADMIN_PASSWORD = 'admin123';
 
-            // --- Admin Panel Toggle Logic ---
+            // --- Admin Panel Toggle Logic with Password Protection ---
             adminToggle.addEventListener('click', () => {
-                adminPanel.classList.toggle('hidden');
-                adminToggle.textContent = adminPanel.classList.contains('hidden') ? '🔧 Admin-Bereich' : '✅ Admin-Bereich schliessen';
+                if (adminPanel.classList.contains('hidden')) {
+                    const password = prompt("Bitte geben Sie das Admin-Passwort ein:");
+                    if (password === ADMIN_PASSWORD) {
+                        adminPanel.classList.remove('hidden');
+                        adminToggle.textContent = '✅ Admin-Bereich schliessen';
+                    } else {
+                        alert('Falsches Passwort!');
+                    }
+                } else {
+                    adminPanel.classList.add('hidden');
+                    adminToggle.textContent = '🔧 Admin-Bereich';
+                }
             });
 
             // --- Panel Toggle Buttons ---
@@ -1083,7 +1094,7 @@
                 const startHour = parseInt(hoursConfig.start.split(':')[0]);
                 const startMinute = parseInt(hoursConfig.start.split(':')[1]);
                 const endHour = parseInt(hoursConfig.end.split(':')[0]);
-                const endMinute = parseInt(hoursConfig.end.end.split(':')[1]);
+                const endMinute = parseInt(hoursConfig.end.split(':')[1]);
                 const duration = selectedService.duration;
                 const now = new Date();
                 const today = new Date().toISOString().split('T')[0];
@@ -1167,6 +1178,5 @@
             renderHours();
         });
     </script>
-
 </body>
 </html>
