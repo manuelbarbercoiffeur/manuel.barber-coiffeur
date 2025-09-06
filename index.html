@@ -143,6 +143,32 @@
 
                     <!-- Edit Mode -->
                     <div id="editModeContent">
+                        <!-- Create New Category -->
+                        <div class="bg-blue-500/20 rounded-lg p-4 mb-6">
+                            <h4 class="text-white font-medium mb-3">🏗️ Neue Kategorie erstellen</h4>
+                            <div class="grid md:grid-cols-3 gap-3 mb-3">
+                                <input type="text" id="newCategoryName" placeholder="Kategorie Name (z.B. Haarschnitte)" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                <input type="text" id="newCategoryEmoji" placeholder="Emoji (z.B. ✂️)" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                <button id="createCategoryBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg font-medium transition-all">
+                                    🏗️ Kategorie erstellen
+                                </button>
+                            </div>
+                            
+                            <!-- Create Subcategory -->
+                            <div class="border-t border-white/10 pt-3">
+                                <h5 class="text-white/80 font-medium mb-2">📋 Unterkategorie hinzufügen</h5>
+                                <div class="grid md:grid-cols-3 gap-3">
+                                    <select id="selectCategoryForSub" class="p-3 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                        <option value="">Kategorie wählen</option>
+                                    </select>
+                                    <input type="text" id="newSubcategoryName" placeholder="Unterkategorie Name (z.B. Klassisch)" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                    <button id="createSubcategoryBtn" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-3 rounded-lg font-medium transition-all">
+                                        📋 Unterkategorie hinzufügen
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Add New Service -->
                         <div class="bg-white/5 rounded-lg p-4 mb-6">
                             <h4 class="text-white font-medium mb-3">➕ Neuen Service hinzufügen</h4>
@@ -157,6 +183,11 @@
                                 <select id="newServiceCategory" class="p-3 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
                                     <option value="">Kategorie wählen</option>
                                     <option value="simple">Einfacher Service</option>
+                                </select>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-3 mt-3" id="subcategorySelection" style="display: none;">
+                                <select id="newServiceSubcategory" class="p-3 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                    <option value="">Unterkategorie wählen</option>
                                 </select>
                             </div>
                             <div class="mt-4">
@@ -797,11 +828,45 @@ Kunde: {name}
             setupWhatsAppPanel();
             updateAdminStats();
             setMinDate();
+            updateCategoryDropdowns();
             
             // Load saved text settings on startup
             const savedTextSettings = localStorage.getItem('barbershop_textSettings');
             if (savedTextSettings) {
                 applyTextSettings(JSON.parse(savedTextSettings));
+            }
+        }
+
+        function updateCategoryDropdowns() {
+            // Update category dropdown for new services
+            const newServiceCategorySelect = document.getElementById('newServiceCategory');
+            if (newServiceCategorySelect) {
+                // Keep existing options and add new categories
+                const currentOptions = Array.from(newServiceCategorySelect.options).map(opt => opt.value);
+                
+                services.forEach(service => {
+                    if (service.type === 'category' && !currentOptions.includes(service.id.toString())) {
+                        const option = document.createElement('option');
+                        option.value = service.id;
+                        option.textContent = `${service.emoji} ${service.name}`;
+                        newServiceCategorySelect.appendChild(option);
+                    }
+                });
+            }
+
+            // Update category dropdown for subcategory creation
+            const selectCategoryForSub = document.getElementById('selectCategoryForSub');
+            if (selectCategoryForSub) {
+                selectCategoryForSub.innerHTML = '<option value="">Kategorie wählen</option>';
+                
+                services.forEach(service => {
+                    if (service.type === 'category') {
+                        const option = document.createElement('option');
+                        option.value = service.id;
+                        option.textContent = `${service.emoji} ${service.name}`;
+                        selectCategoryForSub.appendChild(option);
+                    }
+                });
             }
         }
 
@@ -1528,13 +1593,116 @@ Kunde: {name}
                 }
             });
 
+            // Create new category
+            document.getElementById('createCategoryBtn').addEventListener('click', function() {
+                const categoryName = document.getElementById('newCategoryName').value;
+                const categoryEmoji = document.getElementById('newCategoryEmoji').value || '✂️';
+
+                if (!categoryName) {
+                    alert('Bitte Kategorie-Name eingeben!');
+                    return;
+                }
+
+                const newCategory = {
+                    id: Date.now(),
+                    name: categoryName,
+                    emoji: categoryEmoji,
+                    type: 'category',
+                    subcategories: []
+                };
+
+                services.push(newCategory);
+                localStorage.setItem('barbershop_services', JSON.stringify(services));
+
+                // Clear form
+                document.getElementById('newCategoryName').value = '';
+                document.getElementById('newCategoryEmoji').value = '';
+
+                // Update dropdowns
+                updateCategoryDropdowns();
+                loadServices();
+                loadAdminServices();
+                showNotification('✅ Kategorie erstellt!');
+            });
+
+            // Create new subcategory
+            document.getElementById('createSubcategoryBtn').addEventListener('click', function() {
+                const categoryId = parseInt(document.getElementById('selectCategoryForSub').value);
+                const subcategoryName = document.getElementById('newSubcategoryName').value;
+
+                if (!categoryId || !subcategoryName) {
+                    alert('Bitte Kategorie und Unterkategorie-Name auswählen/eingeben!');
+                    return;
+                }
+
+                const category = services.find(s => s.id === categoryId);
+                if (!category) {
+                    alert('Kategorie nicht gefunden!');
+                    return;
+                }
+
+                const newSubcategory = {
+                    id: Date.now(),
+                    name: subcategoryName,
+                    type: 'subcategory',
+                    options: []
+                };
+
+                if (!category.subcategories) {
+                    category.subcategories = [];
+                }
+                category.subcategories.push(newSubcategory);
+
+                localStorage.setItem('barbershop_services', JSON.stringify(services));
+
+                // Clear form
+                document.getElementById('selectCategoryForSub').value = '';
+                document.getElementById('newSubcategoryName').value = '';
+
+                // Update dropdowns
+                updateCategoryDropdowns();
+                loadServices();
+                loadAdminServices();
+                showNotification('✅ Unterkategorie hinzugefügt!');
+            });
+
+            // Category selection change handler
+            document.getElementById('newServiceCategory').addEventListener('change', function() {
+                const selectedCategory = this.value;
+                const subcategorySelection = document.getElementById('subcategorySelection');
+                const subcategorySelect = document.getElementById('newServiceSubcategory');
+
+                if (selectedCategory && selectedCategory !== 'simple') {
+                    const categoryId = parseInt(selectedCategory);
+                    const category = services.find(s => s.id === categoryId);
+                    
+                    if (category && category.subcategories && category.subcategories.length > 0) {
+                        // Show subcategory selection
+                        subcategorySelection.style.display = 'grid';
+                        subcategorySelect.innerHTML = '<option value="">Unterkategorie wählen</option>';
+                        
+                        category.subcategories.forEach(sub => {
+                            const option = document.createElement('option');
+                            option.value = sub.id;
+                            option.textContent = sub.name;
+                            subcategorySelect.appendChild(option);
+                        });
+                    } else {
+                        subcategorySelection.style.display = 'none';
+                    }
+                } else {
+                    subcategorySelection.style.display = 'none';
+                }
+            });
+
             document.getElementById('addServiceBtn').addEventListener('click', function() {
                 const name = document.getElementById('newServiceName').value;
                 const description = document.getElementById('newServiceDescription').value;
                 const price = parseInt(document.getElementById('newServicePrice').value);
                 const duration = parseInt(document.getElementById('newServiceDuration').value);
                 const emoji = document.getElementById('newServiceEmoji').value || '⭐';
-                const category = document.getElementById('newServiceCategory').value;
+                const categoryId = document.getElementById('newServiceCategory').value;
+                const subcategoryId = document.getElementById('newServiceSubcategory').value;
 
                 if (!name || !description || !price || !duration) {
                     alert('Bitte alle Felder ausfüllen!');
@@ -1550,9 +1718,33 @@ Kunde: {name}
                     emoji
                 };
 
-                // Add service to appropriate category
-                if (category && category !== 'simple') {
-                    addServiceToCategory(newService, category);
+                // Add service to appropriate location
+                if (categoryId && categoryId !== 'simple') {
+                    const categoryIdNum = parseInt(categoryId);
+                    const category = services.find(s => s.id === categoryIdNum);
+                    
+                    if (category && subcategoryId) {
+                        // Add to specific subcategory
+                        const subcategoryIdNum = parseInt(subcategoryId);
+                        const subcategory = category.subcategories.find(s => s.id === subcategoryIdNum);
+                        
+                        if (subcategory) {
+                            if (!subcategory.options) subcategory.options = [];
+                            subcategory.options.push(newService);
+                        }
+                    } else if (category) {
+                        // Create default subcategory if none exists
+                        if (!category.subcategories) category.subcategories = [];
+                        if (category.subcategories.length === 0) {
+                            category.subcategories.push({
+                                id: Date.now() + 1,
+                                name: 'Standard',
+                                type: 'subcategory',
+                                options: []
+                            });
+                        }
+                        category.subcategories[0].options.push(newService);
+                    }
                 } else {
                     // Add as simple service
                     newService.type = 'simple';
@@ -1568,6 +1760,8 @@ Kunde: {name}
                 document.getElementById('newServiceDuration').value = '';
                 document.getElementById('newServiceEmoji').value = '';
                 document.getElementById('newServiceCategory').value = '';
+                document.getElementById('newServiceSubcategory').value = '';
+                document.getElementById('subcategorySelection').style.display = 'none';
 
                 loadServices();
                 loadAdminServices();
@@ -2773,5 +2967,5 @@ ${businessName} - Admin System`;
         document.getElementById('customerName').addEventListener('input', checkBookingComplete);
         document.getElementById('customerPhone').addEventListener('input', checkBookingComplete);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97af235e0201be8b',t:'MTc1NzE3Mzk5NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97af2986219fbe8b',t:'MTc1NzE3NDI0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
