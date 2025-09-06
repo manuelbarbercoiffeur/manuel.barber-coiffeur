@@ -1,4 +1,3 @@
-# manuel.barber-coiffeur
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -7,19 +6,32 @@
     <title>Barbershop Terminbuchung</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;500;600;700&family=Squada+One&family=Oswald:wght@300;400;500;600;700&family=Bebas+Neue&family=Anton&display=swap');
+        body { font-family: var(--text-font, 'Inter'), sans-serif; }
+        h1, h2, h3, .title-font { font-family: var(--title-font, 'Squada One'), cursive; font-size: 1.2em; }
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 1.8rem; }
+        h3 { font-size: 1.4rem; }
+        .gradient-bg { background: linear-gradient(135deg, var(--primary-color, #667eea) 0%, var(--secondary-color, #764ba2) 100%); }
         .glass-effect { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); }
         .booking-card { transition: all 0.3s ease; }
         .booking-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .logo-container { width: 80px; height: 80px; border-radius: 50%; overflow: hidden; margin: 0 auto 1rem; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; }
+        .logo-container img { width: 100%; height: 100%; object-fit: cover; }
+        .whatsapp-btn { background: #25D366; color: white; }
+        .whatsapp-btn:hover { background: #128C7E; }
+        .design-panel { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .design-panel.open { max-height: 500px; }
     </style>
 </head>
 <body class="gradient-bg min-h-screen">
     <div class="container mx-auto px-4 py-8">
         <!-- Header -->
         <div class="text-center mb-8">
-            <h1 class="text-4xl font-bold text-white mb-2">✂️ Barbershop Elite</h1>
+            <div id="logoContainer" class="logo-container">
+                <span class="text-3xl">✂️</span>
+            </div>
+            <h1 class="text-4xl font-bold text-white mb-2" id="businessName">Barbershop Elite</h1>
             <p class="text-white/80 text-lg">Professionelle Herrenfriseur-Services</p>
         </div>
 
@@ -108,14 +120,111 @@
 
             <!-- Admin Panel Toggle -->
             <div class="text-center mb-4">
-                <button id="adminToggle" class="text-white/70 hover:text-white text-sm">
+                <button id="adminToggle" class="text-white/70 hover:text-white text-sm bg-white/10 px-4 py-2 rounded-lg hover:bg-white/20 transition-all">
                     🔧 Admin-Bereich
                 </button>
             </div>
 
+
+
             <!-- Admin Panel -->
             <div id="adminPanel" class="glass-effect rounded-2xl p-8 hidden">
-                <h2 class="text-2xl font-semibold text-white mb-6">👨‍💼 Admin-Bereich</h2>
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-semibold text-white">👨‍💼 Admin-Bereich</h2>
+                    <div class="space-x-2">
+                        <button id="designToggle" class="text-white/70 hover:text-white text-sm bg-white/10 px-3 py-1 rounded">
+                            🎨 Design
+                        </button>
+                        <button id="logoutButton" class="text-white/70 hover:text-white text-sm bg-white/10 px-3 py-1 rounded">
+                            🚪 Abmelden
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Design Panel -->
+                <div id="designPanel" class="bg-white/5 rounded-xl p-6 mb-6 design-panel">
+                    <h3 class="text-xl font-semibold text-white mb-4">🎨 Design anpassen</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Logo Upload -->
+                        <div>
+                            <label class="block text-white font-medium mb-3">Logo hochladen</label>
+                            <input type="file" id="logoUpload" accept="image/*" class="w-full p-3 rounded-lg bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-white file:text-purple-600 hover:file:bg-gray-100">
+                            <p class="text-white/60 text-sm mt-2">JPG, PNG oder GIF (max. 2MB)</p>
+                        </div>
+
+                        <!-- Business Name -->
+                        <div>
+                            <label class="block text-white font-medium mb-3">Geschäftsname</label>
+                            <input type="text" id="businessNameInput" placeholder="Barbershop Elite" class="w-full p-3 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                        </div>
+
+                        <!-- Custom Colors -->
+                        <div>
+                            <label class="block text-white font-medium mb-3">Hauptfarbe (Hex)</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="primaryColorInput" placeholder="#667eea" class="flex-1 p-3 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                <input type="color" id="primaryColorPicker" class="w-12 h-12 rounded-lg border border-white/20 bg-white/10">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-white font-medium mb-3">Zweitfarbe (Hex)</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="secondaryColorInput" placeholder="#764ba2" class="flex-1 p-3 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                <input type="color" id="secondaryColorPicker" class="w-12 h-12 rounded-lg border border-white/20 bg-white/10">
+                            </div>
+                        </div>
+
+                        <!-- Title Font Selection -->
+                        <div>
+                            <label class="block text-white font-medium mb-3">Titel-Schriftart</label>
+                            <select id="titleFontSelect" class="w-full p-3 rounded-lg bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                <option value="Squada One">Squada One (Standard)</option>
+                                <option value="Oswald">Oswald (Stark)</option>
+                                <option value="Bebas Neue">Bebas Neue (Modern)</option>
+                                <option value="Anton">Anton (Bold)</option>
+                            </select>
+                        </div>
+
+                        <!-- Text Font Selection -->
+                        <div>
+                            <label class="block text-white font-medium mb-3">Text-Schriftart</label>
+                            <select id="textFontSelect" class="w-full p-3 rounded-lg bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                <option value="Inter">Inter (Passend zu Squada One)</option>
+                                <option value="Poppins">Poppins (Freundlich)</option>
+                                <option value="Roboto">Roboto (Klassisch)</option>
+                                <option value="Open Sans">Open Sans (Sauber)</option>
+                            </select>
+                        </div>
+
+                        <!-- WhatsApp Settings -->
+                        <div class="md:col-span-2">
+                            <label class="block text-white font-medium mb-3">WhatsApp Einstellungen</label>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-2">Inhaber WhatsApp (für Buchungsbenachrichtigungen)</label>
+                                    <input type="tel" id="ownerWhatsApp" placeholder="+49123456789" class="w-full p-3 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                </div>
+                                <div class="flex items-end">
+                                    <label class="flex items-center text-white/70 text-sm">
+                                        <input type="checkbox" id="autoNotifyOwner" class="mr-2">
+                                        Automatische Benachrichtigung bei neuen Buchungen
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex gap-4">
+                        <button id="saveDesign" class="bg-white text-purple-600 font-semibold py-2 px-6 rounded-lg hover:bg-white/90 transition-all">
+                            💾 Design speichern
+                        </button>
+                        <button id="resetDesign" class="bg-white/20 text-white font-semibold py-2 px-6 rounded-lg hover:bg-white/30 transition-all">
+                            🔄 Zurücksetzen
+                        </button>
+                    </div>
+                </div>
                 
                 <!-- Bookings List -->
                 <div class="mb-6">
@@ -154,12 +263,14 @@
         // Initialize app
         document.addEventListener('DOMContentLoaded', function() {
             initializeApp();
+            loadDesignSettings();
         });
 
         function initializeApp() {
             setupServiceSelection();
             setupDateSelection();
             setupAdminPanel();
+            setupDesignPanel();
             updateAdminStats();
             setMinDate();
         }
@@ -298,6 +409,9 @@
             bookings.push(booking);
             localStorage.setItem('barbershop_bookings', JSON.stringify(bookings));
             
+            // Send automatic notifications
+            sendBookingNotifications(booking);
+            
             alert(`✅ Termin erfolgreich gebucht!\n\n${selectedService.name}\n${selectedDate} um ${selectedTime}\n\nWir freuen uns auf Ihren Besuch!`);
             
             // Reset form
@@ -322,16 +436,38 @@
             document.getElementById('bookButton').disabled = true;
         }
 
-        // Admin Panel
+        // Admin Panel with Password Protection
         function setupAdminPanel() {
             document.getElementById('adminToggle').addEventListener('click', function() {
                 const adminPanel = document.getElementById('adminPanel');
                 if (adminPanel.classList.contains('hidden')) {
-                    adminPanel.classList.remove('hidden');
-                    displayBookings();
+                    // Check if already authenticated in this session
+                    if (sessionStorage.getItem('admin_authenticated') === 'true') {
+                        adminPanel.classList.remove('hidden');
+                        displayBookings();
+                        return;
+                    }
+                    
+                    // Prompt for password
+                    const password = prompt('🔒 Admin-Passwort eingeben:');
+                    if (password === 'barbershop2024') {
+                        sessionStorage.setItem('admin_authenticated', 'true');
+                        adminPanel.classList.remove('hidden');
+                        displayBookings();
+                        alert('✅ Erfolgreich angemeldet!');
+                    } else if (password !== null) {
+                        alert('❌ Falsches Passwort!');
+                    }
                 } else {
                     adminPanel.classList.add('hidden');
                 }
+            });
+
+            // Logout functionality
+            document.getElementById('logoutButton').addEventListener('click', function() {
+                sessionStorage.removeItem('admin_authenticated');
+                document.getElementById('adminPanel').classList.add('hidden');
+                alert('👋 Erfolgreich abgemeldet!');
             });
         }
 
@@ -358,13 +494,102 @@
                             <div class="text-right">
                                 <p class="text-white font-bold">${booking.time}</p>
                                 <p class="text-white/70 text-sm">${booking.service.price}€</p>
-                                <button onclick="cancelBooking(${booking.id})" class="text-red-400 hover:text-red-300 text-sm mt-1">
-                                    ❌ Stornieren
-                                </button>
+                                <div class="mt-2 space-x-2">
+                                    <button onclick="sendWhatsApp('${booking.customer.phone}', '${booking.customer.name}', '${booking.service.name}', '${booking.date}', '${booking.time}')" class="whatsapp-btn text-xs px-2 py-1 rounded">
+                                        📱 WhatsApp
+                                    </button>
+                                    <button onclick="cancelBooking(${booking.id})" class="text-red-400 hover:text-red-300 text-xs px-2 py-1 rounded bg-red-500/20">
+                                        ❌ Stornieren
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 `).join('');
+        }
+
+        function sendWhatsApp(phone, name, service, date, time) {
+            // Clean phone number (remove spaces, dashes, etc.)
+            const cleanPhone = phone.replace(/\D/g, '');
+            
+            // Format message
+            const businessName = localStorage.getItem('barbershop_name') || 'Barbershop Elite';
+            const message = `Hallo ${name}! 👋
+
+Erinnerung an Ihren Termin:
+📅 ${date} um ${time}
+✂️ ${service}
+
+Wir freuen uns auf Ihren Besuch!
+
+Ihr ${businessName} Team`;
+            
+            // Create WhatsApp URL
+            const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+            
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function sendBookingNotifications(booking) {
+            const ownerPhone = localStorage.getItem('barbershop_owner_whatsapp');
+            const autoNotify = localStorage.getItem('barbershop_auto_notify') === 'true';
+            const businessName = localStorage.getItem('barbershop_name') || 'Barbershop Elite';
+            
+            // Send confirmation to customer
+            sendCustomerConfirmation(booking);
+            
+            // Send notification to owner if enabled
+            if (autoNotify && ownerPhone) {
+                sendOwnerNotification(booking, ownerPhone);
+            }
+        }
+
+        function sendCustomerConfirmation(booking) {
+            const cleanPhone = booking.customer.phone.replace(/\D/g, '');
+            const businessName = localStorage.getItem('barbershop_name') || 'Barbershop Elite';
+            
+            const message = `✅ Buchungsbestätigung
+
+Hallo ${booking.customer.name}!
+
+Ihr Termin wurde erfolgreich gebucht:
+📅 ${booking.date} um ${booking.time}
+✂️ ${booking.service.name}
+💰 ${booking.service.price}€
+
+Wir freuen uns auf Ihren Besuch!
+
+${businessName}`;
+            
+            const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+            
+            // Auto-open WhatsApp for customer confirmation
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+            }, 1000);
+        }
+
+        function sendOwnerNotification(booking, ownerPhone) {
+            const cleanOwnerPhone = ownerPhone.replace(/\D/g, '');
+            const businessName = localStorage.getItem('barbershop_name') || 'Barbershop Elite';
+            
+            const message = `🔔 Neue Buchung!
+
+Kunde: ${booking.customer.name}
+📞 ${booking.customer.phone}
+📅 ${booking.date} um ${booking.time}
+✂️ ${booking.service.name}
+💰 ${booking.service.price}€
+
+${businessName} - Admin`;
+            
+            const whatsappUrl = `https://wa.me/${cleanOwnerPhone}?text=${encodeURIComponent(message)}`;
+            
+            // Auto-open WhatsApp for owner notification
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+            }, 2000);
         }
 
         function cancelBooking(bookingId) {
@@ -387,9 +612,177 @@
             document.getElementById('totalBookings').textContent = bookings.length;
         }
 
+        // Design Panel Setup
+        function setupDesignPanel() {
+            document.getElementById('designToggle').addEventListener('click', function() {
+                const designPanel = document.getElementById('designPanel');
+                designPanel.classList.toggle('open');
+            });
+
+            // Logo upload
+            document.getElementById('logoUpload').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    if (file.size > 2 * 1024 * 1024) {
+                        alert('Datei zu groß! Maximal 2MB erlaubt.');
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const logoContainer = document.getElementById('logoContainer');
+                        logoContainer.innerHTML = `<img src="${e.target.result}" alt="Logo">`;
+                        localStorage.setItem('barbershop_logo', e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Business name
+            document.getElementById('businessNameInput').addEventListener('input', function() {
+                const name = this.value || 'Barbershop Elite';
+                document.getElementById('businessName').textContent = name;
+                localStorage.setItem('barbershop_name', name);
+            });
+
+            // Custom color inputs
+            document.getElementById('primaryColorInput').addEventListener('input', function() {
+                const color = this.value;
+                if (isValidHexColor(color)) {
+                    document.documentElement.style.setProperty('--primary-color', color);
+                    document.getElementById('primaryColorPicker').value = color;
+                    localStorage.setItem('barbershop_primary_color', color);
+                }
+            });
+
+            document.getElementById('primaryColorPicker').addEventListener('input', function() {
+                const color = this.value;
+                document.documentElement.style.setProperty('--primary-color', color);
+                document.getElementById('primaryColorInput').value = color;
+                localStorage.setItem('barbershop_primary_color', color);
+            });
+
+            document.getElementById('secondaryColorInput').addEventListener('input', function() {
+                const color = this.value;
+                if (isValidHexColor(color)) {
+                    document.documentElement.style.setProperty('--secondary-color', color);
+                    document.getElementById('secondaryColorPicker').value = color;
+                    localStorage.setItem('barbershop_secondary_color', color);
+                }
+            });
+
+            document.getElementById('secondaryColorPicker').addEventListener('input', function() {
+                const color = this.value;
+                document.documentElement.style.setProperty('--secondary-color', color);
+                document.getElementById('secondaryColorInput').value = color;
+                localStorage.setItem('barbershop_secondary_color', color);
+            });
+
+            // Title font selection
+            document.getElementById('titleFontSelect').addEventListener('change', function() {
+                const font = this.value;
+                document.documentElement.style.setProperty('--title-font', font);
+                localStorage.setItem('barbershop_title_font', font);
+            });
+
+            // Text font selection
+            document.getElementById('textFontSelect').addEventListener('change', function() {
+                const font = this.value;
+                document.documentElement.style.setProperty('--text-font', font);
+                localStorage.setItem('barbershop_text_font', font);
+            });
+
+            // WhatsApp settings
+            document.getElementById('ownerWhatsApp').addEventListener('input', function() {
+                localStorage.setItem('barbershop_owner_whatsapp', this.value);
+            });
+
+            document.getElementById('autoNotifyOwner').addEventListener('change', function() {
+                localStorage.setItem('barbershop_auto_notify', this.checked);
+            });
+
+            // Save design
+            document.getElementById('saveDesign').addEventListener('click', function() {
+                alert('✅ Design gespeichert!');
+            });
+
+            // Reset design
+            document.getElementById('resetDesign').addEventListener('click', function() {
+                if (confirm('Design wirklich zurücksetzen?')) {
+                    localStorage.removeItem('barbershop_logo');
+                    localStorage.removeItem('barbershop_name');
+                    localStorage.removeItem('barbershop_primary_color');
+                    localStorage.removeItem('barbershop_secondary_color');
+                    localStorage.removeItem('barbershop_title_font');
+                    localStorage.removeItem('barbershop_text_font');
+                    localStorage.removeItem('barbershop_owner_whatsapp');
+                    localStorage.removeItem('barbershop_auto_notify');
+                    
+                    location.reload();
+                }
+            });
+        }
+
+        function isValidHexColor(hex) {
+            return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(hex);
+        }
+
+        function loadDesignSettings() {
+            // Load logo
+            const savedLogo = localStorage.getItem('barbershop_logo');
+            if (savedLogo) {
+                document.getElementById('logoContainer').innerHTML = `<img src="${savedLogo}" alt="Logo">`;
+            }
+
+            // Load business name
+            const savedName = localStorage.getItem('barbershop_name');
+            if (savedName) {
+                document.getElementById('businessName').textContent = savedName;
+                document.getElementById('businessNameInput').value = savedName;
+            }
+
+            // Load colors
+            const savedPrimary = localStorage.getItem('barbershop_primary_color');
+            const savedSecondary = localStorage.getItem('barbershop_secondary_color');
+            if (savedPrimary) {
+                document.documentElement.style.setProperty('--primary-color', savedPrimary);
+                document.getElementById('primaryColorInput').value = savedPrimary;
+                document.getElementById('primaryColorPicker').value = savedPrimary;
+            }
+            if (savedSecondary) {
+                document.documentElement.style.setProperty('--secondary-color', savedSecondary);
+                document.getElementById('secondaryColorInput').value = savedSecondary;
+                document.getElementById('secondaryColorPicker').value = savedSecondary;
+            }
+
+            // Load fonts
+            const savedTitleFont = localStorage.getItem('barbershop_title_font');
+            if (savedTitleFont) {
+                document.documentElement.style.setProperty('--title-font', savedTitleFont);
+                document.getElementById('titleFontSelect').value = savedTitleFont;
+            }
+
+            const savedTextFont = localStorage.getItem('barbershop_text_font');
+            if (savedTextFont) {
+                document.documentElement.style.setProperty('--text-font', savedTextFont);
+                document.getElementById('textFontSelect').value = savedTextFont;
+            }
+
+            // Load WhatsApp settings
+            const savedOwnerWhatsApp = localStorage.getItem('barbershop_owner_whatsapp');
+            if (savedOwnerWhatsApp) {
+                document.getElementById('ownerWhatsApp').value = savedOwnerWhatsApp;
+            }
+
+            const savedAutoNotify = localStorage.getItem('barbershop_auto_notify');
+            if (savedAutoNotify === 'true') {
+                document.getElementById('autoNotifyOwner').checked = true;
+            }
+        }
+
         // Customer info validation
         document.getElementById('customerName').addEventListener('input', checkBookingComplete);
         document.getElementById('customerPhone').addEventListener('input', checkBookingComplete);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97aeb37753605da5',t:'MTc1NzE2OTQxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97aecbdd563d5da5',t:'MTc1NzE3MDQxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
