@@ -74,14 +74,14 @@
                             <input type="checkbox" id="designService" class="mr-3 w-4 h-4 accent-purple-600">
                             <div>
                                 <span class="font-medium" id="designServiceName">🎨 Premium Design</span>
-                                <p class="text-white/70 text-sm" id="designServiceDesc">Spezielle Styling-Beratung (+<span id="designServicePrice">15</span> CHF)</p>
+                                <p class="text-white/70 text-sm" id="designServiceDesc">Spezielle Styling-Beratung (+<span id="designServicePrice">15</span>€)</p>
                             </div>
                         </label>
                         <label class="flex items-center text-white bg-white/5 rounded-lg p-3 hover:bg-white/10 transition-all cursor-pointer">
                             <input type="checkbox" id="stylingService" class="mr-3 w-4 h-4 accent-purple-600">
                             <div>
                                 <span class="font-medium" id="stylingServiceName">✨ Styling Service</span>
-                                <p class="text-white/70 text-sm" id="stylingServiceDesc">Komplettes Haarstyling (+<span id="stylingServicePrice">20</span> CHF)</p>
+                                <p class="text-white/70 text-sm" id="stylingServiceDesc">Komplettes Haarstyling (+<span id="stylingServicePrice">20</span>€)</p>
                             </div>
                         </label>
                     </div>
@@ -177,7 +177,7 @@
                                 <input type="text" id="newServiceDescription" placeholder="Beschreibung" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
                             </div>
                             <div class="grid md:grid-cols-4 gap-3 mt-3">
-                                <input type="number" id="newServicePrice" placeholder="Preis CHF" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                <input type="number" id="newServicePrice" placeholder="Preis €" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
                                 <input type="number" id="newServiceDuration" placeholder="Dauer Min" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
                                 <input type="text" id="newServiceEmoji" placeholder="Emoji (z.B. ✂️)" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
                                 <select id="newServiceCategory" class="p-3 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
@@ -378,6 +378,7 @@
                                             <option value="Inter">Inter</option>
                                             <option value="Poppins">Poppins</option>
                                             <option value="Roboto">Roboto</option>
+                                            <option value="Open Sans">Open Sans</option>
                                         </select>
                                     </div>
                                 </div>
@@ -394,24 +395,778 @@
                                     <label class="block text-white/70 text-sm mb-1">Button-Text</label>
                                     <input type="text" id="editButtonTextDesign" placeholder="Termin buchen" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
                                 </div>
+                                <button id="applyButtonText" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition-all">
+                                    ✨ Sofort anwenden
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-4">🌈 Farben & Schriftarten</h4>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-1">Primärfarbe (Gradient)</label>
+                                    <input type="color" id="primaryColorPicker" value="#2563eb" class="w-full h-10 rounded-lg">
+                                </div>
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-1">Sekundärfarbe (Gradient)</label>
+                                    <input type="color" id="secondaryColorPicker" value="#1e40af" class="w-full h-10 rounded-lg">
+                                </div>
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-1">Haupt-Schriftart</label>
+                                    <select id="mainFontFamily" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                        <option value="Inter">Inter</option>
+                                        <option value="Poppins">Poppins</option>
+                                        <option value="Roboto">Roboto</option>
+                                        <option value="Open Sans">Open Sans</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-1">Titel-Schriftart</label>
+                                    <select id="titleFontFamily" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                        <option value="Squada One">Squada One</option>
+                                        <option value="Oswald">Oswald</option>
+                                        <option value="Bebas Neue">Bebas Neue</option>
+                                        <option value="Anton">Anton</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button id="applyColorsFonts" class="w-full mt-4 bg-purple-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-purple-700 transition-all">
+                                🎨 Farben & Fonts anwenden
+                            </button>
+                        </div>
+
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-4">🌟 Spezielle Services konfigurieren</h4>
+                            <div class="space-y-4">
+                                <div class="bg-white/10 rounded-lg p-4">
+                                    <h5 class="text-white font-medium mb-2">🎨 Premium Design</h5>
+                                    <div class="grid md:grid-cols-2 gap-4">
+                                        <input type="text" id="designServiceNameInput" placeholder="Name" class="p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                        <input type="text" id="designServiceDescInput" placeholder="Beschreibung" class="p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                    <div class="mt-3 grid md:grid-cols-2 gap-4">
+                                        <input type="number" id="designServicePriceInput" placeholder="Preis €" class="p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                        <button id="applyDesignService" class="bg-green-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-green-700 transition-all">
+                                            Speichern
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="bg-white/10 rounded-lg p-4">
+                                    <h5 class="text-white font-medium mb-2">✨ Styling Service</h5>
+                                    <div class="grid md:grid-cols-2 gap-4">
+                                        <input type="text" id="stylingServiceNameInput" placeholder="Name" class="p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                        <input type="text" id="stylingServiceDescInput" placeholder="Beschreibung" class="p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                    <div class="mt-3 grid md:grid-cols-2 gap-4">
+                                        <input type="number" id="stylingServicePriceInput" placeholder="Preis €" class="p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                        <button id="applyStylingService" class="bg-green-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-green-700 transition-all">
+                                            Speichern
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+
+                <div id="whatsappPanel" class="bg-white/5 rounded-xl p-6 mb-6 design-panel">
+                    <h3 class="text-xl font-semibold text-white mb-4">📱 WhatsApp-Integration</h3>
+                    <div class="space-y-4">
+                        <p class="text-white/80">Verwenden Sie diese Einstellungen, um die WhatsApp-Nachricht anzupassen, die an Kunden gesendet wird.</p>
+                        <input type="tel" id="whatsappNumber" placeholder="WhatsApp-Nummer (z.B. +41791234567)" class="w-full p-3 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                        <textarea id="whatsappMessageTemplate" rows="6" placeholder="Nachrichtenvorlage" class="w-full p-3 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none"></textarea>
+                        <button id="saveWhatsappConfig" class="bg-green-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-green-700 transition-all">
+                            💾 WhatsApp-Einstellungen speichern
+                        </button>
+                    </div>
+                </div>
+
+                <div id="hoursPanel" class="bg-white/5 rounded-xl p-6 mb-6 design-panel">
+                    <h3 class="text-xl font-semibold text-white mb-4">🕒 Arbeitszeiten & Pausen</h3>
+                    <div class="space-y-4">
+                        <div id="hoursList" class="space-y-2">
+                            </div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <select id="hoursDay" class="p-2 rounded-lg bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                <option value="Mon">Mo</option>
+                                <option value="Tue">Di</option>
+                                <option value="Wed">Mi</option>
+                                <option value="Thu">Do</option>
+                                <option value="Fri">Fr</option>
+                                <option value="Sat">Sa</option>
+                                <option value="Sun">So</option>
+                            </select>
+                            <input type="time" id="hoursStart" class="p-2 rounded-lg bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                            <input type="time" id="hoursEnd" class="p-2 rounded-lg bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                        </div>
+                        <button id="addHours" class="bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition-all">
+                            ➕ Arbeitszeit hinzufügen
+                        </button>
+                        <button id="saveHours" class="bg-green-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-green-700 transition-all">
+                            💾 Arbeitszeiten speichern
+                        </button>
+                    </div>
+                </div>
+            
+                <div id="textPanel" class="bg-white/5 rounded-xl p-6 mb-6 design-panel">
+                    <h3 class="text-xl font-semibold text-white mb-4">📝 Texte bearbeiten</h3>
+                    <div class="space-y-4">
+                        <p class="text-white/80">Hier können Sie Textelemente der Website bearbeiten, die nicht im Design-Panel enthalten sind.</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-white/70 text-sm mb-1">'Termin buchen' Button</label>
+                                <input type="text" id="bookButtonText" placeholder="Termin buchen" class="w-full p-2 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-white/70 text-sm mb-1">'Admin-Bereich' Button</label>
+                                <input type="text" id="adminToggleText" placeholder="🔧 Admin-Bereich" class="w-full p-2 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                            </div>
+                        </div>
+                        <button id="saveTextConfig" class="bg-green-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-green-700 transition-all">
+                            💾 Texte speichern
+                        </button>
+                    </div>
+                </div>
+
+            </div> </div>
     </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
             const adminToggle = document.getElementById('adminToggle');
             const adminPanel = document.getElementById('adminPanel');
+            const saveAllServicesBtn = document.getElementById('saveAllServices');
 
-            if (adminToggle && adminPanel) {
-                adminToggle.addEventListener('click', function() {
-                    adminPanel.classList.toggle('hidden');
+            // --- Admin Panel Toggle Logic ---
+            adminToggle.addEventListener('click', () => {
+                adminPanel.classList.toggle('hidden');
+                adminToggle.textContent = adminPanel.classList.contains('hidden') ? '🔧 Admin-Bereich' : '✅ Admin-Bereich schliessen';
+            });
+
+            // --- Panel Toggle Buttons ---
+            const panels = {
+                servicePanel: document.getElementById('servicePanel'),
+                designPanel: document.getElementById('designPanel'),
+                whatsappPanel: document.getElementById('whatsappPanel'),
+                hoursPanel: document.getElementById('hoursPanel'),
+                textPanel: document.getElementById('textPanel')
+            };
+            
+            const toggleButtons = {
+                serviceToggle: document.getElementById('serviceToggle'),
+                designToggle: document.getElementById('designToggle'),
+                whatsappToggle: document.getElementById('whatsappToggle'),
+                hoursToggle: document.getElementById('hoursToggle'),
+                textToggle: document.getElementById('textToggle')
+            };
+
+            function togglePanel(panelId) {
+                for (const key in panels) {
+                    if (key === panelId) {
+                        panels[key].classList.toggle('design-panel');
+                        panels[key].classList.toggle('open');
+                    } else {
+                        panels[key].classList.remove('open');
+                        panels[key].classList.add('design-panel');
+                    }
+                }
+            }
+
+            for (const key in toggleButtons) {
+                toggleButtons[key].addEventListener('click', () => {
+                    togglePanel(toggleButtons[key].id.replace('Toggle', 'Panel'));
                 });
             }
+
+            // --- Service Management Toggle Logic ---
+            const viewEditModeBtn = document.getElementById('viewEditMode');
+            const viewOrganizeModeBtn = document.getElementById('viewOrganizeMode');
+            const editModeContent = document.getElementById('editModeContent');
+            const organizeModeContent = document.getElementById('organizeModeContent');
+
+            viewEditModeBtn.addEventListener('click', () => {
+                editModeContent.classList.remove('hidden');
+                organizeModeContent.classList.add('hidden');
+            });
+
+            viewOrganizeModeBtn.addEventListener('click', () => {
+                editModeContent.classList.add('hidden');
+                organizeModeContent.classList.remove('hidden');
+                renderDragAndDropServices();
+            });
+
+            // --- Initial Data ---
+            let businessConfig = JSON.parse(localStorage.getItem('businessConfig')) || {
+                businessName: "Barbershop Elite",
+                businessSlogan: "Professionelle Herrenfriseur-Services",
+                logo: "✂️",
+                primaryColor: "#2563eb",
+                secondaryColor: "#1e40af",
+                mainFont: "Inter",
+                titleFont: "Squada One",
+                bookingTitle: "🗓️ Termin buchen",
+                serviceLabel: "Service wählen",
+                dateLabel: "Datum & Uhrzeit",
+                namePlaceholder: "Ihr Name",
+                phonePlaceholder: "+41 XX XXX XX XX",
+                bookButtonText: "Termin buchen",
+                adminToggleText: "🔧 Admin-Bereich",
+                designService: { name: "🎨 Premium Design", desc: "Spezielle Styling-Beratung (+<span id='designServicePrice'>15</span>€)", price: 15 },
+                stylingService: { name: "✨ Styling Service", desc: "Komplettes Haarstyling (+<span id='stylingServicePrice'>20</span>€)", price: 20 },
+                whatsapp: {
+                    number: "+41791234567",
+                    template: "Hallo, ich möchte den folgenden Termin buchen:&#10;&#10;Service: {service}&#10;Datum: {date}&#10;Uhrzeit: {time}&#10;Name: {name}&#10;Telefon: {phone}&#10;&#10;Vielen Dank!"
+                },
+                hours: {
+                    Mon: { start: "09:00", end: "18:00", break: [] },
+                    Tue: { start: "09:00", end: "18:00", break: [] },
+                    Wed: { start: "09:00", end: "18:00", break: [] },
+                    Thu: { start: "09:00", end: "18:00", break: [] },
+                    Fri: { start: "09:00", end: "18:00", break: [] },
+                    Sat: { start: "10:00", end: "16:00", break: [] },
+                    Sun: { start: null, end: null, break: [] }
+                }
+            };
+
+            let services = JSON.parse(localStorage.getItem('services')) || [
+                { id: "cut", name: "Haarschnitt", description: "Standard-Haarschnitt für Herren", price: 30, duration: 30, emoji: "✂️", category: "Haarschnitte", subcategory: null },
+                { id: "beard", name: "Bartpflege", description: "Trimmen und Styling des Bartes", price: 25, duration: 20, emoji: "🧔", category: "Bartpflege", subcategory: null },
+                { id: "cut-beard", name: "Haarschnitt & Bart", description: "Komplettpaket: Haarschnitt und Bartpflege", price: 50, duration: 50, emoji: "✂️🧔", category: "Pakete", subcategory: null },
+                { id: "wash", name: "Haarwäsche", description: "Entspannende Haarwäsche mit Massage", price: 10, duration: 10, emoji: "💆", category: "Zusätzliches", subcategory: null },
+                { id: "kids-cut", name: "Kinderhaarschnitt", description: "Haarschnitt für Kinder unter 12 Jahren", price: 20, duration: 20, emoji: "👦", category: "Haarschnitte", subcategory: null, featured: true }
+            ];
+
+            let categories = JSON.parse(localStorage.getItem('categories')) || {
+                "Haarschnitte": { emoji: "✂️", subcategories: { "Klassisch": [], "Modern": [] } },
+                "Bartpflege": { emoji: "🧔", subcategories: {} },
+                "Pakete": { emoji: "🎁", subcategories: {} },
+                "Zusätzliches": { emoji: "✨", subcategories: {} }
+            };
+
+            // --- Core Functions ---
+            function applyConfig() {
+                // Apply Text
+                document.getElementById('businessName').textContent = businessConfig.businessName;
+                document.querySelector('p.text-white\\/80').textContent = businessConfig.businessSlogan;
+                document.getElementById('bookingTitle').textContent = businessConfig.bookingTitle;
+                document.getElementById('additionalServicesLabel').textContent = businessConfig.additionalServicesLabel;
+                document.getElementById('designServiceName').textContent = businessConfig.designService.name;
+                document.getElementById('designServiceDesc').innerHTML = businessConfig.designService.desc;
+                document.getElementById('designServicePrice').textContent = businessConfig.designService.price;
+                document.getElementById('stylingServiceName').textContent = businessConfig.stylingService.name;
+                document.getElementById('stylingServiceDesc').innerHTML = businessConfig.stylingService.desc;
+                document.getElementById('stylingServicePrice').textContent = businessConfig.stylingService.price;
+                document.getElementById('serviceLabel').textContent = businessConfig.serviceLabel;
+                document.getElementById('dateLabel').textContent = businessConfig.dateLabel;
+                document.getElementById('customerName').placeholder = businessConfig.namePlaceholder;
+                document.getElementById('customerPhone').placeholder = businessConfig.phonePlaceholder;
+                document.getElementById('bookButton').textContent = businessConfig.bookButtonText;
+                document.getElementById('adminToggle').textContent = businessConfig.adminToggleText;
+
+                // Apply Colors & Fonts
+                document.documentElement.style.setProperty('--primary-color', businessConfig.primaryColor);
+                document.documentElement.style.setProperty('--secondary-color', businessConfig.secondaryColor);
+                document.documentElement.style.setProperty('--text-font', businessConfig.mainFont);
+                document.documentElement.style.setProperty('--title-font', businessConfig.titleFont);
+                
+                // Update Admin Panel Inputs
+                document.getElementById('businessNameInput').value = businessConfig.businessName;
+                document.getElementById('editMainTitleDesign').value = businessConfig.businessName;
+                document.getElementById('editSubtitleDesign').value = businessConfig.businessSlogan;
+                document.getElementById('editBookingTitleDesign').value = businessConfig.bookingTitle;
+                document.getElementById('editServiceLabelDesign').value = businessConfig.serviceLabel;
+                document.getElementById('editDateLabelDesign').value = businessConfig.dateLabel;
+                document.getElementById('editNamePlaceholderDesign').value = businessConfig.namePlaceholder;
+                document.getElementById('editPhonePlaceholderDesign').value = businessConfig.phonePlaceholder;
+                document.getElementById('editButtonTextDesign').value = businessConfig.bookButtonText;
+                document.getElementById('primaryColorPicker').value = businessConfig.primaryColor;
+                document.getElementById('secondaryColorPicker').value = businessConfig.secondaryColor;
+                document.getElementById('mainFontFamily').value = businessConfig.mainFont;
+                document.getElementById('titleFontFamily').value = businessConfig.titleFont;
+                document.getElementById('designServiceNameInput').value = businessConfig.designService.name;
+                document.getElementById('designServiceDescInput').value = businessConfig.designService.desc.replace(/ \(.*\)/, ''); // Remove price part
+                document.getElementById('designServicePriceInput').value = businessConfig.designService.price;
+                document.getElementById('stylingServiceNameInput').value = businessConfig.stylingService.name;
+                document.getElementById('stylingServiceDescInput').value = businessConfig.stylingService.desc.replace(/ \(.*\)/, ''); // Remove price part
+                document.getElementById('stylingServicePriceInput').value = businessConfig.stylingService.price;
+                document.getElementById('whatsappNumber').value = businessConfig.whatsapp.number;
+                document.getElementById('whatsappMessageTemplate').value = businessConfig.whatsapp.template;
+                document.getElementById('bookButtonText').value = businessConfig.bookButtonText;
+                document.getElementById('adminToggleText').value = businessConfig.adminToggleText;
+            }
+
+            function updateServiceLists() {
+                const servicesList = document.getElementById('servicesList');
+                servicesList.innerHTML = '';
+                const serviceEditingSections = document.getElementById('serviceEditingSections');
+                serviceEditingSections.innerHTML = '';
+                const newServiceCategorySelect = document.getElementById('newServiceCategory');
+                newServiceCategorySelect.innerHTML = '<option value="">Kategorie wählen</option><option value="simple">Einfacher Service</option>';
+                const selectCategoryForSub = document.getElementById('selectCategoryForSub');
+                selectCategoryForSub.innerHTML = '<option value="">Kategorie wählen</option>';
+                const newServiceSubcategorySelect = document.getElementById('newServiceSubcategory');
+                newServiceSubcategorySelect.innerHTML = '<option value="">Unterkategorie wählen</option>';
+
+                for (const catName in categories) {
+                    const categoryEmoji = categories[catName].emoji;
+                    // For booking form
+                    const categoryDiv = document.createElement('div');
+                    categoryDiv.innerHTML = `<h3 class="text-white text-lg font-medium mb-2">${categoryEmoji} ${catName}</h3>`;
+                    servicesList.appendChild(categoryDiv);
+
+                    // For admin panel
+                    newServiceCategorySelect.innerHTML += `<option value="${catName}">${categoryEmoji} ${catName}</option>`;
+                    selectCategoryForSub.innerHTML += `<option value="${catName}">${categoryEmoji} ${catName}</option>`;
+                }
+
+                services.forEach(service => {
+                    const serviceHTML = `
+                        <label class="flex items-center text-white bg-white/5 rounded-lg p-3 hover:bg-white/10 transition-all cursor-pointer booking-card" data-service-id="${service.id}" data-category="${service.category}">
+                            <input type="radio" name="service" class="mr-3 w-4 h-4 accent-purple-600" data-price="${service.price}" data-duration="${service.duration}">
+                            <div>
+                                <span class="font-medium">${service.emoji} ${service.name}</span>
+                                <p class="text-white/70 text-sm">${service.description} - ${service.price}€ (${service.duration} Min)</p>
+                            </div>
+                        </label>
+                    `;
+                    servicesList.innerHTML += serviceHTML;
+                });
+                
+                renderServiceEditingSections();
+                renderDragAndDropServices();
+            }
+
+            function renderServiceEditingSections() {
+                const container = document.getElementById('serviceEditingSections');
+                container.innerHTML = '';
+                
+                for (const catName in categories) {
+                    const category = categories[catName];
+                    const catContainer = document.createElement('div');
+                    catContainer.className = 'bg-white/5 rounded-lg p-4';
+                    catContainer.innerHTML = `<h4 class="text-white font-medium mb-4">${category.emoji} ${catName} <button class="delete-category text-red-400 text-sm ml-2" data-cat="${catName}">Löschen</button></h4>`;
+                    
+                    const subcatContainer = document.createElement('div');
+                    subcatContainer.className = 'space-y-2 mt-4';
+                    
+                    for (const subcatName in category.subcategories) {
+                        const subcatSection = document.createElement('div');
+                        subcatSection.className = 'border-t border-white/10 pt-3';
+                        subcatSection.innerHTML = `<h5 class="text-white/80 font-medium mb-2">${subcatName} <button class="delete-subcategory text-red-400 text-sm ml-2" data-cat="${catName}" data-subcat="${subcatName}">Löschen</button></h5>`;
+                        subcatContainer.appendChild(subcatSection);
+                    }
+                    catContainer.appendChild(subcatContainer);
+                    
+                    services.filter(s => s.category === catName).forEach(service => {
+                        const serviceItem = document.createElement('div');
+                        serviceItem.className = 'bg-white/10 rounded-lg p-4 mb-2';
+                        serviceItem.innerHTML = `
+                            <h5 class="text-white font-medium mb-2">${service.emoji} ${service.name}</h5>
+                            <div class="grid grid-cols-2 gap-2 text-sm text-white/70 mb-2">
+                                <p>Preis: ${service.price}€</p>
+                                <p>Dauer: ${service.duration} Min</p>
+                            </div>
+                            <div class="space-x-2">
+                                <button class="edit-service-btn text-yellow-400 text-sm" data-id="${service.id}">Bearbeiten</button>
+                                <button class="delete-service-btn text-red-400 text-sm" data-id="${service.id}">Löschen</button>
+                            </div>
+                        `;
+                        catContainer.appendChild(serviceItem);
+                    });
+                    
+                    container.appendChild(catContainer);
+                }
+            }
+            
+            function renderDragAndDropServices() {
+                const container = document.getElementById('dragDropServiceContainer');
+                container.innerHTML = '';
+                
+                for (const catName in categories) {
+                    const category = categories[catName];
+                    const dropZone = document.createElement('div');
+                    dropZone.className = 'drop-zone';
+                    dropZone.innerHTML = `<h4 class="text-white font-medium mb-2">${category.emoji} ${catName}</h4>`;
+                    dropZone.dataset.category = catName;
+                    
+                    services.filter(s => s.category === catName).forEach(service => {
+                        const serviceItem = document.createElement('div');
+                        serviceItem.className = 'service-item draggable-service';
+                        serviceItem.draggable = true;
+                        serviceItem.dataset.id = service.id;
+                        serviceItem.textContent = `${service.emoji} ${service.name} (${service.price}€, ${service.duration} Min)`;
+                        dropZone.appendChild(serviceItem);
+                    });
+                    
+                    container.appendChild(dropZone);
+                }
+            
+                // Add event listeners for drag and drop
+                const draggables = document.querySelectorAll('.draggable-service');
+                const dropZones = document.querySelectorAll('.drop-zone');
+            
+                draggables.forEach(draggable => {
+                    draggable.addEventListener('dragstart', (e) => {
+                        e.dataTransfer.setData('text/plain', e.target.dataset.id);
+                        draggable.classList.add('dragging');
+                    });
+                    draggable.addEventListener('dragend', () => {
+                        draggable.classList.remove('dragging');
+                    });
+                });
+            
+                dropZones.forEach(zone => {
+                    zone.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        zone.classList.add('drag-over');
+                    });
+                    zone.addEventListener('dragleave', () => {
+                        zone.classList.remove('drag-over');
+                    });
+                    zone.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        zone.classList.remove('drag-over');
+                        const serviceId = e.dataTransfer.getData('text/plain');
+                        const draggedElement = document.querySelector(`[data-id="${serviceId}"]`);
+                        if (draggedElement) {
+                            zone.appendChild(draggedElement);
+                            // Update the service category in the data model
+                            const serviceToUpdate = services.find(s => s.id === serviceId);
+                            if (serviceToUpdate) {
+                                serviceToUpdate.category = zone.dataset.category;
+                                updateServiceLists();
+                            }
+                        }
+                    });
+                });
+            }
+
+            // --- Event Listeners for Admin Panel ---
+            // Design Panel
+            document.getElementById('applyColorsFonts').addEventListener('click', () => {
+                businessConfig.primaryColor = document.getElementById('primaryColorPicker').value;
+                businessConfig.secondaryColor = document.getElementById('secondaryColorPicker').value;
+                businessConfig.mainFont = document.getElementById('mainFontFamily').value;
+                businessConfig.titleFont = document.getElementById('titleFontFamily').value;
+                localStorage.setItem('businessConfig', JSON.stringify(businessConfig));
+                applyConfig();
+            });
+
+            document.getElementById('applyMainTitle').addEventListener('click', () => {
+                businessConfig.businessName = document.getElementById('editMainTitleDesign').value;
+                localStorage.setItem('businessConfig', JSON.stringify(businessConfig));
+                applyConfig();
+            });
+
+            document.getElementById('applySubtitle').addEventListener('click', () => {
+                businessConfig.businessSlogan = document.getElementById('editSubtitleDesign').value;
+                localStorage.setItem('businessConfig', JSON.stringify(businessConfig));
+                applyConfig();
+            });
+            
+            document.getElementById('applyBookingTitle').addEventListener('click', () => {
+                businessConfig.bookingTitle = document.getElementById('editBookingTitleDesign').value;
+                localStorage.setItem('businessConfig', JSON.stringify(businessConfig));
+                applyConfig();
+            });
+            
+            document.getElementById('applyLabels').addEventListener('click', () => {
+                businessConfig.serviceLabel = document.getElementById('editServiceLabelDesign').value;
+                businessConfig.dateLabel = document.getElementById('editDateLabelDesign').value;
+                businessConfig.namePlaceholder = document.getElementById('editNamePlaceholderDesign').value;
+                businessConfig.phonePlaceholder = document.getElementById('editPhonePlaceholderDesign').value;
+                localStorage.setItem('businessConfig', JSON.stringify(businessConfig));
+                applyConfig();
+            });
+
+            document.getElementById('applyButtonText').addEventListener('click', () => {
+                businessConfig.bookButtonText = document.getElementById('editButtonTextDesign').value;
+                localStorage.setItem('businessConfig', JSON.stringify(businessConfig));
+                applyConfig();
+            });
+
+            document.getElementById('applyDesignService').addEventListener('click', () => {
+                businessConfig.designService.name = document.getElementById('designServiceNameInput').value;
+                businessConfig.designService.desc = document.getElementById('designServiceDescInput').value + " (+<span id='designServicePrice'>15</span>€)";
+                businessConfig.designService.price = parseFloat(document.getElementById('designServicePriceInput').value);
+                localStorage.setItem('businessConfig', JSON.stringify(businessConfig));
+                applyConfig();
+            });
+
+            document.getElementById('applyStylingService').addEventListener('click', () => {
+                businessConfig.stylingService.name = document.getElementById('stylingServiceNameInput').value;
+                businessConfig.stylingService.desc = document.getElementById('stylingServiceDescInput').value + " (+<span id='stylingServicePrice'>20</span>€)";
+                businessConfig.stylingService.price = parseFloat(document.getElementById('stylingServicePriceInput').value);
+                localStorage.setItem('businessConfig', JSON.stringify(businessConfig));
+                applyConfig();
+            });
+            
+            // Text Panel
+            document.getElementById('saveTextConfig').addEventListener('click', () => {
+                businessConfig.bookButtonText = document.getElementById('bookButtonText').value;
+                businessConfig.adminToggleText = document.getElementById('adminToggleText').value;
+                localStorage.setItem('businessConfig', JSON.stringify(businessConfig));
+                applyConfig();
+            });
+
+            // Service Panel
+            document.getElementById('createCategoryBtn').addEventListener('click', () => {
+                const name = document.getElementById('newCategoryName').value;
+                const emoji = document.getElementById('newCategoryEmoji').value;
+                if (name && emoji) {
+                    categories[name] = { emoji: emoji, subcategories: {} };
+                    localStorage.setItem('categories', JSON.stringify(categories));
+                    updateServiceLists();
+                    alert(`Kategorie '${name}' erstellt.`);
+                }
+            });
+
+            document.getElementById('createSubcategoryBtn').addEventListener('click', () => {
+                const catName = document.getElementById('selectCategoryForSub').value;
+                const subName = document.getElementById('newSubcategoryName').value;
+                if (catName && subName) {
+                    if (categories[catName]) {
+                        categories[catName].subcategories[subName] = [];
+                        localStorage.setItem('categories', JSON.stringify(categories));
+                        updateServiceLists();
+                        alert(`Unterkategorie '${subName}' in '${catName}' erstellt.`);
+                    }
+                }
+            });
+
+            document.getElementById('addServiceBtn').addEventListener('click', () => {
+                const name = document.getElementById('newServiceName').value;
+                const desc = document.getElementById('newServiceDescription').value;
+                const price = parseFloat(document.getElementById('newServicePrice').value);
+                const duration = parseInt(document.getElementById('newServiceDuration').value);
+                const emoji = document.getElementById('newServiceEmoji').value;
+                const category = document.getElementById('newServiceCategory').value;
+                const subcategory = document.getElementById('newServiceSubcategory').value || null;
+                const isFeatured = document.getElementById('newServiceFeatured').checked;
+
+                if (name && price && duration && emoji && category) {
+                    const newService = {
+                        id: Date.now().toString(),
+                        name,
+                        description: desc,
+                        price,
+                        duration,
+                        emoji,
+                        category,
+                        subcategory,
+                        featured: isFeatured
+                    };
+                    services.push(newService);
+                    localStorage.setItem('services', JSON.stringify(services));
+                    updateServiceLists();
+                    // Clear form
+                    document.getElementById('newServiceName').value = '';
+                    document.getElementById('newServiceDescription').value = '';
+                    document.getElementById('newServicePrice').value = '';
+                    document.getElementById('newServiceDuration').value = '';
+                    document.getElementById('newServiceEmoji').value = '';
+                }
+            });
+
+            saveAllServicesBtn.addEventListener('click', () => {
+                localStorage.setItem('services', JSON.stringify(services));
+                localStorage.setItem('categories', JSON.stringify(categories));
+                updateServiceLists();
+                alert('Alle Services und Kategorien wurden gespeichert!');
+            });
+            
+            document.getElementById('resetAllServices').addEventListener('click', () => {
+                if(confirm('Möchten Sie wirklich alle Services und Kategorien auf die Standardwerte zurücksetzen?')) {
+                    localStorage.removeItem('services');
+                    localStorage.removeItem('categories');
+                    services = [
+                        { id: "cut", name: "Haarschnitt", description: "Standard-Haarschnitt für Herren", price: 30, duration: 30, emoji: "✂️", category: "Haarschnitte", subcategory: null },
+                        { id: "beard", name: "Bartpflege", description: "Trimmen und Styling des Bartes", price: 25, duration: 20, emoji: "🧔", category: "Bartpflege", subcategory: null },
+                        { id: "cut-beard", name: "Haarschnitt & Bart", description: "Komplettpaket: Haarschnitt und Bartpflege", price: 50, duration: 50, emoji: "✂️🧔", category: "Pakete", subcategory: null },
+                        { id: "wash", name: "Haarwäsche", description: "Entspannende Haarwäsche mit Massage", price: 10, duration: 10, emoji: "💆", category: "Zusätzliches", subcategory: null },
+                        { id: "kids-cut", name: "Kinderhaarschnitt", description: "Haarschnitt für Kinder unter 12 Jahren", price: 20, duration: 20, emoji: "👦", category: "Haarschnitte", subcategory: null, featured: true }
+                    ];
+                    categories = {
+                        "Haarschnitte": { emoji: "✂️", subcategories: { "Klassisch": [], "Modern": [] } },
+                        "Bartpflege": { emoji: "🧔", subcategories: {} },
+                        "Pakete": { emoji: "🎁", subcategories: {} },
+                        "Zusätzliches": { emoji: "✨", subcategories: {} }
+                    };
+                    updateServiceLists();
+                    alert('Services und Kategorien wurden zurückgesetzt.');
+                }
+            });
+
+
+            // WhatsApp Panel
+            document.getElementById('saveWhatsappConfig').addEventListener('click', () => {
+                businessConfig.whatsapp.number = document.getElementById('whatsappNumber').value;
+                businessConfig.whatsapp.template = document.getElementById('whatsappMessageTemplate').value;
+                localStorage.setItem('businessConfig', JSON.stringify(businessConfig));
+                alert('WhatsApp-Einstellungen gespeichert.');
+            });
+
+            // Hours Panel
+            function renderHours() {
+                const hoursList = document.getElementById('hoursList');
+                hoursList.innerHTML = '';
+                const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+                days.forEach(day => {
+                    const dayHours = businessConfig.hours[day];
+                    const text = dayHours.start && dayHours.end ? 
+                        `<strong>${day}</strong>: ${dayHours.start} - ${dayHours.end}` : 
+                        `<strong>${day}</strong>: Geschlossen`;
+                    hoursList.innerHTML += `<p class="text-white/80">${text}</p>`;
+                });
+            }
+
+            document.getElementById('saveHours').addEventListener('click', () => {
+                // Here you would implement logic to save hours
+                // For this example, we just re-render from the current config
+                localStorage.setItem('businessConfig', JSON.stringify(businessConfig));
+                renderHours();
+            });
+
+            // --- Booking Form Logic ---
+            const bookingDateInput = document.getElementById('bookingDate');
+            const timeSlotsContainer = document.getElementById('timeSlots');
+            const bookButton = document.getElementById('bookButton');
+            const summaryContent = document.getElementById('summaryContent');
+            
+            let selectedService = null;
+            let selectedTime = null;
+
+            document.getElementById('servicesList').addEventListener('change', (e) => {
+                if (e.target.type === 'radio') {
+                    selectedService = {
+                        name: e.target.closest('label').querySelector('span').textContent,
+                        price: parseFloat(e.target.dataset.price),
+                        duration: parseInt(e.target.dataset.duration)
+                    };
+                    updateSummary();
+                    generateTimeSlots();
+                }
+            });
+
+            bookingDateInput.addEventListener('change', () => {
+                generateTimeSlots();
+            });
+
+            timeSlotsContainer.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON' && !e.target.disabled) {
+                    document.querySelectorAll('#timeSlots button').forEach(btn => {
+                        btn.classList.remove('bg-purple-600', 'text-white');
+                        btn.classList.add('bg-white/10', 'text-white/80');
+                    });
+                    e.target.classList.remove('bg-white/10', 'text-white/80');
+                    e.target.classList.add('bg-purple-600', 'text-white');
+                    selectedTime = e.target.textContent;
+                    updateSummary();
+                }
+            });
+
+            function generateTimeSlots() {
+                timeSlotsContainer.innerHTML = '';
+                if (!bookingDateInput.value || !selectedService) {
+                    return;
+                }
+
+                const day = new Date(bookingDateInput.value).toLocaleString('en-us', { weekday: 'short' });
+                const hoursConfig = businessConfig.hours[day];
+
+                if (!hoursConfig || !hoursConfig.start) {
+                    timeSlotsContainer.innerHTML = `<p class="text-red-400 text-sm col-span-3">An diesem Tag ist geschlossen.</p>`;
+                    return;
+                }
+
+                const startHour = parseInt(hoursConfig.start.split(':')[0]);
+                const startMinute = parseInt(hoursConfig.start.split(':')[1]);
+                const endHour = parseInt(hoursConfig.end.split(':')[0]);
+                const endMinute = parseInt(hoursConfig.end.end.split(':')[1]);
+                const duration = selectedService.duration;
+                const now = new Date();
+                const today = new Date().toISOString().split('T')[0];
+
+                let currentTime = new Date();
+                currentTime.setHours(startHour, startMinute, 0, 0);
+
+                let endTime = new Date();
+                endTime.setHours(endHour, endMinute, 0, 0);
+
+                while (currentTime <= endTime) {
+                    const timeString = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    const slot = document.createElement('button');
+                    slot.textContent = timeString;
+                    slot.classList.add('p-2', 'rounded-lg', 'font-medium', 'transition-all');
+                    slot.classList.add('bg-white/10', 'text-white/80');
+                    slot.disabled = false; // Add logic for occupied slots here
+                    
+                    // Disable past times for today
+                    if (bookingDateInput.value === today && currentTime < now) {
+                        slot.disabled = true;
+                        slot.classList.replace('bg-white/10', 'bg-gray-700');
+                        slot.classList.replace('text-white/80', 'text-gray-500');
+                    }
+
+                    timeSlotsContainer.appendChild(slot);
+                    currentTime.setMinutes(currentTime.getMinutes() + 15);
+                }
+            }
+
+            function updateSummary() {
+                const summaryDiv = document.getElementById('bookingSummary');
+                const name = document.getElementById('customerName').value;
+                const phone = document.getElementById('customerPhone').value;
+
+                if (selectedService && bookingDateInput.value && selectedTime && name && phone) {
+                    summaryDiv.classList.remove('hidden');
+                    summaryContent.innerHTML = `
+                        <p><strong>Service:</strong> ${selectedService.name}</p>
+                        <p><strong>Datum:</strong> ${bookingDateInput.value}</p>
+                        <p><strong>Uhrzeit:</strong> ${selectedTime}</p>
+                        <p><strong>Dauer:</strong> ${selectedService.duration} Min</p>
+                        <p><strong>Preis:</strong> ${selectedService.price}€</p>
+                        <p><strong>Name:</strong> ${name}</p>
+                        <p><strong>Telefon:</strong> ${phone}</p>
+                    `;
+                    bookButton.disabled = false;
+                } else {
+                    summaryDiv.classList.add('hidden');
+                    bookButton.disabled = true;
+                }
+            }
+            
+            ['customerName', 'customerPhone'].forEach(id => {
+                document.getElementById(id).addEventListener('input', updateSummary);
+            });
+
+            bookButton.addEventListener('click', () => {
+                const name = document.getElementById('customerName').value;
+                const phone = document.getElementById('customerPhone').value;
+                
+                if (!selectedService || !bookingDateInput.value || !selectedTime || !name || !phone) {
+                    alert('Bitte füllen Sie alle Felder aus.');
+                    return;
+                }
+
+                const message = businessConfig.whatsapp.template
+                    .replace('{service}', selectedService.name)
+                    .replace('{date}', bookingDateInput.value)
+                    .replace('{time}', selectedTime)
+                    .replace('{name}', name)
+                    .replace('{phone}', phone);
+
+                const whatsappUrl = `https://wa.me/${businessConfig.whatsapp.number}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            });
+
+            // Initial calls
+            applyConfig();
+            updateServiceLists();
+            renderHours();
         });
     </script>
+
 </body>
 </html>
