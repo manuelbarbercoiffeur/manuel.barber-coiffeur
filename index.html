@@ -782,88 +782,7 @@ Kunde: {name}
         let selectedDate = null;
         let selectedTime = null;
         let bookings = JSON.parse(localStorage.getItem('barbershop_bookings')) || [];
-        let services = JSON.parse(localStorage.getItem('barbershop_services')) || [
-            {
-                id: 1,
-                name: 'Fade',
-                emoji: '✂️',
-                type: 'category',
-                subcategories: [
-                    {
-                        id: 11,
-                        name: 'Mit Taper',
-                        type: 'subcategory',
-                        options: [
-                            { id: 111, name: 'Low Fade + Taper', price: 30, duration: 45, description: 'Niedriger Fade mit Taper-Übergang' },
-                            { id: 112, name: 'Mid Fade + Taper', price: 32, duration: 45, description: 'Mittlerer Fade mit Taper-Übergang' },
-                            { id: 113, name: 'High Fade + Taper', price: 35, duration: 50, description: 'Hoher Fade mit Taper-Übergang' }
-                        ]
-                    },
-                    {
-                        id: 12,
-                        name: 'Ohne Taper',
-                        type: 'subcategory',
-                        options: [
-                            { id: 121, name: 'Low Fade', price: 25, duration: 40, description: 'Niedriger Fade ohne Taper' },
-                            { id: 122, name: 'Mid Fade', price: 28, duration: 40, description: 'Mittlerer Fade ohne Taper' },
-                            { id: 123, name: 'High Fade', price: 30, duration: 45, description: 'Hoher Fade ohne Taper' }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: 2,
-                name: 'Klassische Schnitte',
-                emoji: '💼',
-                type: 'category',
-                subcategories: [
-                    {
-                        id: 21,
-                        name: 'Business',
-                        type: 'subcategory',
-                        options: [
-                            { id: 211, name: 'Business Cut', price: 25, duration: 30, description: 'Klassischer Business-Haarschnitt' },
-                            { id: 212, name: 'Executive Style', price: 35, duration: 40, description: 'Premium Business-Styling' }
-                        ]
-                    },
-                    {
-                        id: 22,
-                        name: 'Casual',
-                        type: 'subcategory',
-                        options: [
-                            { id: 221, name: 'Casual Cut', price: 20, duration: 25, description: 'Entspannter Alltagsschnitt' },
-                            { id: 222, name: 'Textured Cut', price: 28, duration: 35, description: 'Strukturierter moderner Schnitt' }
-                        ]
-                    }
-                ]
-            },
-            {
-                id: 3,
-                name: 'Bartpflege',
-                emoji: '🧔',
-                type: 'simple',
-                price: 15,
-                duration: 20,
-                description: 'Professionelle Bartpflege und Styling'
-            },
-            {
-                id: 4,
-                name: 'Komplett-Pakete',
-                emoji: '💫',
-                type: 'category',
-                subcategories: [
-                    {
-                        id: 41,
-                        name: 'Premium',
-                        type: 'subcategory',
-                        options: [
-                            { id: 411, name: 'Fade + Bart + Styling', price: 45, duration: 60, description: 'Komplettes Premium-Paket' },
-                            { id: 412, name: 'Cut + Bart + Waschen', price: 40, duration: 55, description: 'Vollservice mit Haarwäsche' }
-                        ]
-                    }
-                ]
-            }
-        ];
+        let services = JSON.parse(localStorage.getItem('barbershop_services')) || [];
 
         // Initialize app
         document.addEventListener('DOMContentLoaded', function() {
@@ -1044,22 +963,22 @@ Kunde: {name}
             const serviceEditingSections = document.getElementById('serviceEditingSections');
             serviceEditingSections.innerHTML = '';
             
-            // Add info about the new category system
+            // Add info about the category system
             const infoSection = document.createElement('div');
-            infoSection.className = 'bg-blue-500/20 rounded-lg p-4 mb-4';
+            infoSection.className = 'bg-green-500/20 rounded-lg p-4 mb-4';
             infoSection.innerHTML = `
-                <h4 class="text-white font-medium mb-2">ℹ️ Neues Kategorie-System</h4>
+                <h4 class="text-white font-medium mb-2">🚀 Service-Management</h4>
                 <p class="text-white/80 text-sm mb-2">
-                    Das Service-System wurde auf ein mehrstufiges Kategorie-System umgestellt:
+                    Erstellen Sie Ihre eigenen Service-Kategorien:
                 </p>
                 <ul class="text-white/70 text-sm space-y-1 ml-4">
-                    <li>• <strong>Fade</strong> → Mit/Ohne Taper → Low/Mid/High</li>
-                    <li>• <strong>Klassische Schnitte</strong> → Business/Casual → Verschiedene Optionen</li>
-                    <li>• <strong>Bartpflege</strong> → Direkter Service</li>
-                    <li>• <strong>Komplett-Pakete</strong> → Premium-Optionen</li>
+                    <li>• <strong>Einfache Services:</strong> Direkt buchbare Services</li>
+                    <li>• <strong>Kategorien:</strong> Organisieren Sie Services in Gruppen</li>
+                    <li>• <strong>Drag & Drop:</strong> Verschieben Sie Services zwischen Kategorien</li>
+                    <li>• <strong>Neue Kategorien:</strong> Ziehen Sie Services in die "Neue Kategorie" Zone</li>
                 </ul>
                 <p class="text-white/60 text-xs mt-2">
-                    Für erweiterte Anpassungen der Kategorien ist eine manuelle Code-Bearbeitung erforderlich.
+                    Beginnen Sie mit dem Hinzufügen Ihrer ersten Services!
                 </p>
             `;
             serviceEditingSections.appendChild(infoSection);
@@ -1379,7 +1298,7 @@ Kunde: {name}
                     
                     // Prompt for password
                     const password = prompt('🔒 Admin-Passwort eingeben:');
-                    if (password === 'barbershop2024') {
+                    if (password === 'admin123') {
                         sessionStorage.setItem('admin_authenticated', 'true');
                         adminPanel.classList.remove('hidden');
                         displayBookings();
@@ -1647,16 +1566,12 @@ Kunde: {name}
 
             // Reset all services button
             document.getElementById('resetAllServices').addEventListener('click', function() {
-                if (confirm('Wirklich alle Services auf Standard zurücksetzen? Diese Aktion kann nicht rückgängig gemacht werden!')) {
-                    services = [
-                        { id: 1, name: 'Herrenhaarschnitt', description: 'Klassischer Schnitt mit Styling', price: 25, duration: 30, emoji: '✂️' },
-                        { id: 2, name: 'Bartpflege', description: 'Trimmen und Styling', price: 15, duration: 20, emoji: '🧔' },
-                        { id: 3, name: 'Komplett-Paket', description: 'Haarschnitt + Bartpflege', price: 35, duration: 45, emoji: '💫' }
-                    ];
+                if (confirm('Wirklich alle Services löschen? Diese Aktion kann nicht rückgängig gemacht werden!')) {
+                    services = [];
                     localStorage.setItem('barbershop_services', JSON.stringify(services));
                     loadServices();
                     loadAdminServices();
-                    showNotification('🔄 Alle Services zurückgesetzt!');
+                    showNotification('🔄 Alle Services gelöscht!');
                 }
             });
         }
@@ -2828,5 +2743,5 @@ ${businessName} - Admin System`;
         document.getElementById('customerName').addEventListener('input', checkBookingComplete);
         document.getElementById('customerPhone').addEventListener('input', checkBookingComplete);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97af07d2e79fbe8b',t:'MTc1NzE3Mjg2Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97af14f6f33dbe8b',t:'MTc1NzE3MzQwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
