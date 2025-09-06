@@ -156,11 +156,6 @@
                                 <input type="text" id="newServiceEmoji" placeholder="Emoji (z.B. ✂️)" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
                                 <select id="newServiceCategory" class="p-3 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
                                     <option value="">Kategorie wählen</option>
-                                    <option value="fade-mit-taper">Fade > Mit Taper</option>
-                                    <option value="fade-ohne-taper">Fade > Ohne Taper</option>
-                                    <option value="klassisch-business">Klassisch > Business</option>
-                                    <option value="klassisch-casual">Klassisch > Casual</option>
-                                    <option value="komplett-premium">Komplett > Premium</option>
                                     <option value="simple">Einfacher Service</option>
                                 </select>
                             </div>
@@ -844,14 +839,21 @@ Kunde: {name}
                 if (service.type === 'category') {
                     // Category - shows subcategories
                     serviceElement.dataset.serviceId = service.id;
+                    
+                    // Calculate price range for category
+                    const priceRange = getCategoryPriceRange(service);
+                    
                     serviceElement.innerHTML = `
                         <div class="flex justify-between items-center">
                             <div>
                                 <h3 class="text-white font-medium">${service.emoji} ${service.name}</h3>
                                 <p class="text-white/70 text-sm">Kategorie wählen →</p>
                             </div>
-                            <div class="text-white/50">
-                                <span class="text-2xl">→</span>
+                            <div class="text-right">
+                                <p class="text-white font-bold">${priceRange}</p>
+                                <div class="text-white/50">
+                                    <span class="text-2xl">→</span>
+                                </div>
                             </div>
                         </div>
                     `;
@@ -910,6 +912,34 @@ Kunde: {name}
                 }
             }
             return [];
+        }
+
+        function getCategoryPriceRange(category) {
+            if (!category.subcategories || category.subcategories.length === 0) {
+                return 'Preis auf Anfrage';
+            }
+
+            let minPrice = Infinity;
+            let maxPrice = -Infinity;
+
+            category.subcategories.forEach(subcategory => {
+                if (subcategory.options && subcategory.options.length > 0) {
+                    subcategory.options.forEach(option => {
+                        if (option.price < minPrice) minPrice = option.price;
+                        if (option.price > maxPrice) maxPrice = option.price;
+                    });
+                }
+            });
+
+            if (minPrice === Infinity || maxPrice === -Infinity) {
+                return 'Preis auf Anfrage';
+            }
+
+            if (minPrice === maxPrice) {
+                return `${minPrice}€`;
+            } else {
+                return `${minPrice}€ - ${maxPrice}€`;
+            }
         }
 
         function navigateToCategory(category) {
@@ -2743,5 +2773,5 @@ ${businessName} - Admin System`;
         document.getElementById('customerName').addEventListener('input', checkBookingComplete);
         document.getElementById('customerPhone').addEventListener('input', checkBookingComplete);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97af14f6f33dbe8b',t:'MTc1NzE3MzQwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97af235e0201be8b',t:'MTc1NzE3Mzk5NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
