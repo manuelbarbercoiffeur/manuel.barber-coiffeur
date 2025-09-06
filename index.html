@@ -82,14 +82,14 @@
                             <input type="checkbox" id="designService" class="mr-3 w-4 h-4 accent-purple-600">
                             <div>
                                 <span class="font-medium" id="designServiceName">🎨 Premium Design</span>
-                                <p class="text-white/70 text-sm" id="designServiceDesc">Spezielle Styling-Beratung (+<span id="designServicePrice">15</span>€)</p>
+                                <p class="text-white/70 text-sm" id="designServiceDesc">Spezielle Styling-Beratung (+<span id="designServicePrice">15</span> CHF)</p>
                             </div>
                         </label>
                         <label class="flex items-center text-white bg-white/5 rounded-lg p-3 hover:bg-white/10 transition-all cursor-pointer">
                             <input type="checkbox" id="stylingService" class="mr-3 w-4 h-4 accent-purple-600">
                             <div>
                                 <span class="font-medium" id="stylingServiceName">✨ Styling Service</span>
-                                <p class="text-white/70 text-sm" id="stylingServiceDesc">Komplettes Haarstyling (+<span id="stylingServicePrice">20</span>€)</p>
+                                <p class="text-white/70 text-sm" id="stylingServiceDesc">Komplettes Haarstyling (+<span id="stylingServicePrice">20</span> CHF)</p>
                             </div>
                         </label>
                     </div>
@@ -119,8 +119,6 @@
                     🔧 Admin-Bereich
                 </button>
             </div>
-
-
 
             <!-- Admin Panel -->
             <div id="adminPanel" class="glass-effect rounded-2xl p-8 hidden">
@@ -198,7 +196,7 @@
                                 <input type="text" id="newServiceDescription" placeholder="Beschreibung" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
                             </div>
                             <div class="grid md:grid-cols-4 gap-3 mt-3">
-                                <input type="number" id="newServicePrice" placeholder="Preis €" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                <input type="number" id="newServicePrice" placeholder="Preis CHF" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
                                 <input type="number" id="newServiceDuration" placeholder="Dauer Min" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
                                 <input type="text" id="newServiceEmoji" placeholder="Emoji (z.B. ✂️)" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
                                 <select id="newServiceCategory" class="p-3 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
@@ -468,7 +466,7 @@
                                             <input type="text" id="editDesignServiceName" placeholder="🎨 Premium Design" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none text-sm">
                                         </div>
                                         <div>
-                                            <label class="block text-white/70 text-xs mb-1">Preis (€)</label>
+                                            <label class="block text-white/70 text-xs mb-1">Preis (CHF)</label>
                                             <input type="number" id="editDesignServicePrice" value="15" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none text-sm">
                                         </div>
                                     </div>
@@ -487,7 +485,7 @@
                                             <input type="text" id="editStylingServiceName" placeholder="✨ Styling Service" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none text-sm">
                                         </div>
                                         <div>
-                                            <label class="block text-white/70 text-xs mb-1">Preis (€)</label>
+                                            <label class="block text-white/70 text-xs mb-1">Preis (CHF)</label>
                                             <input type="number" id="editStylingServicePrice" value="20" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none text-sm">
                                         </div>
                                     </div>
@@ -824,7 +822,7 @@ Hallo {name}!
 Ihr Termin wurde erfolgreich gebucht:
 📅 {date} um {time}
 ✂️ {service}
-💰 {price}€
+💰 {price} CHF
 
 Wir freuen uns auf Ihren Besuch!
 
@@ -839,7 +837,7 @@ Kunde: {name}
 📞 {phone}
 📅 {date} um {time}
 ✂️ {service}
-💰 {price}€
+💰 {price} CHF
 
 {businessName} - Admin"></textarea>
                                 </div>
@@ -872,7 +870,7 @@ Kunde: {name}
                         <div class="text-white/70 text-sm">Heute</div>
                     </div>
                     <div class="bg-white/10 rounded-lg p-4 text-center">
-                        <div class="text-2xl font-bold text-white" id="todayRevenue">0€</div>
+                        <div class="text-2xl font-bold text-white" id="todayRevenue">0 CHF</div>
                         <div class="text-white/70 text-sm">Umsatz</div>
                     </div>
                     <div class="bg-white/10 rounded-lg p-4 text-center">
@@ -1044,7 +1042,7 @@ Kunde: {name}
                                 ${service.featured ? '<p class="text-yellow-400 text-xs font-medium mt-1">✨ Premium Service</p>' : ''}
                             </div>
                             <div class="text-right">
-                                <p class="text-white font-bold ${service.featured ? 'text-yellow-400' : ''}">${service.price}€</p>
+                                <p class="text-white font-bold ${service.featured ? 'text-yellow-400' : ''}">${service.price} CHF</p>
                                 <p class="text-white/70 text-sm">${service.duration} Min</p>
                             </div>
                         </div>
@@ -1097,9 +1095,9 @@ Kunde: {name}
             }
 
             if (minPrice === maxPrice) {
-                return `${minPrice}€`;
+                return `${minPrice} CHF`;
             } else {
-                return `${minPrice}€ - ${maxPrice}€`;
+                return `${minPrice} CHF - ${maxPrice} CHF`;
             }
         }
 
@@ -1207,7 +1205,7 @@ Kunde: {name}
                         <!-- Price and Duration -->
                         <div class="grid grid-cols-3 gap-3">
                             <div>
-                                <label class="block text-white/70 text-sm mb-1">Preis (€)</label>
+                                <label class="block text-white/70 text-sm mb-1">Preis (CHF)</label>
                                 <input type="number" id="servicePrice_${service.id}" value="${service.price}" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
                             </div>
                             <div>
@@ -1412,14 +1410,14 @@ Kunde: {name}
                 if (document.getElementById('designService').checked) {
                     const designPrice = parseInt(localStorage.getItem('barbershop_design_service_price') || '15');
                     const designName = localStorage.getItem('barbershop_design_service_name') || '🎨 Premium Design';
-                    additionalServices.push(`${designName} (+${designPrice}€)`);
+                    additionalServices.push(`${designName} (+${designPrice} CHF)`);
                     additionalPrice += designPrice;
                 }
                 
                 if (document.getElementById('stylingService').checked) {
                     const stylingPrice = parseInt(localStorage.getItem('barbershop_styling_service_price') || '20');
                     const stylingName = localStorage.getItem('barbershop_styling_service_name') || '✨ Styling Service';
-                    additionalServices.push(`${stylingName} (+${stylingPrice}€)`);
+                    additionalServices.push(`${stylingName} (+${stylingPrice} CHF)`);
                     additionalPrice += stylingPrice;
                 }
                 
@@ -1435,8 +1433,8 @@ Kunde: {name}
                             <p>Dauer: ${selectedService.duration} Minuten</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl font-bold">${totalPrice}€</p>
-                            ${additionalPrice > 0 ? `<p class="text-white/70 text-sm">(Basis: ${selectedService.price}€ + ${additionalPrice}€)</p>` : ''}
+                            <p class="text-xl font-bold">${totalPrice} CHF</p>
+                            ${additionalPrice > 0 ? `<p class="text-white/70 text-sm">(Basis: ${selectedService.price} CHF + ${additionalPrice} CHF)</p>` : ''}
                         </div>
                     </div>
                 `;
@@ -1507,7 +1505,7 @@ Kunde: {name}
             const additionalText = additionalServices.length > 0 ? 
                 `\nZusätzliche Services: ${additionalServices.map(s => s.name).join(', ')}` : '';
             
-            alert(`✅ Termin erfolgreich gebucht!\n\n${selectedService.name}${additionalText}\n${selectedDate} um ${selectedTime}\nGesamtpreis: ${totalPrice}€\n\nWir freuen uns auf Ihren Besuch!`);
+            alert(`✅ Termin erfolgreich gebucht!\n\n${selectedService.name}${additionalText}\n${selectedDate} um ${selectedTime}\nGesamtpreis: ${totalPrice} CHF\n\nWir freuen uns auf Ihren Besuch!`);
             
             // Reset form
             resetForm();
@@ -1598,7 +1596,7 @@ Kunde: {name}
                                 </div>
                                 <div class="text-right">
                                     <p class="text-white font-bold">${booking.time}</p>
-                                    <p class="text-white/70 text-sm">${displayPrice}€</p>
+                                    <p class="text-white/70 text-sm">${displayPrice} CHF</p>
                                     <div class="mt-2 space-x-2">
                                         <button onclick="sendWhatsApp('${booking.customer.phone}', '${booking.customer.name}', '${booking.service.name}', '${booking.date}', '${booking.time}')" class="whatsapp-btn text-xs px-2 py-1 rounded">
                                             📱 WhatsApp
@@ -1665,7 +1663,7 @@ Hallo {name}!
 Ihr Termin wurde erfolgreich gebucht:
 📅 {date} um {time}
 ✂️ {service}
-💰 {price}€
+💰 {price} CHF
 
 Wir freuen uns auf Ihren Besuch!
 
@@ -1702,7 +1700,7 @@ Kunde: {name}
 📞 {phone}
 📅 {date} um {time}
 ✂️ {service}
-💰 {price}€
+💰 {price} CHF
 
 {businessName} - Admin`;
             }
@@ -1743,7 +1741,7 @@ Kunde: {name}
             }, 0);
             
             document.getElementById('todayBookings').textContent = todayBookings.length;
-            document.getElementById('todayRevenue').textContent = todayRevenue + '€';
+            document.getElementById('todayRevenue').textContent = todayRevenue + ' CHF';
             document.getElementById('totalBookings').textContent = bookings.length;
         }
 
@@ -2032,1225 +2030,4 @@ Kunde: {name}
         // Working Hours Panel Setup
         function setupWorkingHoursPanel() {
             document.getElementById('hoursToggle').addEventListener('click', function() {
-                const hoursPanel = document.getElementById('hoursPanel');
-                hoursPanel.classList.toggle('open');
-                if (hoursPanel.classList.contains('open')) {
-                    loadWorkingHoursSettings();
-                }
-            });
-
-            // Save working hours
-            document.getElementById('saveHours').addEventListener('click', function() {
-                // Save day settings
-                const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-                days.forEach(day => {
-                    const checkbox = document.getElementById('day' + day);
-                    localStorage.setItem(`barbershop_day${day}`, checkbox.checked);
-                });
-
-                // Save time settings
-                localStorage.setItem('barbershop_openTime', document.getElementById('openTime').value);
-                localStorage.setItem('barbershop_closeTime', document.getElementById('closeTime').value);
-                localStorage.setItem('barbershop_breakStart', document.getElementById('breakStart').value);
-                localStorage.setItem('barbershop_breakEnd', document.getElementById('breakEnd').value);
-                localStorage.setItem('barbershop_timeInterval', document.getElementById('timeInterval').value);
-
-                alert('✅ Arbeitszeiten gespeichert!');
-                
-                // Refresh time slots if date is selected
-                if (selectedDate) {
-                    generateTimeSlots();
-                }
-            });
-
-            // Reset working hours
-            document.getElementById('resetHours').addEventListener('click', function() {
-                if (confirm('Arbeitszeiten wirklich zurücksetzen?')) {
-                    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-                    days.forEach(day => {
-                        localStorage.removeItem(`barbershop_day${day}`);
-                    });
-                    
-                    localStorage.removeItem('barbershop_openTime');
-                    localStorage.removeItem('barbershop_closeTime');
-                    localStorage.removeItem('barbershop_breakStart');
-                    localStorage.removeItem('barbershop_breakEnd');
-                    localStorage.removeItem('barbershop_timeInterval');
-                    localStorage.removeItem('barbershop_customSlots');
-                    
-                    loadWorkingHoursSettings();
-                    alert('✅ Arbeitszeiten zurückgesetzt!');
-                }
-            });
-
-            // Add custom time slot
-            document.getElementById('addTimeSlot').addEventListener('click', function() {
-                const timeSlot = document.getElementById('customTimeSlot').value;
-                if (!timeSlot) {
-                    alert('Bitte eine Zeit eingeben!');
-                    return;
-                }
-
-                let customSlots = JSON.parse(localStorage.getItem('barbershop_customSlots') || '[]');
-                if (!customSlots.includes(timeSlot)) {
-                    customSlots.push(timeSlot);
-                    customSlots.sort();
-                    localStorage.setItem('barbershop_customSlots', JSON.stringify(customSlots));
-                    displayCustomTimeSlots();
-                    document.getElementById('customTimeSlot').value = '';
-                    
-                    // Refresh time slots if date is selected
-                    if (selectedDate) {
-                        generateTimeSlots();
-                    }
-                }
-            });
-        }
-
-        function loadWorkingHoursSettings() {
-            // Load day settings
-            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-            days.forEach(day => {
-                const checkbox = document.getElementById('day' + day);
-                const saved = localStorage.getItem(`barbershop_day${day}`);
-                if (saved !== null) {
-                    checkbox.checked = saved === 'true';
-                } else {
-                    // Default: Monday-Friday enabled, Saturday-Sunday disabled
-                    checkbox.checked = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].includes(day);
-                }
-            });
-
-            // Load time settings
-            document.getElementById('openTime').value = localStorage.getItem('barbershop_openTime') || '09:00';
-            document.getElementById('closeTime').value = localStorage.getItem('barbershop_closeTime') || '18:00';
-            document.getElementById('breakStart').value = localStorage.getItem('barbershop_breakStart') || '12:00';
-            document.getElementById('breakEnd').value = localStorage.getItem('barbershop_breakEnd') || '13:00';
-            document.getElementById('timeInterval').value = localStorage.getItem('barbershop_timeInterval') || '30';
-
-            displayCustomTimeSlots();
-        }
-
-        function displayCustomTimeSlots() {
-            const container = document.getElementById('customTimeSlots');
-            const customSlots = JSON.parse(localStorage.getItem('barbershop_customSlots') || '[]');
-            
-            container.innerHTML = customSlots.map(slot => `
-                <span class="bg-white/10 text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
-                    ${slot}
-                    <button onclick="removeCustomTimeSlot('${slot}')" class="text-red-400 hover:text-red-300">
-                        ✕
-                    </button>
-                </span>
-            `).join('');
-        }
-
-        function removeCustomTimeSlot(slot) {
-            let customSlots = JSON.parse(localStorage.getItem('barbershop_customSlots') || '[]');
-            customSlots = customSlots.filter(s => s !== slot);
-            localStorage.setItem('barbershop_customSlots', JSON.stringify(customSlots));
-            displayCustomTimeSlots();
-            
-            // Refresh time slots if date is selected
-            if (selectedDate) {
-                generateTimeSlots();
-            }
-        }
-
-        // Text Editing Panel Setup
-        function setupTextEditingPanel() {
-            document.getElementById('textToggle').addEventListener('click', function() {
-                const textPanel = document.getElementById('textPanel');
-                textPanel.classList.toggle('open');
-                if (textPanel.classList.contains('open')) {
-                    loadTextSettings();
-                }
-            });
-
-            // Save texts
-            document.getElementById('saveTexts').addEventListener('click', function() {
-                // Save all text settings
-                const textSettings = {
-                    mainTitle: document.getElementById('editMainTitle').value,
-                    mainTitleSize: document.getElementById('mainTitleSize').value,
-                    mainTitleFont: document.getElementById('mainTitleFont').value,
-                    subtitle: document.getElementById('editSubtitle').value,
-                    subtitleSize: document.getElementById('subtitleSize').value,
-                    subtitleFont: document.getElementById('subtitleFont').value,
-                    bookingTitle: document.getElementById('editBookingTitle').value,
-                    bookingTitleSize: document.getElementById('bookingTitleSize').value,
-                    bookingTitleFont: document.getElementById('bookingTitleFont').value,
-                    buttonText: document.getElementById('editButtonText').value,
-                    buttonTextSize: document.getElementById('buttonTextSize').value,
-                    buttonTextFont: document.getElementById('buttonTextFont').value,
-                    serviceLabel: document.getElementById('editServiceLabel').value,
-                    dateLabel: document.getElementById('editDateLabel').value,
-                    namePlaceholder: document.getElementById('editNamePlaceholder').value,
-                    phonePlaceholder: document.getElementById('editPhonePlaceholder').value,
-                    labelSize: document.getElementById('labelSize').value,
-                    labelFont: document.getElementById('labelFont').value
-                };
-
-                localStorage.setItem('barbershop_textSettings', JSON.stringify(textSettings));
-                applyTextSettings(textSettings);
-                alert('✅ Texte gespeichert!');
-            });
-
-            // Preview texts
-            document.getElementById('previewTexts').addEventListener('click', function() {
-                const textSettings = {
-                    mainTitle: document.getElementById('editMainTitle').value || 'Barbershop Elite',
-                    mainTitleSize: document.getElementById('mainTitleSize').value,
-                    mainTitleFont: document.getElementById('mainTitleFont').value,
-                    subtitle: document.getElementById('editSubtitle').value || 'Professionelle Herrenfriseur-Services',
-                    subtitleSize: document.getElementById('subtitleSize').value,
-                    subtitleFont: document.getElementById('subtitleFont').value,
-                    bookingTitle: document.getElementById('editBookingTitle').value || '🗓️ Termin buchen',
-                    bookingTitleSize: document.getElementById('bookingTitleSize').value,
-                    bookingTitleFont: document.getElementById('bookingTitleFont').value,
-                    buttonText: document.getElementById('editButtonText').value || 'Termin buchen',
-                    buttonTextSize: document.getElementById('buttonTextSize').value,
-                    buttonTextFont: document.getElementById('buttonTextFont').value,
-                    serviceLabel: document.getElementById('editServiceLabel').value || 'Service wählen',
-                    dateLabel: document.getElementById('editDateLabel').value || 'Datum & Uhrzeit',
-                    namePlaceholder: document.getElementById('editNamePlaceholder').value || 'Ihr Name',
-                    phonePlaceholder: document.getElementById('editPhonePlaceholder').value || 'Telefonnummer',
-                    labelSize: document.getElementById('labelSize').value,
-                    labelFont: document.getElementById('labelFont').value
-                };
-
-                applyTextSettings(textSettings);
-            });
-
-            // Reset texts
-            document.getElementById('resetTexts').addEventListener('click', function() {
-                if (confirm('Alle Texte wirklich zurücksetzen?')) {
-                    localStorage.removeItem('barbershop_textSettings');
-                    loadTextSettings();
-                    applyDefaultTextSettings();
-                    alert('✅ Texte zurückgesetzt!');
-                }
-            });
-        }
-
-        function loadTextSettings() {
-            const saved = localStorage.getItem('barbershop_textSettings');
-            if (saved) {
-                const settings = JSON.parse(saved);
-                
-                document.getElementById('editMainTitle').value = settings.mainTitle || '';
-                document.getElementById('mainTitleSize').value = settings.mainTitleSize || '2.5';
-                document.getElementById('mainTitleFont').value = settings.mainTitleFont || 'Squada One';
-                document.getElementById('editSubtitle').value = settings.subtitle || '';
-                document.getElementById('subtitleSize').value = settings.subtitleSize || '1.125';
-                document.getElementById('subtitleFont').value = settings.subtitleFont || 'Inter';
-                document.getElementById('editBookingTitle').value = settings.bookingTitle || '';
-                document.getElementById('bookingTitleSize').value = settings.bookingTitleSize || '1.5';
-                document.getElementById('bookingTitleFont').value = settings.bookingTitleFont || 'Inter';
-                document.getElementById('editButtonText').value = settings.buttonText || '';
-                document.getElementById('buttonTextSize').value = settings.buttonTextSize || '1';
-                document.getElementById('buttonTextFont').value = settings.buttonTextFont || 'Inter';
-                document.getElementById('editServiceLabel').value = settings.serviceLabel || '';
-                document.getElementById('editDateLabel').value = settings.dateLabel || '';
-                document.getElementById('editNamePlaceholder').value = settings.namePlaceholder || '';
-                document.getElementById('editPhonePlaceholder').value = settings.phonePlaceholder || '';
-                document.getElementById('labelSize').value = settings.labelSize || '1';
-                document.getElementById('labelFont').value = settings.labelFont || 'Inter';
-            }
-        }
-
-        function applyTextSettings(settings) {
-            // Apply main title
-            if (settings.mainTitle) {
-                document.getElementById('businessName').textContent = settings.mainTitle;
-                document.getElementById('businessName').style.fontSize = settings.mainTitleSize + 'rem';
-                document.getElementById('businessName').style.fontFamily = settings.mainTitleFont;
-            }
-
-            // Apply subtitle
-            const subtitle = document.querySelector('.text-white\\/80.text-lg');
-            if (subtitle && settings.subtitle) {
-                subtitle.textContent = settings.subtitle;
-                subtitle.style.fontSize = settings.subtitleSize + 'rem';
-                subtitle.style.fontFamily = settings.subtitleFont;
-            }
-
-            // Apply booking title
-            const bookingTitle = document.querySelector('#bookingForm h2');
-            if (bookingTitle && settings.bookingTitle) {
-                bookingTitle.textContent = settings.bookingTitle;
-                bookingTitle.style.fontSize = settings.bookingTitleSize + 'rem';
-                bookingTitle.style.fontFamily = settings.bookingTitleFont;
-            }
-
-            // Apply button text
-            const bookButton = document.getElementById('bookButton');
-            if (bookButton && settings.buttonText) {
-                bookButton.textContent = settings.buttonText;
-                bookButton.style.fontSize = settings.buttonTextSize + 'rem';
-                bookButton.style.fontFamily = settings.buttonTextFont;
-            }
-
-            // Apply labels
-            const labels = document.querySelectorAll('#bookingForm label');
-            labels.forEach((label, index) => {
-                if (index === 0 && settings.serviceLabel) {
-                    label.textContent = settings.serviceLabel;
-                } else if (index === 1 && settings.dateLabel) {
-                    label.textContent = settings.dateLabel;
-                }
-                label.style.fontSize = settings.labelSize + 'rem';
-                label.style.fontFamily = settings.labelFont;
-            });
-
-            // Apply placeholders
-            if (settings.namePlaceholder) {
-                document.getElementById('customerName').placeholder = settings.namePlaceholder;
-            }
-            if (settings.phonePlaceholder) {
-                document.getElementById('customerPhone').placeholder = settings.phonePlaceholder;
-            } else {
-                document.getElementById('customerPhone').placeholder = '+41 XX XXX XX XX';
-            }
-        }
-
-        function applyDefaultTextSettings() {
-            document.getElementById('businessName').textContent = 'Barbershop Elite';
-            document.getElementById('businessName').style.fontSize = '2.5rem';
-            document.getElementById('businessName').style.fontFamily = 'Squada One';
-            
-            const subtitle = document.querySelector('.text-white\\/80.text-lg');
-            if (subtitle) {
-                subtitle.textContent = 'Professionelle Herrenfriseur-Services';
-                subtitle.style.fontSize = '1.125rem';
-                subtitle.style.fontFamily = 'Inter';
-            }
-            
-            const bookingTitle = document.querySelector('#bookingForm h2');
-            if (bookingTitle) {
-                bookingTitle.textContent = '🗓️ Termin buchen';
-                bookingTitle.style.fontSize = '1.5rem';
-                bookingTitle.style.fontFamily = 'Inter';
-            }
-            
-            document.getElementById('bookButton').textContent = 'Termin buchen';
-            document.getElementById('customerName').placeholder = 'Ihr Name';
-            document.getElementById('customerPhone').placeholder = '+41 XX XXX XX XX';
-        }
-
-        // WhatsApp Panel Setup
-        function setupWhatsAppPanel() {
-            document.getElementById('whatsappToggle').addEventListener('click', function() {
-                const whatsappPanel = document.getElementById('whatsappPanel');
-                whatsappPanel.classList.toggle('open');
-            });
-
-            // Test WhatsApp functionality
-            document.getElementById('testWhatsApp').addEventListener('click', function() {
-                const ownerPhone = document.getElementById('ownerWhatsApp').value;
-                if (!ownerPhone) {
-                    alert('Bitte geben Sie zuerst Ihre WhatsApp-Nummer ein!');
-                    return;
-                }
-
-                const businessName = localStorage.getItem('barbershop_name') || 'Barbershop Elite';
-                const testMessage = `🧪 Test-Nachricht
-
-Hallo! Dies ist eine Test-Nachricht von Ihrem Barbershop-System.
-
-Die WhatsApp-Benachrichtigungen funktionieren korrekt! ✅
-
-${businessName} - Admin System`;
-
-                const cleanPhone = ownerPhone.replace(/\D/g, '');
-                const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(testMessage)}`;
-                window.open(whatsappUrl, '_blank');
-            });
-
-            // Save WhatsApp settings
-            document.getElementById('saveWhatsApp').addEventListener('click', function() {
-                const ownerPhone = document.getElementById('ownerWhatsApp').value;
-                const autoNotify = document.getElementById('autoNotifyOwner').checked;
-                const customerTemplate = document.getElementById('customerTemplate').value;
-                const ownerTemplate = document.getElementById('ownerTemplate').value;
-
-                localStorage.setItem('barbershop_owner_whatsapp', ownerPhone);
-                localStorage.setItem('barbershop_auto_notify', autoNotify);
-                localStorage.setItem('barbershop_customer_template', customerTemplate);
-                localStorage.setItem('barbershop_owner_template', ownerTemplate);
-
-                alert('✅ WhatsApp-Einstellungen gespeichert!');
-            });
-
-            // Reset WhatsApp settings
-            document.getElementById('resetWhatsApp').addEventListener('click', function() {
-                if (confirm('WhatsApp-Einstellungen wirklich zurücksetzen?')) {
-                    localStorage.removeItem('barbershop_owner_whatsapp');
-                    localStorage.removeItem('barbershop_auto_notify');
-                    localStorage.removeItem('barbershop_customer_template');
-                    localStorage.removeItem('barbershop_owner_template');
-                    
-                    document.getElementById('ownerWhatsApp').value = '';
-                    document.getElementById('autoNotifyOwner').checked = false;
-                    document.getElementById('customerTemplate').value = '';
-                    document.getElementById('ownerTemplate').value = '';
-                    
-                    alert('✅ WhatsApp-Einstellungen zurückgesetzt!');
-                }
-            });
-        }
-
-        function editService(serviceId) {
-            const service = services.find(s => s.id === serviceId);
-            if (!service) return;
-
-            const newName = prompt('Service Name:', service.name);
-            if (newName === null) return;
-
-            const newDescription = prompt('Beschreibung:', service.description);
-            if (newDescription === null) return;
-
-            const newPrice = prompt('Preis (€):', service.price);
-            if (newPrice === null) return;
-
-            const newDuration = prompt('Dauer (Minuten):', service.duration);
-            if (newDuration === null) return;
-
-            const newEmoji = prompt('Emoji:', service.emoji);
-            if (newEmoji === null) return;
-
-            service.name = newName;
-            service.description = newDescription;
-            service.price = parseInt(newPrice);
-            service.duration = parseInt(newDuration);
-            service.emoji = newEmoji;
-
-            localStorage.setItem('barbershop_services', JSON.stringify(services));
-            loadServices();
-            loadAdminServices();
-            alert('✅ Service aktualisiert!');
-        }
-
-        function deleteService(serviceId) {
-            if (confirm('Service wirklich löschen?')) {
-                services = services.filter(s => s.id !== serviceId);
-                localStorage.setItem('barbershop_services', JSON.stringify(services));
-                loadServices();
-                loadAdminServices();
-                alert('✅ Service gelöscht!');
-            }
-        }
-
-        // Design Panel Setup
-        function setupDesignPanel() {
-            document.getElementById('designToggle').addEventListener('click', function() {
-                const designPanel = document.getElementById('designPanel');
-                designPanel.classList.toggle('open');
-                if (designPanel.classList.contains('open')) {
-                    loadDesignTextSettings();
-                }
-            });
-
-            // Logo upload
-            document.getElementById('logoUpload').addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    if (file.size > 2 * 1024 * 1024) {
-                        alert('Datei zu groß! Maximal 2MB erlaubt.');
-                        return;
-                    }
-                    
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const logoContainer = document.getElementById('logoContainer');
-                        logoContainer.innerHTML = `<img src="${e.target.result}" alt="Logo">`;
-                        localStorage.setItem('barbershop_logo', e.target.result);
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-
-            // Business name
-            document.getElementById('businessNameInput').addEventListener('input', function() {
-                const name = this.value || 'Barbershop Elite';
-                document.getElementById('businessName').textContent = name;
-                localStorage.setItem('barbershop_name', name);
-            });
-
-            // Individual text element buttons
-            document.getElementById('applyMainTitle').addEventListener('click', function() {
-                const text = document.getElementById('editMainTitleDesign').value || 'Barbershop Elite';
-                const size = document.getElementById('mainTitleSizeDesign').value;
-                const font = document.getElementById('mainTitleFontDesign').value;
-                
-                const element = document.getElementById('businessName');
-                element.textContent = text;
-                element.style.fontSize = size + 'rem';
-                element.style.fontFamily = font;
-                
-                // Save to localStorage
-                localStorage.setItem('barbershop_main_title', text);
-                localStorage.setItem('barbershop_main_title_size', size);
-                localStorage.setItem('barbershop_main_title_font', font);
-                
-                showNotification('✨ Haupttitel aktualisiert!');
-            });
-
-            document.getElementById('applySubtitle').addEventListener('click', function() {
-                const text = document.getElementById('editSubtitleDesign').value || 'Professionelle Herrenfriseur-Services';
-                const size = document.getElementById('subtitleSizeDesign').value;
-                const font = document.getElementById('subtitleFontDesign').value;
-                
-                const element = document.querySelector('.text-white\\/80.text-lg');
-                if (element) {
-                    element.textContent = text;
-                    element.style.fontSize = size + 'rem';
-                    element.style.fontFamily = font;
-                }
-                
-                localStorage.setItem('barbershop_subtitle', text);
-                localStorage.setItem('barbershop_subtitle_size', size);
-                localStorage.setItem('barbershop_subtitle_font', font);
-                
-                showNotification('✨ Untertitel aktualisiert!');
-            });
-
-            document.getElementById('applyBookingTitle').addEventListener('click', function() {
-                const text = document.getElementById('editBookingTitleDesign').value || '🗓️ Termin buchen';
-                const size = document.getElementById('bookingTitleSizeDesign').value;
-                const font = document.getElementById('bookingTitleFontDesign').value;
-                
-                const element = document.querySelector('#bookingForm h2');
-                if (element) {
-                    element.textContent = text;
-                    element.style.fontSize = size + 'rem';
-                    element.style.fontFamily = font;
-                }
-                
-                localStorage.setItem('barbershop_booking_title', text);
-                localStorage.setItem('barbershop_booking_title_size', size);
-                localStorage.setItem('barbershop_booking_title_font', font);
-                
-                showNotification('✨ Buchungstitel aktualisiert!');
-            });
-
-            document.getElementById('applyLabels').addEventListener('click', function() {
-                const serviceLabel = document.getElementById('editServiceLabelDesign').value || 'Service wählen';
-                const dateLabel = document.getElementById('editDateLabelDesign').value || 'Datum & Uhrzeit';
-                const namePlaceholder = document.getElementById('editNamePlaceholderDesign').value || 'Ihr Name';
-                const phonePlaceholder = document.getElementById('editPhonePlaceholderDesign').value || 'Telefonnummer';
-                const size = document.getElementById('labelSizeDesign').value;
-                const font = document.getElementById('labelFontDesign').value;
-                
-                // Update labels
-                const labels = document.querySelectorAll('#bookingForm label');
-                if (labels[0]) {
-                    labels[0].textContent = serviceLabel;
-                    labels[0].style.fontSize = size + 'rem';
-                    labels[0].style.fontFamily = font;
-                }
-                if (labels[1]) {
-                    labels[1].textContent = dateLabel;
-                    labels[1].style.fontSize = size + 'rem';
-                    labels[1].style.fontFamily = font;
-                }
-                
-                // Update placeholders
-                document.getElementById('customerName').placeholder = namePlaceholder;
-                document.getElementById('customerPhone').placeholder = phonePlaceholder;
-                
-                // Save to localStorage
-                localStorage.setItem('barbershop_service_label', serviceLabel);
-                localStorage.setItem('barbershop_date_label', dateLabel);
-                localStorage.setItem('barbershop_name_placeholder', namePlaceholder);
-                localStorage.setItem('barbershop_phone_placeholder', phonePlaceholder);
-                localStorage.setItem('barbershop_label_size', size);
-                localStorage.setItem('barbershop_label_font', font);
-                
-                showNotification('✨ Labels aktualisiert!');
-            });
-
-            document.getElementById('applyButton').addEventListener('click', function() {
-                const text = document.getElementById('editButtonTextDesign').value || 'Termin buchen';
-                const size = document.getElementById('buttonTextSizeDesign').value;
-                const font = document.getElementById('buttonTextFontDesign').value;
-                
-                const element = document.getElementById('bookButton');
-                element.textContent = text;
-                element.style.fontSize = size + 'rem';
-                element.style.fontFamily = font;
-                
-                localStorage.setItem('barbershop_button_text', text);
-                localStorage.setItem('barbershop_button_size', size);
-                localStorage.setItem('barbershop_button_font', font);
-                
-                showNotification('✨ Button aktualisiert!');
-            });
-
-            // Additional Services Apply Button
-            document.getElementById('applyAdditionalServices').addEventListener('click', function() {
-                const sectionTitle = document.getElementById('editAdditionalServicesLabel').value || 'Zusätzliche Services (optional)';
-                const designName = document.getElementById('editDesignServiceName').value || '🎨 Premium Design';
-                const designPrice = document.getElementById('editDesignServicePrice').value || '15';
-                const designDesc = document.getElementById('editDesignServiceDesc').value || 'Spezielle Styling-Beratung';
-                const stylingName = document.getElementById('editStylingServiceName').value || '✨ Styling Service';
-                const stylingPrice = document.getElementById('editStylingServicePrice').value || '20';
-                const stylingDesc = document.getElementById('editStylingServiceDesc').value || 'Komplettes Haarstyling';
-                
-                // Update section title
-                document.getElementById('additionalServicesLabel').textContent = sectionTitle;
-                
-                // Update design service
-                document.getElementById('designServiceName').textContent = designName;
-                document.getElementById('designServicePrice').textContent = designPrice;
-                document.getElementById('designServiceDesc').innerHTML = `${designDesc} (+<span id="designServicePrice">${designPrice}</span>€)`;
-                
-                // Update styling service
-                document.getElementById('stylingServiceName').textContent = stylingName;
-                document.getElementById('stylingServicePrice').textContent = stylingPrice;
-                document.getElementById('stylingServiceDesc').innerHTML = `${stylingDesc} (+<span id="stylingServicePrice">${stylingPrice}</span>€)`;
-                
-                // Save to localStorage
-                localStorage.setItem('barbershop_additional_section_title', sectionTitle);
-                localStorage.setItem('barbershop_design_service_name', designName);
-                localStorage.setItem('barbershop_design_service_price', designPrice);
-                localStorage.setItem('barbershop_design_service_desc', designDesc);
-                localStorage.setItem('barbershop_styling_service_name', stylingName);
-                localStorage.setItem('barbershop_styling_service_price', stylingPrice);
-                localStorage.setItem('barbershop_styling_service_desc', stylingDesc);
-                
-                showNotification('✨ Zusätzliche Services aktualisiert!');
-            });
-
-            // Preview all changes
-            document.getElementById('previewAllChanges').addEventListener('click', function() {
-                // Apply all changes at once
-                document.getElementById('applyMainTitle').click();
-                setTimeout(() => document.getElementById('applySubtitle').click(), 100);
-                setTimeout(() => document.getElementById('applyBookingTitle').click(), 200);
-                setTimeout(() => document.getElementById('applyLabels').click(), 300);
-                setTimeout(() => document.getElementById('applyButton').click(), 400);
-                
-                setTimeout(() => showNotification('👁️ Alle Änderungen angewendet!'), 500);
-            });
-
-            // Custom color inputs
-            document.getElementById('primaryColorInput').addEventListener('input', function() {
-                const color = this.value;
-                if (isValidHexColor(color)) {
-                    document.documentElement.style.setProperty('--primary-color', color);
-                    document.getElementById('primaryColorPicker').value = color;
-                    localStorage.setItem('barbershop_primary_color', color);
-                }
-            });
-
-            document.getElementById('primaryColorPicker').addEventListener('input', function() {
-                const color = this.value;
-                document.documentElement.style.setProperty('--primary-color', color);
-                document.getElementById('primaryColorInput').value = color;
-                localStorage.setItem('barbershop_primary_color', color);
-            });
-
-            document.getElementById('secondaryColorInput').addEventListener('input', function() {
-                const color = this.value;
-                if (isValidHexColor(color)) {
-                    document.documentElement.style.setProperty('--secondary-color', color);
-                    document.getElementById('secondaryColorPicker').value = color;
-                    localStorage.setItem('barbershop_secondary_color', color);
-                }
-            });
-
-            document.getElementById('secondaryColorPicker').addEventListener('input', function() {
-                const color = this.value;
-                document.documentElement.style.setProperty('--secondary-color', color);
-                document.getElementById('secondaryColorInput').value = color;
-                localStorage.setItem('barbershop_secondary_color', color);
-            });
-
-            // Save design
-            document.getElementById('saveDesign').addEventListener('click', function() {
-                // Save all current values
-                document.getElementById('applyMainTitle').click();
-                setTimeout(() => document.getElementById('applySubtitle').click(), 100);
-                setTimeout(() => document.getElementById('applyBookingTitle').click(), 200);
-                setTimeout(() => document.getElementById('applyLabels').click(), 300);
-                setTimeout(() => document.getElementById('applyButton').click(), 400);
-                
-                setTimeout(() => {
-                    alert('✅ Alle Texte und Design-Einstellungen gespeichert!');
-                }, 600);
-            });
-
-            // Reset design
-            document.getElementById('resetDesign').addEventListener('click', function() {
-                if (confirm('Design und alle Texte wirklich zurücksetzen?')) {
-                    // Remove all design and text settings
-                    const keysToRemove = [
-                        'barbershop_logo', 'barbershop_name', 'barbershop_primary_color', 'barbershop_secondary_color',
-                        'barbershop_main_title', 'barbershop_main_title_size', 'barbershop_main_title_font',
-                        'barbershop_subtitle', 'barbershop_subtitle_size', 'barbershop_subtitle_font',
-                        'barbershop_booking_title', 'barbershop_booking_title_size', 'barbershop_booking_title_font',
-                        'barbershop_service_label', 'barbershop_date_label', 'barbershop_name_placeholder', 
-                        'barbershop_phone_placeholder', 'barbershop_label_size', 'barbershop_label_font',
-                        'barbershop_button_text', 'barbershop_button_size', 'barbershop_button_font'
-                    ];
-                    
-                    keysToRemove.forEach(key => localStorage.removeItem(key));
-                    location.reload();
-                }
-            });
-        }
-
-        function loadDesignTextSettings() {
-            // Load main title settings
-            document.getElementById('editMainTitleDesign').value = localStorage.getItem('barbershop_main_title') || '';
-            document.getElementById('mainTitleSizeDesign').value = localStorage.getItem('barbershop_main_title_size') || '2.5';
-            document.getElementById('mainTitleFontDesign').value = localStorage.getItem('barbershop_main_title_font') || 'Squada One';
-            
-            // Load subtitle settings
-            document.getElementById('editSubtitleDesign').value = localStorage.getItem('barbershop_subtitle') || '';
-            document.getElementById('subtitleSizeDesign').value = localStorage.getItem('barbershop_subtitle_size') || '1.125';
-            document.getElementById('subtitleFontDesign').value = localStorage.getItem('barbershop_subtitle_font') || 'Inter';
-            
-            // Load booking title settings
-            document.getElementById('editBookingTitleDesign').value = localStorage.getItem('barbershop_booking_title') || '';
-            document.getElementById('bookingTitleSizeDesign').value = localStorage.getItem('barbershop_booking_title_size') || '1.5';
-            document.getElementById('bookingTitleFontDesign').value = localStorage.getItem('barbershop_booking_title_font') || 'Inter';
-            
-            // Load label settings
-            document.getElementById('editServiceLabelDesign').value = localStorage.getItem('barbershop_service_label') || '';
-            document.getElementById('editDateLabelDesign').value = localStorage.getItem('barbershop_date_label') || '';
-            document.getElementById('editNamePlaceholderDesign').value = localStorage.getItem('barbershop_name_placeholder') || '';
-            document.getElementById('editPhonePlaceholderDesign').value = localStorage.getItem('barbershop_phone_placeholder') || '';
-            document.getElementById('labelSizeDesign').value = localStorage.getItem('barbershop_label_size') || '1';
-            document.getElementById('labelFontDesign').value = localStorage.getItem('barbershop_label_font') || 'Inter';
-            
-            // Load button settings
-            document.getElementById('editButtonTextDesign').value = localStorage.getItem('barbershop_button_text') || '';
-            document.getElementById('buttonTextSizeDesign').value = localStorage.getItem('barbershop_button_size') || '1';
-            document.getElementById('buttonTextFontDesign').value = localStorage.getItem('barbershop_button_font') || 'Inter';
-            
-            // Load additional services settings
-            document.getElementById('editAdditionalServicesLabel').value = localStorage.getItem('barbershop_additional_section_title') || '';
-            document.getElementById('editDesignServiceName').value = localStorage.getItem('barbershop_design_service_name') || '';
-            document.getElementById('editDesignServicePrice').value = localStorage.getItem('barbershop_design_service_price') || '15';
-            document.getElementById('editDesignServiceDesc').value = localStorage.getItem('barbershop_design_service_desc') || '';
-            document.getElementById('editStylingServiceName').value = localStorage.getItem('barbershop_styling_service_name') || '';
-            document.getElementById('editStylingServicePrice').value = localStorage.getItem('barbershop_styling_service_price') || '20';
-            document.getElementById('editStylingServiceDesc').value = localStorage.getItem('barbershop_styling_service_desc') || '';
-        }
-
-        function showNotification(message) {
-            // Create a temporary notification
-            const notification = document.createElement('div');
-            notification.className = 'fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all';
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            
-            // Remove after 2 seconds
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.parentNode.removeChild(notification);
-                    }
-                }, 300);
-            }, 2000);
-        }
-
-        function isValidHexColor(hex) {
-            return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(hex);
-        }
-
-        function loadDesignSettings() {
-            // Load logo
-            const savedLogo = localStorage.getItem('barbershop_logo');
-            if (savedLogo) {
-                document.getElementById('logoContainer').innerHTML = `<img src="${savedLogo}" alt="Logo">`;
-            }
-
-            // Load business name
-            const savedName = localStorage.getItem('barbershop_name');
-            if (savedName) {
-                document.getElementById('businessName').textContent = savedName;
-                document.getElementById('businessNameInput').value = savedName;
-            }
-
-            // Load and apply saved text settings
-            const savedMainTitle = localStorage.getItem('barbershop_main_title');
-            const savedMainTitleSize = localStorage.getItem('barbershop_main_title_size');
-            const savedMainTitleFont = localStorage.getItem('barbershop_main_title_font');
-            if (savedMainTitle || savedMainTitleSize || savedMainTitleFont) {
-                const element = document.getElementById('businessName');
-                if (savedMainTitle) element.textContent = savedMainTitle;
-                if (savedMainTitleSize) element.style.fontSize = savedMainTitleSize + 'rem';
-                if (savedMainTitleFont) element.style.fontFamily = savedMainTitleFont;
-            }
-
-            // Load additional services settings
-            const savedSectionTitle = localStorage.getItem('barbershop_additional_section_title');
-            if (savedSectionTitle) {
-                document.getElementById('additionalServicesLabel').textContent = savedSectionTitle;
-            }
-
-            const savedDesignName = localStorage.getItem('barbershop_design_service_name');
-            const savedDesignPrice = localStorage.getItem('barbershop_design_service_price');
-            const savedDesignDesc = localStorage.getItem('barbershop_design_service_desc');
-            if (savedDesignName) document.getElementById('designServiceName').textContent = savedDesignName;
-            if (savedDesignPrice) {
-                document.getElementById('designServicePrice').textContent = savedDesignPrice;
-            }
-            if (savedDesignDesc && savedDesignPrice) {
-                document.getElementById('designServiceDesc').innerHTML = `${savedDesignDesc} (+<span id="designServicePrice">${savedDesignPrice}</span>€)`;
-            }
-
-            const savedStylingName = localStorage.getItem('barbershop_styling_service_name');
-            const savedStylingPrice = localStorage.getItem('barbershop_styling_service_price');
-            const savedStylingDesc = localStorage.getItem('barbershop_styling_service_desc');
-            if (savedStylingName) document.getElementById('stylingServiceName').textContent = savedStylingName;
-            if (savedStylingPrice) {
-                document.getElementById('stylingServicePrice').textContent = savedStylingPrice;
-            }
-            if (savedStylingDesc && savedStylingPrice) {
-                document.getElementById('stylingServiceDesc').innerHTML = `${savedStylingDesc} (+<span id="stylingServicePrice">${savedStylingPrice}</span>€)`;
-            }
-
-            const savedSubtitle = localStorage.getItem('barbershop_subtitle');
-            const savedSubtitleSize = localStorage.getItem('barbershop_subtitle_size');
-            const savedSubtitleFont = localStorage.getItem('barbershop_subtitle_font');
-            if (savedSubtitle || savedSubtitleSize || savedSubtitleFont) {
-                const element = document.querySelector('.text-white\\/80.text-lg');
-                if (element) {
-                    if (savedSubtitle) element.textContent = savedSubtitle;
-                    if (savedSubtitleSize) element.style.fontSize = savedSubtitleSize + 'rem';
-                    if (savedSubtitleFont) element.style.fontFamily = savedSubtitleFont;
-                }
-            }
-
-            const savedBookingTitle = localStorage.getItem('barbershop_booking_title');
-            const savedBookingTitleSize = localStorage.getItem('barbershop_booking_title_size');
-            const savedBookingTitleFont = localStorage.getItem('barbershop_booking_title_font');
-            if (savedBookingTitle || savedBookingTitleSize || savedBookingTitleFont) {
-                const element = document.querySelector('#bookingForm h2');
-                if (element) {
-                    if (savedBookingTitle) element.textContent = savedBookingTitle;
-                    if (savedBookingTitleSize) element.style.fontSize = savedBookingTitleSize + 'rem';
-                    if (savedBookingTitleFont) element.style.fontFamily = savedBookingTitleFont;
-                }
-            }
-
-            const savedServiceLabel = localStorage.getItem('barbershop_service_label');
-            const savedDateLabel = localStorage.getItem('barbershop_date_label');
-            const savedLabelSize = localStorage.getItem('barbershop_label_size');
-            const savedLabelFont = localStorage.getItem('barbershop_label_font');
-            if (savedServiceLabel || savedDateLabel || savedLabelSize || savedLabelFont) {
-                const labels = document.querySelectorAll('#bookingForm label');
-                if (labels[0]) {
-                    if (savedServiceLabel) labels[0].textContent = savedServiceLabel;
-                    if (savedLabelSize) labels[0].style.fontSize = savedLabelSize + 'rem';
-                    if (savedLabelFont) labels[0].style.fontFamily = savedLabelFont;
-                }
-                if (labels[1]) {
-                    if (savedDateLabel) labels[1].textContent = savedDateLabel;
-                    if (savedLabelSize) labels[1].style.fontSize = savedLabelSize + 'rem';
-                    if (savedLabelFont) labels[1].style.fontFamily = savedLabelFont;
-                }
-            }
-
-            const savedNamePlaceholder = localStorage.getItem('barbershop_name_placeholder');
-            const savedPhonePlaceholder = localStorage.getItem('barbershop_phone_placeholder');
-            if (savedNamePlaceholder) {
-                document.getElementById('customerName').placeholder = savedNamePlaceholder;
-            }
-            if (savedPhonePlaceholder) {
-                document.getElementById('customerPhone').placeholder = savedPhonePlaceholder;
-            }
-
-            const savedButtonText = localStorage.getItem('barbershop_button_text');
-            const savedButtonSize = localStorage.getItem('barbershop_button_size');
-            const savedButtonFont = localStorage.getItem('barbershop_button_font');
-            if (savedButtonText || savedButtonSize || savedButtonFont) {
-                const element = document.getElementById('bookButton');
-                if (savedButtonText) element.textContent = savedButtonText;
-                if (savedButtonSize) element.style.fontSize = savedButtonSize + 'rem';
-                if (savedButtonFont) element.style.fontFamily = savedButtonFont;
-            }
-
-            // Load colors
-            const savedPrimary = localStorage.getItem('barbershop_primary_color');
-            const savedSecondary = localStorage.getItem('barbershop_secondary_color');
-            if (savedPrimary) {
-                document.documentElement.style.setProperty('--primary-color', savedPrimary);
-                document.getElementById('primaryColorInput').value = savedPrimary;
-                document.getElementById('primaryColorPicker').value = savedPrimary;
-            }
-            if (savedSecondary) {
-                document.documentElement.style.setProperty('--secondary-color', savedSecondary);
-                document.getElementById('secondaryColorInput').value = savedSecondary;
-                document.getElementById('secondaryColorPicker').value = savedSecondary;
-            }
-
-            // Load WhatsApp settings
-            const savedOwnerWhatsApp = localStorage.getItem('barbershop_owner_whatsapp');
-            if (savedOwnerWhatsApp) {
-                document.getElementById('ownerWhatsApp').value = savedOwnerWhatsApp;
-            }
-
-            const savedAutoNotify = localStorage.getItem('barbershop_auto_notify');
-            if (savedAutoNotify === 'true') {
-                document.getElementById('autoNotifyOwner').checked = true;
-            }
-
-            // Load message templates
-            const savedCustomerTemplate = localStorage.getItem('barbershop_customer_template');
-            if (savedCustomerTemplate) {
-                document.getElementById('customerTemplate').value = savedCustomerTemplate;
-            }
-
-            const savedOwnerTemplate = localStorage.getItem('barbershop_owner_template');
-            if (savedOwnerTemplate) {
-                document.getElementById('ownerTemplate').value = savedOwnerTemplate;
-            }
-        }
-
-        // Service View Toggle Setup
-        function setupServiceViewToggle() {
-            document.getElementById('viewEditMode').addEventListener('click', function() {
-                document.getElementById('editModeContent').classList.remove('hidden');
-                document.getElementById('organizeModeContent').classList.add('hidden');
-                this.classList.add('bg-blue-600');
-                this.classList.remove('bg-gray-600');
-                document.getElementById('viewOrganizeMode').classList.remove('bg-purple-600');
-                document.getElementById('viewOrganizeMode').classList.add('bg-gray-600');
-            });
-
-            document.getElementById('viewOrganizeMode').addEventListener('click', function() {
-                document.getElementById('editModeContent').classList.add('hidden');
-                document.getElementById('organizeModeContent').classList.remove('hidden');
-                this.classList.add('bg-purple-600');
-                this.classList.remove('bg-gray-600');
-                document.getElementById('viewEditMode').classList.remove('bg-blue-600');
-                document.getElementById('viewEditMode').classList.add('bg-gray-600');
-                loadDragDropInterface();
-            });
-        }
-
-        function addServiceToCategory(service, categoryPath) {
-            const [mainCategory, subCategory] = categoryPath.split('-');
-            
-            // Find or create main category
-            let category = services.find(s => s.name.toLowerCase().includes(mainCategory));
-            if (!category) {
-                category = {
-                    id: Date.now(),
-                    name: mainCategory.charAt(0).toUpperCase() + mainCategory.slice(1),
-                    emoji: '✂️',
-                    type: 'category',
-                    subcategories: []
-                };
-                services.push(category);
-            }
-
-            // Find or create subcategory
-            let subcategory = category.subcategories.find(s => s.name.toLowerCase().includes(subCategory));
-            if (!subcategory) {
-                subcategory = {
-                    id: Date.now() + 1,
-                    name: subCategory.charAt(0).toUpperCase() + subCategory.slice(1),
-                    type: 'subcategory',
-                    options: []
-                };
-                category.subcategories.push(subcategory);
-            }
-
-            // Add service to subcategory
-            subcategory.options.push(service);
-        }
-
-        function loadDragDropInterface() {
-            const container = document.getElementById('dragDropServiceContainer');
-            container.innerHTML = '';
-
-            // Create categories with drag & drop
-            services.forEach(service => {
-                if (service.type === 'category') {
-                    const categoryDiv = createCategoryDragDropSection(service);
-                    container.appendChild(categoryDiv);
-                } else if (service.type === 'simple') {
-                    // Create simple services section
-                    if (!container.querySelector('#simpleServicesSection')) {
-                        const simpleSection = createSimpleServicesDragDropSection();
-                        container.appendChild(simpleSection);
-                    }
-                    const simpleSection = container.querySelector('#simpleServicesSection .drop-zone');
-                    const serviceElement = createDraggableServiceElement(service);
-                    simpleSection.appendChild(serviceElement);
-                }
-            });
-
-            // Add empty drop zone for creating new categories
-            const newCategoryZone = document.createElement('div');
-            newCategoryZone.className = 'drop-zone';
-            newCategoryZone.innerHTML = `
-                <div class="text-center text-white/60">
-                    <p class="text-lg mb-2">➕ Neue Kategorie erstellen</p>
-                    <p class="text-sm">Service hierher ziehen um neue Kategorie zu erstellen</p>
-                </div>
-            `;
-            newCategoryZone.addEventListener('dragover', handleDragOver);
-            newCategoryZone.addEventListener('drop', handleDropNewCategory);
-            container.appendChild(newCategoryZone);
-        }
-
-        function createCategoryDragDropSection(category) {
-            const categoryDiv = document.createElement('div');
-            categoryDiv.className = 'category-container';
-            categoryDiv.innerHTML = `
-                <h4 class="text-white font-medium mb-3 flex items-center gap-2">
-                    <span class="text-xl">${category.emoji}</span>
-                    ${category.name}
-                </h4>
-            `;
-
-            if (category.subcategories) {
-                category.subcategories.forEach(subcategory => {
-                    const subcategoryDiv = document.createElement('div');
-                    subcategoryDiv.className = 'bg-white/5 rounded-lg p-3 mb-3';
-                    subcategoryDiv.innerHTML = `
-                        <h5 class="text-white/80 font-medium mb-2">📋 ${subcategory.name}</h5>
-                        <div class="drop-zone" data-category="${category.id}" data-subcategory="${subcategory.id}">
-                            <div class="text-white/40 text-sm text-center mb-2">Services hierher ziehen</div>
-                        </div>
-                    `;
-
-                    const dropZone = subcategoryDiv.querySelector('.drop-zone');
-                    dropZone.addEventListener('dragover', handleDragOver);
-                    dropZone.addEventListener('drop', handleDrop);
-
-                    if (subcategory.options) {
-                        subcategory.options.forEach(option => {
-                            const serviceElement = createDraggableServiceElement(option);
-                            dropZone.appendChild(serviceElement);
-                        });
-                    }
-
-                    categoryDiv.appendChild(subcategoryDiv);
-                });
-            }
-
-            return categoryDiv;
-        }
-
-        function createSimpleServicesDragDropSection() {
-            const simpleSection = document.createElement('div');
-            simpleSection.id = 'simpleServicesSection';
-            simpleSection.className = 'category-container';
-            simpleSection.innerHTML = `
-                <h4 class="text-white font-medium mb-3 flex items-center gap-2">
-                    <span class="text-xl">⭐</span>
-                    Einfache Services
-                </h4>
-                <div class="drop-zone" data-simple="true">
-                    <div class="text-white/40 text-sm text-center mb-2">Einfache Services hierher ziehen</div>
-                </div>
-            `;
-
-            const dropZone = simpleSection.querySelector('.drop-zone');
-            dropZone.addEventListener('dragover', handleDragOver);
-            dropZone.addEventListener('drop', handleDrop);
-
-            return simpleSection;
-        }
-
-        function createDraggableServiceElement(service) {
-            const serviceDiv = document.createElement('div');
-            serviceDiv.className = 'service-item draggable-service';
-            serviceDiv.draggable = true;
-            serviceDiv.dataset.serviceId = service.id;
-            serviceDiv.innerHTML = `
-                <div class="flex justify-between items-center">
-                    <div class="flex items-center gap-2">
-                        <span class="text-lg cursor-move">⋮⋮</span>
-                        <span class="text-lg">${service.emoji || '✂️'}</span>
-                        <div>
-                            <div class="text-white font-medium">${service.name}</div>
-                            <div class="text-white/60 text-xs">${service.description}</div>
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-white font-bold">${service.price}€</div>
-                        <div class="text-white/60 text-xs">${service.duration} Min</div>
-                    </div>
-                </div>
-            `;
-
-            serviceDiv.addEventListener('dragstart', handleDragStart);
-            serviceDiv.addEventListener('dragend', handleDragEnd);
-
-            return serviceDiv;
-        }
-
-        function handleDragStart(e) {
-            e.dataTransfer.setData('text/plain', e.target.dataset.serviceId);
-            e.target.classList.add('dragging');
-        }
-
-        function handleDragEnd(e) {
-            e.target.classList.remove('dragging');
-        }
-
-        function handleDragOver(e) {
-            e.preventDefault();
-            e.currentTarget.classList.add('drag-over');
-        }
-
-        function handleDrop(e) {
-            e.preventDefault();
-            e.currentTarget.classList.remove('drag-over');
-            
-            const serviceId = parseInt(e.dataTransfer.getData('text/plain'));
-            const dropZone = e.currentTarget;
-            
-            // Find and remove service from current location
-            const service = findAndRemoveService(serviceId);
-            if (!service) return;
-
-            // Add service to new location
-            if (dropZone.dataset.simple === 'true') {
-                // Move to simple services
-                service.type = 'simple';
-                services.push(service);
-            } else {
-                // Move to category/subcategory
-                const categoryId = parseInt(dropZone.dataset.category);
-                const subcategoryId = parseInt(dropZone.dataset.subcategory);
-                
-                const category = services.find(s => s.id === categoryId);
-                if (category && category.subcategories) {
-                    const subcategory = category.subcategories.find(s => s.id === subcategoryId);
-                    if (subcategory) {
-                        if (!subcategory.options) subcategory.options = [];
-                        subcategory.options.push(service);
-                    }
-                }
-            }
-
-            // Save and reload
-            localStorage.setItem('barbershop_services', JSON.stringify(services));
-            loadServices();
-            loadDragDropInterface();
-            showNotification('✅ Service verschoben!');
-        }
-
-        function handleDropNewCategory(e) {
-            e.preventDefault();
-            e.currentTarget.classList.remove('drag-over');
-            
-            const serviceId = parseInt(e.dataTransfer.getData('text/plain'));
-            const service = findAndRemoveService(serviceId);
-            if (!service) return;
-
-            const categoryName = prompt('Name für neue Kategorie:');
-            if (!categoryName) {
-                // Put service back if cancelled
-                services.push(service);
-                return;
-            }
-
-            const subcategoryName = prompt('Name für Unterkategorie:');
-            if (!subcategoryName) {
-                services.push(service);
-                return;
-            }
-
-            // Create new category structure
-            const newCategory = {
-                id: Date.now(),
-                name: categoryName,
-                emoji: '✂️',
-                type: 'category',
-                subcategories: [{
-                    id: Date.now() + 1,
-                    name: subcategoryName,
-                    type: 'subcategory',
-                    options: [service]
-                }]
-            };
-
-            services.push(newCategory);
-            localStorage.setItem('barbershop_services', JSON.stringify(services));
-            loadServices();
-            loadDragDropInterface();
-            showNotification('✅ Neue Kategorie erstellt!');
-        }
-
-        function findAndRemoveService(serviceId) {
-            // Check simple services
-            let serviceIndex = services.findIndex(s => s.id === serviceId && s.type === 'simple');
-            if (serviceIndex !== -1) {
-                return services.splice(serviceIndex, 1)[0];
-            }
-
-            // Check category services
-            for (let category of services) {
-                if (category.type === 'category' && category.subcategories) {
-                    for (let subcategory of category.subcategories) {
-                        if (subcategory.options) {
-                            const optionIndex = subcategory.options.findIndex(o => o.id === serviceId);
-                            if (optionIndex !== -1) {
-                                return subcategory.options.splice(optionIndex, 1)[0];
-                            }
-                        }
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        // Customer info validation
-        document.getElementById('customerName').addEventListener('input', checkBookingComplete);
-        document.getElementById('customerPhone').addEventListener('input', function() {
-            formatSwissPhoneNumber(this);
-            checkBookingComplete();
-        });
-
-        // Swiss phone number formatting function
-        function formatSwissPhoneNumber(input) {
-            let value = input.value.replace(/\D/g, ''); // Remove all non-digits
-            
-            // If it doesn't start with 41, add it
-            if (value.length > 0 && !value.startsWith('41')) {
-                // If it starts with 0, replace with 41
-                if (value.startsWith('0')) {
-                    value = '41' + value.substring(1);
-                } else {
-                    value = '41' + value;
-                }
-            }
-            
-            // Format: +41 XX XXX XX XX
-            let formatted = '';
-            if (value.length >= 2) {
-                formatted = '+41';
-                if (value.length > 2) {
-                    formatted += ' ' + value.substring(2, 4);
-                }
-                if (value.length > 4) {
-                    formatted += ' ' + value.substring(4, 7);
-                }
-                if (value.length > 7) {
-                    formatted += ' ' + value.substring(7, 9);
-                }
-                if (value.length > 9) {
-                    formatted += ' ' + value.substring(9, 11);
-                }
-            } else if (value.length > 0) {
-                formatted = '+' + value;
-            }
-            
-            input.value = formatted;
-        }
-    </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97af3ef7218cbe8b',t:'MTc1NzE3NTEyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
+                const hoursPanel = document.getElementById('hours<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97af5b3a61955da5',t:'MTc1NzE3NjI4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
