@@ -364,7 +364,7 @@
                                     </div>
                                     <div>
                                         <label class="block text-white/70 text-sm mb-1">Telefon-Platzhalter</label>
-                                        <input type="text" id="editPhonePlaceholderDesign" placeholder="+41 XX XXX XX XX" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                        <input type="tel" id="editPhonePlaceholderDesign" placeholder="+41 XX XXX XX XX" class="w-full p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-2 gap-3">
@@ -640,20 +640,9 @@
                 }
             };
 
-            let services = JSON.parse(localStorage.getItem('services')) || [
-                { id: "cut", name: "Haarschnitt", description: "Standard-Haarschnitt für Herren", price: 30, duration: 30, emoji: "✂️", category: "Haarschnitte", subcategory: null },
-                { id: "beard", name: "Bartpflege", description: "Trimmen und Styling des Bartes", price: 25, duration: 20, emoji: "🧔", category: "Bartpflege", subcategory: null },
-                { id: "cut-beard", name: "Haarschnitt & Bart", description: "Komplettpaket: Haarschnitt und Bartpflege", price: 50, duration: 50, emoji: "✂️🧔", category: "Pakete", subcategory: null },
-                { id: "wash", name: "Haarwäsche", description: "Entspannende Haarwäsche mit Massage", price: 10, duration: 10, emoji: "💆", category: "Zusätzliches", subcategory: null },
-                { id: "kids-cut", name: "Kinderhaarschnitt", description: "Haarschnitt für Kinder unter 12 Jahren", price: 20, duration: 20, emoji: "👦", category: "Haarschnitte", subcategory: null, featured: true }
-            ];
+            let services = JSON.parse(localStorage.getItem('services')) || [];
 
-            let categories = JSON.parse(localStorage.getItem('categories')) || {
-                "Haarschnitte": { emoji: "✂️", subcategories: { "Klassisch": [], "Modern": [] } },
-                "Bartpflege": { emoji: "🧔", subcategories: {} },
-                "Pakete": { emoji: "🎁", subcategories: {} },
-                "Zusätzliches": { emoji: "✨", subcategories: {} }
-            };
+            let categories = JSON.parse(localStorage.getItem('categories')) || {};
 
             // --- Core Functions ---
             function applyConfig() {
@@ -991,19 +980,8 @@
                 if(confirm('Möchten Sie wirklich alle Services und Kategorien auf die Standardwerte zurücksetzen?')) {
                     localStorage.removeItem('services');
                     localStorage.removeItem('categories');
-                    services = [
-                        { id: "cut", name: "Haarschnitt", description: "Standard-Haarschnitt für Herren", price: 30, duration: 30, emoji: "✂️", category: "Haarschnitte", subcategory: null },
-                        { id: "beard", name: "Bartpflege", description: "Trimmen und Styling des Bartes", price: 25, duration: 20, emoji: "🧔", category: "Bartpflege", subcategory: null },
-                        { id: "cut-beard", name: "Haarschnitt & Bart", description: "Komplettpaket: Haarschnitt und Bartpflege", price: 50, duration: 50, emoji: "✂️🧔", category: "Pakete", subcategory: null },
-                        { id: "wash", name: "Haarwäsche", description: "Entspannende Haarwäsche mit Massage", price: 10, duration: 10, emoji: "💆", category: "Zusätzliches", subcategory: null },
-                        { id: "kids-cut", name: "Kinderhaarschnitt", description: "Haarschnitt für Kinder unter 12 Jahren", price: 20, duration: 20, emoji: "👦", category: "Haarschnitte", subcategory: null, featured: true }
-                    ];
-                    categories = {
-                        "Haarschnitte": { emoji: "✂️", subcategories: { "Klassisch": [], "Modern": [] } },
-                        "Bartpflege": { emoji: "🧔", subcategories: {} },
-                        "Pakete": { emoji: "🎁", subcategories: {} },
-                        "Zusätzliches": { emoji: "✨", subcategories: {} }
-                    };
+                    services = [];
+                    categories = {};
                     updateServiceLists();
                     alert('Services und Kategorien wurden zurückgesetzt.');
                 }
