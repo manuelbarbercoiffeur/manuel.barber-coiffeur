@@ -21,7 +21,18 @@
         .whatsapp-btn { background: #25D366; color: white; }
         .whatsapp-btn:hover { background: #128C7E; }
         .design-panel { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-        .design-panel.open { max-height: 500px; }
+        .design-panel.open { max-height: 80vh; overflow-y: auto; }
+        .design-panel::-webkit-scrollbar { width: 8px; }
+        .design-panel::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .design-panel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 4px; }
+        .design-panel::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.5); }
+        .draggable-service { cursor: move; transition: all 0.3s ease; }
+        .draggable-service:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .draggable-service.dragging { opacity: 0.5; transform: rotate(5deg); }
+        .drop-zone { border: 2px dashed rgba(255,255,255,0.3); border-radius: 8px; padding: 20px; margin: 10px 0; transition: all 0.3s ease; }
+        .drop-zone.drag-over { border-color: #10b981; background: rgba(16, 185, 129, 0.1); }
+        .category-container { border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 15px; margin: 10px 0; }
+        .service-item { background: rgba(255,255,255,0.05); border-radius: 6px; padding: 10px; margin: 5px 0; }
     </style>
 </head>
 <body class="gradient-bg min-h-screen">
@@ -118,34 +129,75 @@
 
                 <!-- Service Management Panel -->
                 <div id="servicePanel" class="bg-white/5 rounded-xl p-6 mb-6 design-panel">
-                    <h3 class="text-xl font-semibold text-white mb-4">⚙️ Services einzeln bearbeiten</h3>
+                    <h3 class="text-xl font-semibold text-white mb-4">⚙️ Services verwalten & organisieren</h3>
                     
-                    <!-- Add New Service -->
-                    <div class="bg-white/5 rounded-lg p-4 mb-6">
-                        <h4 class="text-white font-medium mb-3">➕ Neuen Service hinzufügen</h4>
-                        <div class="grid md:grid-cols-2 gap-3">
-                            <input type="text" id="newServiceName" placeholder="Service Name" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
-                            <input type="text" id="newServiceDescription" placeholder="Beschreibung" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                    <!-- View Toggle -->
+                    <div class="mb-6 flex gap-2">
+                        <button id="viewEditMode" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition-all">
+                            ✏️ Bearbeiten
+                        </button>
+                        <button id="viewOrganizeMode" class="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-purple-700 transition-all">
+                            🔄 Organisieren (Drag & Drop)
+                        </button>
+                    </div>
+
+                    <!-- Edit Mode -->
+                    <div id="editModeContent">
+                        <!-- Add New Service -->
+                        <div class="bg-white/5 rounded-lg p-4 mb-6">
+                            <h4 class="text-white font-medium mb-3">➕ Neuen Service hinzufügen</h4>
+                            <div class="grid md:grid-cols-2 gap-3">
+                                <input type="text" id="newServiceName" placeholder="Service Name" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                <input type="text" id="newServiceDescription" placeholder="Beschreibung" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                            </div>
+                            <div class="grid md:grid-cols-4 gap-3 mt-3">
+                                <input type="number" id="newServicePrice" placeholder="Preis €" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                <input type="number" id="newServiceDuration" placeholder="Dauer Min" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                <input type="text" id="newServiceEmoji" placeholder="Emoji (z.B. ✂️)" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                <select id="newServiceCategory" class="p-3 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                    <option value="">Kategorie wählen</option>
+                                    <option value="fade-mit-taper">Fade > Mit Taper</option>
+                                    <option value="fade-ohne-taper">Fade > Ohne Taper</option>
+                                    <option value="klassisch-business">Klassisch > Business</option>
+                                    <option value="klassisch-casual">Klassisch > Casual</option>
+                                    <option value="komplett-premium">Komplett > Premium</option>
+                                    <option value="simple">Einfacher Service</option>
+                                </select>
+                            </div>
+                            <div class="mt-4">
+                                <button id="addServiceBtn" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-all">
+                                    ➕ Service hinzufügen
+                                </button>
+                            </div>
                         </div>
-                        <div class="grid md:grid-cols-3 gap-3 mt-3">
-                            <input type="number" id="newServicePrice" placeholder="Preis €" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
-                            <input type="number" id="newServiceDuration" placeholder="Dauer Min" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
-                            <input type="text" id="newServiceEmoji" placeholder="Emoji (z.B. ✂️)" class="p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
-                        </div>
-                        <div class="mt-4">
-                            <button id="addServiceBtn" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-all">
-                                ➕ Service hinzufügen
-                            </button>
+
+                        <!-- Individual Service Editing -->
+                        <div id="serviceEditingSections" class="space-y-4">
+                            <!-- Service editing sections will be loaded here -->
                         </div>
                     </div>
 
-                    <!-- Individual Service Editing -->
-                    <div id="serviceEditingSections" class="space-y-4">
-                        <!-- Service editing sections will be loaded here -->
+                    <!-- Organize Mode -->
+                    <div id="organizeModeContent" class="hidden">
+                        <div class="bg-blue-500/20 rounded-lg p-4 mb-6">
+                            <h4 class="text-white font-medium mb-2">🔄 Services per Drag & Drop organisieren</h4>
+                            <p class="text-white/80 text-sm mb-2">
+                                Ziehen Sie Services zwischen Kategorien um sie zu verschieben:
+                            </p>
+                            <ul class="text-white/70 text-sm space-y-1 ml-4">
+                                <li>• Services innerhalb einer Kategorie verschieben</li>
+                                <li>• Services zwischen Kategorien verschieben</li>
+                                <li>• Neue Kategorien werden automatisch erstellt</li>
+                            </ul>
+                        </div>
+
+                        <div id="dragDropServiceContainer">
+                            <!-- Drag & Drop interface will be loaded here -->
+                        </div>
                     </div>
 
                     <!-- Action Buttons -->
-                    <div class="mt-6 flex gap-4">
+                    <div class="mt-6 flex gap-4 flex-wrap">
                         <button id="saveAllServices" class="bg-white text-purple-600 font-semibold py-2 px-6 rounded-lg hover:bg-white/90 transition-all">
                             💾 Alle Services speichern
                         </button>
@@ -1523,6 +1575,7 @@ Kunde: {name}
                 servicePanel.classList.toggle('open');
                 if (servicePanel.classList.contains('open')) {
                     loadAdminServices();
+                    setupServiceViewToggle();
                 }
             });
 
@@ -1532,6 +1585,7 @@ Kunde: {name}
                 const price = parseInt(document.getElementById('newServicePrice').value);
                 const duration = parseInt(document.getElementById('newServiceDuration').value);
                 const emoji = document.getElementById('newServiceEmoji').value || '⭐';
+                const category = document.getElementById('newServiceCategory').value;
 
                 if (!name || !description || !price || !duration) {
                     alert('Bitte alle Felder ausfüllen!');
@@ -1547,7 +1601,15 @@ Kunde: {name}
                     emoji
                 };
 
-                services.push(newService);
+                // Add service to appropriate category
+                if (category && category !== 'simple') {
+                    addServiceToCategory(newService, category);
+                } else {
+                    // Add as simple service
+                    newService.type = 'simple';
+                    services.push(newService);
+                }
+
                 localStorage.setItem('barbershop_services', JSON.stringify(services));
                 
                 // Clear form
@@ -1556,6 +1618,7 @@ Kunde: {name}
                 document.getElementById('newServicePrice').value = '';
                 document.getElementById('newServiceDuration').value = '';
                 document.getElementById('newServiceEmoji').value = '';
+                document.getElementById('newServiceCategory').value = '';
 
                 loadServices();
                 loadAdminServices();
@@ -2466,9 +2529,304 @@ ${businessName} - Admin System`;
             }
         }
 
+        // Service View Toggle Setup
+        function setupServiceViewToggle() {
+            document.getElementById('viewEditMode').addEventListener('click', function() {
+                document.getElementById('editModeContent').classList.remove('hidden');
+                document.getElementById('organizeModeContent').classList.add('hidden');
+                this.classList.add('bg-blue-600');
+                this.classList.remove('bg-gray-600');
+                document.getElementById('viewOrganizeMode').classList.remove('bg-purple-600');
+                document.getElementById('viewOrganizeMode').classList.add('bg-gray-600');
+            });
+
+            document.getElementById('viewOrganizeMode').addEventListener('click', function() {
+                document.getElementById('editModeContent').classList.add('hidden');
+                document.getElementById('organizeModeContent').classList.remove('hidden');
+                this.classList.add('bg-purple-600');
+                this.classList.remove('bg-gray-600');
+                document.getElementById('viewEditMode').classList.remove('bg-blue-600');
+                document.getElementById('viewEditMode').classList.add('bg-gray-600');
+                loadDragDropInterface();
+            });
+        }
+
+        function addServiceToCategory(service, categoryPath) {
+            const [mainCategory, subCategory] = categoryPath.split('-');
+            
+            // Find or create main category
+            let category = services.find(s => s.name.toLowerCase().includes(mainCategory));
+            if (!category) {
+                category = {
+                    id: Date.now(),
+                    name: mainCategory.charAt(0).toUpperCase() + mainCategory.slice(1),
+                    emoji: '✂️',
+                    type: 'category',
+                    subcategories: []
+                };
+                services.push(category);
+            }
+
+            // Find or create subcategory
+            let subcategory = category.subcategories.find(s => s.name.toLowerCase().includes(subCategory));
+            if (!subcategory) {
+                subcategory = {
+                    id: Date.now() + 1,
+                    name: subCategory.charAt(0).toUpperCase() + subCategory.slice(1),
+                    type: 'subcategory',
+                    options: []
+                };
+                category.subcategories.push(subcategory);
+            }
+
+            // Add service to subcategory
+            subcategory.options.push(service);
+        }
+
+        function loadDragDropInterface() {
+            const container = document.getElementById('dragDropServiceContainer');
+            container.innerHTML = '';
+
+            // Create categories with drag & drop
+            services.forEach(service => {
+                if (service.type === 'category') {
+                    const categoryDiv = createCategoryDragDropSection(service);
+                    container.appendChild(categoryDiv);
+                } else if (service.type === 'simple') {
+                    // Create simple services section
+                    if (!container.querySelector('#simpleServicesSection')) {
+                        const simpleSection = createSimpleServicesDragDropSection();
+                        container.appendChild(simpleSection);
+                    }
+                    const simpleSection = container.querySelector('#simpleServicesSection .drop-zone');
+                    const serviceElement = createDraggableServiceElement(service);
+                    simpleSection.appendChild(serviceElement);
+                }
+            });
+
+            // Add empty drop zone for creating new categories
+            const newCategoryZone = document.createElement('div');
+            newCategoryZone.className = 'drop-zone';
+            newCategoryZone.innerHTML = `
+                <div class="text-center text-white/60">
+                    <p class="text-lg mb-2">➕ Neue Kategorie erstellen</p>
+                    <p class="text-sm">Service hierher ziehen um neue Kategorie zu erstellen</p>
+                </div>
+            `;
+            newCategoryZone.addEventListener('dragover', handleDragOver);
+            newCategoryZone.addEventListener('drop', handleDropNewCategory);
+            container.appendChild(newCategoryZone);
+        }
+
+        function createCategoryDragDropSection(category) {
+            const categoryDiv = document.createElement('div');
+            categoryDiv.className = 'category-container';
+            categoryDiv.innerHTML = `
+                <h4 class="text-white font-medium mb-3 flex items-center gap-2">
+                    <span class="text-xl">${category.emoji}</span>
+                    ${category.name}
+                </h4>
+            `;
+
+            if (category.subcategories) {
+                category.subcategories.forEach(subcategory => {
+                    const subcategoryDiv = document.createElement('div');
+                    subcategoryDiv.className = 'bg-white/5 rounded-lg p-3 mb-3';
+                    subcategoryDiv.innerHTML = `
+                        <h5 class="text-white/80 font-medium mb-2">📋 ${subcategory.name}</h5>
+                        <div class="drop-zone" data-category="${category.id}" data-subcategory="${subcategory.id}">
+                            <div class="text-white/40 text-sm text-center mb-2">Services hierher ziehen</div>
+                        </div>
+                    `;
+
+                    const dropZone = subcategoryDiv.querySelector('.drop-zone');
+                    dropZone.addEventListener('dragover', handleDragOver);
+                    dropZone.addEventListener('drop', handleDrop);
+
+                    if (subcategory.options) {
+                        subcategory.options.forEach(option => {
+                            const serviceElement = createDraggableServiceElement(option);
+                            dropZone.appendChild(serviceElement);
+                        });
+                    }
+
+                    categoryDiv.appendChild(subcategoryDiv);
+                });
+            }
+
+            return categoryDiv;
+        }
+
+        function createSimpleServicesDragDropSection() {
+            const simpleSection = document.createElement('div');
+            simpleSection.id = 'simpleServicesSection';
+            simpleSection.className = 'category-container';
+            simpleSection.innerHTML = `
+                <h4 class="text-white font-medium mb-3 flex items-center gap-2">
+                    <span class="text-xl">⭐</span>
+                    Einfache Services
+                </h4>
+                <div class="drop-zone" data-simple="true">
+                    <div class="text-white/40 text-sm text-center mb-2">Einfache Services hierher ziehen</div>
+                </div>
+            `;
+
+            const dropZone = simpleSection.querySelector('.drop-zone');
+            dropZone.addEventListener('dragover', handleDragOver);
+            dropZone.addEventListener('drop', handleDrop);
+
+            return simpleSection;
+        }
+
+        function createDraggableServiceElement(service) {
+            const serviceDiv = document.createElement('div');
+            serviceDiv.className = 'service-item draggable-service';
+            serviceDiv.draggable = true;
+            serviceDiv.dataset.serviceId = service.id;
+            serviceDiv.innerHTML = `
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg cursor-move">⋮⋮</span>
+                        <span class="text-lg">${service.emoji || '✂️'}</span>
+                        <div>
+                            <div class="text-white font-medium">${service.name}</div>
+                            <div class="text-white/60 text-xs">${service.description}</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-white font-bold">${service.price}€</div>
+                        <div class="text-white/60 text-xs">${service.duration} Min</div>
+                    </div>
+                </div>
+            `;
+
+            serviceDiv.addEventListener('dragstart', handleDragStart);
+            serviceDiv.addEventListener('dragend', handleDragEnd);
+
+            return serviceDiv;
+        }
+
+        function handleDragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.dataset.serviceId);
+            e.target.classList.add('dragging');
+        }
+
+        function handleDragEnd(e) {
+            e.target.classList.remove('dragging');
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            
+            const serviceId = parseInt(e.dataTransfer.getData('text/plain'));
+            const dropZone = e.currentTarget;
+            
+            // Find and remove service from current location
+            const service = findAndRemoveService(serviceId);
+            if (!service) return;
+
+            // Add service to new location
+            if (dropZone.dataset.simple === 'true') {
+                // Move to simple services
+                service.type = 'simple';
+                services.push(service);
+            } else {
+                // Move to category/subcategory
+                const categoryId = parseInt(dropZone.dataset.category);
+                const subcategoryId = parseInt(dropZone.dataset.subcategory);
+                
+                const category = services.find(s => s.id === categoryId);
+                if (category && category.subcategories) {
+                    const subcategory = category.subcategories.find(s => s.id === subcategoryId);
+                    if (subcategory) {
+                        if (!subcategory.options) subcategory.options = [];
+                        subcategory.options.push(service);
+                    }
+                }
+            }
+
+            // Save and reload
+            localStorage.setItem('barbershop_services', JSON.stringify(services));
+            loadServices();
+            loadDragDropInterface();
+            showNotification('✅ Service verschoben!');
+        }
+
+        function handleDropNewCategory(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            
+            const serviceId = parseInt(e.dataTransfer.getData('text/plain'));
+            const service = findAndRemoveService(serviceId);
+            if (!service) return;
+
+            const categoryName = prompt('Name für neue Kategorie:');
+            if (!categoryName) {
+                // Put service back if cancelled
+                services.push(service);
+                return;
+            }
+
+            const subcategoryName = prompt('Name für Unterkategorie:');
+            if (!subcategoryName) {
+                services.push(service);
+                return;
+            }
+
+            // Create new category structure
+            const newCategory = {
+                id: Date.now(),
+                name: categoryName,
+                emoji: '✂️',
+                type: 'category',
+                subcategories: [{
+                    id: Date.now() + 1,
+                    name: subcategoryName,
+                    type: 'subcategory',
+                    options: [service]
+                }]
+            };
+
+            services.push(newCategory);
+            localStorage.setItem('barbershop_services', JSON.stringify(services));
+            loadServices();
+            loadDragDropInterface();
+            showNotification('✅ Neue Kategorie erstellt!');
+        }
+
+        function findAndRemoveService(serviceId) {
+            // Check simple services
+            let serviceIndex = services.findIndex(s => s.id === serviceId && s.type === 'simple');
+            if (serviceIndex !== -1) {
+                return services.splice(serviceIndex, 1)[0];
+            }
+
+            // Check category services
+            for (let category of services) {
+                if (category.type === 'category' && category.subcategories) {
+                    for (let subcategory of category.subcategories) {
+                        if (subcategory.options) {
+                            const optionIndex = subcategory.options.findIndex(o => o.id === serviceId);
+                            if (optionIndex !== -1) {
+                                return subcategory.options.splice(optionIndex, 1)[0];
+                            }
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
         // Customer info validation
         document.getElementById('customerName').addEventListener('input', checkBookingComplete);
         document.getElementById('customerPhone').addEventListener('input', checkBookingComplete);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97aefdd977d8be8b',t:'MTc1NzE3MjQ1OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97af07d2e79fbe8b',t:'MTc1NzE3Mjg2Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
