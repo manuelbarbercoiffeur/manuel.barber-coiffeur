@@ -101,6 +101,15 @@
                         <button id="designToggle" class="text-white/70 hover:text-white text-sm bg-white/10 px-3 py-1 rounded">
                             🎨 Design
                         </button>
+                        <button id="whatsappToggle" class="text-white/70 hover:text-white text-sm bg-white/10 px-3 py-1 rounded">
+                            📱 WhatsApp
+                        </button>
+                        <button id="hoursToggle" class="text-white/70 hover:text-white text-sm bg-white/10 px-3 py-1 rounded">
+                            🕒 Arbeitszeiten
+                        </button>
+                        <button id="textToggle" class="text-white/70 hover:text-white text-sm bg-white/10 px-3 py-1 rounded">
+                            📝 Texte
+                        </button>
                         <button id="logoutButton" class="text-white/70 hover:text-white text-sm bg-white/10 px-3 py-1 rounded">
                             🚪 Abmelden
                         </button>
@@ -190,23 +199,6 @@
                                 <option value="Open Sans">Open Sans (Sauber)</option>
                             </select>
                         </div>
-
-                        <!-- WhatsApp Settings -->
-                        <div class="md:col-span-2">
-                            <label class="block text-white font-medium mb-3">WhatsApp Einstellungen</label>
-                            <div class="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-white/70 text-sm mb-2">Inhaber WhatsApp (für Buchungsbenachrichtigungen)</label>
-                                    <input type="tel" id="ownerWhatsApp" placeholder="+49123456789" class="w-full p-3 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
-                                </div>
-                                <div class="flex items-end">
-                                    <label class="flex items-center text-white/70 text-sm">
-                                        <input type="checkbox" id="autoNotifyOwner" class="mr-2">
-                                        Automatische Benachrichtigung bei neuen Buchungen
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="mt-6 flex gap-4">
@@ -214,6 +206,325 @@
                             💾 Design speichern
                         </button>
                         <button id="resetDesign" class="bg-white/20 text-white font-semibold py-2 px-6 rounded-lg hover:bg-white/30 transition-all">
+                            🔄 Zurücksetzen
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Working Hours Panel -->
+                <div id="hoursPanel" class="bg-white/5 rounded-xl p-6 mb-6 design-panel">
+                    <h3 class="text-xl font-semibold text-white mb-4">🕒 Arbeitszeiten verwalten</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Days of Week -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-3">
+                                <h4 class="text-white font-medium">Wochentage aktivieren</h4>
+                                <div class="space-y-2">
+                                    <label class="flex items-center text-white">
+                                        <input type="checkbox" id="dayMonday" class="mr-3 w-4 h-4" checked>
+                                        Montag
+                                    </label>
+                                    <label class="flex items-center text-white">
+                                        <input type="checkbox" id="dayTuesday" class="mr-3 w-4 h-4" checked>
+                                        Dienstag
+                                    </label>
+                                    <label class="flex items-center text-white">
+                                        <input type="checkbox" id="dayWednesday" class="mr-3 w-4 h-4" checked>
+                                        Mittwoch
+                                    </label>
+                                    <label class="flex items-center text-white">
+                                        <input type="checkbox" id="dayThursday" class="mr-3 w-4 h-4" checked>
+                                        Donnerstag
+                                    </label>
+                                    <label class="flex items-center text-white">
+                                        <input type="checkbox" id="dayFriday" class="mr-3 w-4 h-4" checked>
+                                        Freitag
+                                    </label>
+                                    <label class="flex items-center text-white">
+                                        <input type="checkbox" id="daySaturday" class="mr-3 w-4 h-4">
+                                        Samstag
+                                    </label>
+                                    <label class="flex items-center text-white">
+                                        <input type="checkbox" id="daySunday" class="mr-3 w-4 h-4">
+                                        Sonntag
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <h4 class="text-white font-medium">Arbeitszeiten</h4>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Öffnung</label>
+                                        <input type="time" id="openTime" value="09:00" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schließung</label>
+                                        <input type="time" id="closeTime" value="18:00" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Mittagspause Start</label>
+                                        <input type="time" id="breakStart" value="12:00" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Mittagspause Ende</label>
+                                        <input type="time" id="breakEnd" value="13:00" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-1">Termin-Intervall (Minuten)</label>
+                                    <select id="timeInterval" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                        <option value="15">15 Minuten</option>
+                                        <option value="30" selected>30 Minuten</option>
+                                        <option value="60">60 Minuten</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Custom Time Slots -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-3">Individuelle Zeitslots hinzufügen</h4>
+                            <div class="flex gap-2 mb-3">
+                                <input type="time" id="customTimeSlot" class="p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                <button id="addTimeSlot" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition-all">
+                                    ➕ Hinzufügen
+                                </button>
+                            </div>
+                            <div id="customTimeSlots" class="flex flex-wrap gap-2">
+                                <!-- Custom time slots will appear here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex gap-4">
+                        <button id="saveHours" class="bg-white text-purple-600 font-semibold py-2 px-6 rounded-lg hover:bg-white/90 transition-all">
+                            💾 Arbeitszeiten speichern
+                        </button>
+                        <button id="resetHours" class="bg-white/20 text-white font-semibold py-2 px-6 rounded-lg hover:bg-white/30 transition-all">
+                            🔄 Zurücksetzen
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Text Editing Panel -->
+                <div id="textPanel" class="bg-white/5 rounded-xl p-6 mb-6 design-panel">
+                    <h3 class="text-xl font-semibold text-white mb-4">📝 Alle Texte bearbeiten</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Main Title -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-3">Haupttitel</h4>
+                            <div class="space-y-3">
+                                <input type="text" id="editMainTitle" placeholder="Barbershop Elite" class="w-full p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schriftgröße (rem)</label>
+                                        <input type="number" id="mainTitleSize" value="2.5" step="0.1" min="1" max="5" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schriftart</label>
+                                        <select id="mainTitleFont" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                            <option value="Squada One">Squada One</option>
+                                            <option value="Oswald">Oswald</option>
+                                            <option value="Bebas Neue">Bebas Neue</option>
+                                            <option value="Anton">Anton</option>
+                                            <option value="Inter">Inter</option>
+                                            <option value="Poppins">Poppins</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Subtitle -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-3">Untertitel</h4>
+                            <div class="space-y-3">
+                                <input type="text" id="editSubtitle" placeholder="Professionelle Herrenfriseur-Services" class="w-full p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schriftgröße (rem)</label>
+                                        <input type="number" id="subtitleSize" value="1.125" step="0.1" min="0.5" max="3" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schriftart</label>
+                                        <select id="subtitleFont" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                            <option value="Inter">Inter</option>
+                                            <option value="Poppins">Poppins</option>
+                                            <option value="Roboto">Roboto</option>
+                                            <option value="Open Sans">Open Sans</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Booking Form Title -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-3">Buchungsformular Titel</h4>
+                            <div class="space-y-3">
+                                <input type="text" id="editBookingTitle" placeholder="🗓️ Termin buchen" class="w-full p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schriftgröße (rem)</label>
+                                        <input type="number" id="bookingTitleSize" value="1.5" step="0.1" min="0.5" max="3" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schriftart</label>
+                                        <select id="bookingTitleFont" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                            <option value="Inter">Inter</option>
+                                            <option value="Poppins">Poppins</option>
+                                            <option value="Squada One">Squada One</option>
+                                            <option value="Oswald">Oswald</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Button Text -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-3">Button-Text</h4>
+                            <div class="space-y-3">
+                                <input type="text" id="editButtonText" placeholder="Termin buchen" class="w-full p-3 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schriftgröße (rem)</label>
+                                        <input type="number" id="buttonTextSize" value="1" step="0.1" min="0.5" max="2" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Schriftart</label>
+                                        <select id="buttonTextFont" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                            <option value="Inter">Inter</option>
+                                            <option value="Poppins">Poppins</option>
+                                            <option value="Roboto">Roboto</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Labels -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-3">Formularlabels</h4>
+                            <div class="space-y-3">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <input type="text" id="editServiceLabel" placeholder="Service wählen" class="p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                    <input type="text" id="editDateLabel" placeholder="Datum & Uhrzeit" class="p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <input type="text" id="editNamePlaceholder" placeholder="Ihr Name" class="p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                    <input type="text" id="editPhonePlaceholder" placeholder="Telefonnummer" class="p-2 rounded bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Label-Schriftgröße (rem)</label>
+                                        <input type="number" id="labelSize" value="1" step="0.1" min="0.5" max="2" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-white/70 text-sm mb-1">Label-Schriftart</label>
+                                        <select id="labelFont" class="w-full p-2 rounded bg-white/10 text-white border border-white/20 focus:border-white/50 focus:outline-none">
+                                            <option value="Inter">Inter</option>
+                                            <option value="Poppins">Poppins</option>
+                                            <option value="Roboto">Roboto</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex gap-4">
+                        <button id="saveTexts" class="bg-white text-purple-600 font-semibold py-2 px-6 rounded-lg hover:bg-white/90 transition-all">
+                            💾 Texte speichern
+                        </button>
+                        <button id="resetTexts" class="bg-white/20 text-white font-semibold py-2 px-6 rounded-lg hover:bg-white/30 transition-all">
+                            🔄 Zurücksetzen
+                        </button>
+                        <button id="previewTexts" class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition-all">
+                            👁️ Vorschau
+                        </button>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Panel -->
+                <div id="whatsappPanel" class="bg-white/5 rounded-xl p-6 mb-6 design-panel">
+                    <h3 class="text-xl font-semibold text-white mb-4">📱 WhatsApp Einstellungen</h3>
+                    
+                    <div class="space-y-6">
+                        <!-- Owner WhatsApp -->
+                        <div>
+                            <label class="block text-white font-medium mb-3">Inhaber WhatsApp-Nummer</label>
+                            <input type="tel" id="ownerWhatsApp" placeholder="+49123456789" class="w-full p-3 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none">
+                            <p class="text-white/60 text-sm mt-2">Diese Nummer erhält Benachrichtigungen bei neuen Buchungen</p>
+                        </div>
+
+                        <!-- Auto Notification -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <label class="flex items-center text-white font-medium">
+                                <input type="checkbox" id="autoNotifyOwner" class="mr-3 w-4 h-4">
+                                Automatische Benachrichtigung aktivieren
+                            </label>
+                            <p class="text-white/60 text-sm mt-2 ml-7">Bei jeder neuen Buchung wird automatisch eine WhatsApp-Nachricht an den Inhaber gesendet</p>
+                        </div>
+
+                        <!-- Test Message -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-3">Test-Nachricht senden</h4>
+                            <p class="text-white/60 text-sm mb-3">Teste die WhatsApp-Benachrichtigung mit einer Beispiel-Nachricht</p>
+                            <button id="testWhatsApp" class="whatsapp-btn px-4 py-2 rounded-lg font-medium transition-all">
+                                📱 Test-Nachricht senden
+                            </button>
+                        </div>
+
+                        <!-- Message Templates -->
+                        <div class="bg-white/5 rounded-lg p-4">
+                            <h4 class="text-white font-medium mb-3">Nachrichten-Vorlagen</h4>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-2">Kundenbestätigung</label>
+                                    <textarea id="customerTemplate" rows="4" class="w-full p-3 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none resize-none" placeholder="✅ Buchungsbestätigung
+
+Hallo {name}!
+
+Ihr Termin wurde erfolgreich gebucht:
+📅 {date} um {time}
+✂️ {service}
+💰 {price}€
+
+Wir freuen uns auf Ihren Besuch!
+
+{businessName}"></textarea>
+                                </div>
+
+                                <div>
+                                    <label class="block text-white/70 text-sm mb-2">Inhaber-Benachrichtigung</label>
+                                    <textarea id="ownerTemplate" rows="4" class="w-full p-3 rounded-lg bg-white/10 text-white placeholder-white/50 border border-white/20 focus:border-white/50 focus:outline-none resize-none" placeholder="🔔 Neue Buchung!
+
+Kunde: {name}
+📞 {phone}
+📅 {date} um {time}
+✂️ {service}
+💰 {price}€
+
+{businessName} - Admin"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex gap-4">
+                        <button id="saveWhatsApp" class="bg-white text-purple-600 font-semibold py-2 px-6 rounded-lg hover:bg-white/90 transition-all">
+                            💾 WhatsApp-Einstellungen speichern
+                        </button>
+                        <button id="resetWhatsApp" class="bg-white/20 text-white font-semibold py-2 px-6 rounded-lg hover:bg-white/30 transition-all">
                             🔄 Zurücksetzen
                         </button>
                     </div>
@@ -271,8 +582,17 @@
             setupAdminPanel();
             setupDesignPanel();
             setupServiceManagement();
+            setupWorkingHoursPanel();
+            setupTextEditingPanel();
+            setupWhatsAppPanel();
             updateAdminStats();
             setMinDate();
+            
+            // Load saved text settings on startup
+            const savedTextSettings = localStorage.getItem('barbershop_textSettings');
+            if (savedTextSettings) {
+                applyTextSettings(JSON.parse(savedTextSettings));
+            }
         }
 
         function setMinDate() {
@@ -375,7 +695,37 @@
             const timeSlotsContainer = document.getElementById('timeSlots');
             timeSlotsContainer.innerHTML = '';
             
-            const times = ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30'];
+            if (!selectedDate) return;
+            
+            // Get day of week (0 = Sunday, 1 = Monday, etc.)
+            const selectedDateObj = new Date(selectedDate);
+            const dayOfWeek = selectedDateObj.getDay();
+            
+            // Check if this day is enabled
+            const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const dayId = 'day' + dayNames[dayOfWeek];
+            const isDayEnabled = localStorage.getItem(`barbershop_${dayId}`) !== 'false';
+            
+            if (!isDayEnabled) {
+                timeSlotsContainer.innerHTML = '<p class="text-white/70 text-center col-span-3">An diesem Tag geschlossen</p>';
+                return;
+            }
+            
+            // Get working hours settings
+            const openTime = localStorage.getItem('barbershop_openTime') || '09:00';
+            const closeTime = localStorage.getItem('barbershop_closeTime') || '18:00';
+            const breakStart = localStorage.getItem('barbershop_breakStart') || '12:00';
+            const breakEnd = localStorage.getItem('barbershop_breakEnd') || '13:00';
+            const interval = parseInt(localStorage.getItem('barbershop_timeInterval') || '30');
+            const customSlots = JSON.parse(localStorage.getItem('barbershop_customSlots') || '[]');
+            
+            // Generate time slots based on settings
+            const times = generateAvailableTimes(openTime, closeTime, breakStart, breakEnd, interval, customSlots);
+            
+            if (times.length === 0) {
+                timeSlotsContainer.innerHTML = '<p class="text-white/70 text-center col-span-3">Keine verfügbaren Zeiten</p>';
+                return;
+            }
             
             times.forEach(time => {
                 const isBooked = bookings.some(booking => 
@@ -408,6 +758,53 @@
                 
                 timeSlotsContainer.appendChild(timeSlot);
             });
+        }
+
+        function generateAvailableTimes(openTime, closeTime, breakStart, breakEnd, interval, customSlots) {
+            const times = [];
+            
+            // Convert time strings to minutes
+            function timeToMinutes(timeStr) {
+                const [hours, minutes] = timeStr.split(':').map(Number);
+                return hours * 60 + minutes;
+            }
+            
+            // Convert minutes to time string
+            function minutesToTime(minutes) {
+                const hours = Math.floor(minutes / 60);
+                const mins = minutes % 60;
+                return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+            }
+            
+            const openMinutes = timeToMinutes(openTime);
+            const closeMinutes = timeToMinutes(closeTime);
+            const breakStartMinutes = timeToMinutes(breakStart);
+            const breakEndMinutes = timeToMinutes(breakEnd);
+            
+            // Generate regular intervals
+            for (let minutes = openMinutes; minutes < closeMinutes; minutes += interval) {
+                // Skip break time
+                if (minutes >= breakStartMinutes && minutes < breakEndMinutes) {
+                    continue;
+                }
+                times.push(minutesToTime(minutes));
+            }
+            
+            // Add custom slots
+            customSlots.forEach(slot => {
+                const slotMinutes = timeToMinutes(slot);
+                if (slotMinutes >= openMinutes && slotMinutes < closeMinutes && 
+                    !(slotMinutes >= breakStartMinutes && slotMinutes < breakEndMinutes)) {
+                    if (!times.includes(slot)) {
+                        times.push(slot);
+                    }
+                }
+            });
+            
+            // Sort times
+            times.sort();
+            
+            return times;
         }
 
         function updateBookingSummary() {
@@ -607,18 +1004,31 @@ Ihr ${businessName} Team`;
             const cleanPhone = booking.customer.phone.replace(/\D/g, '');
             const businessName = localStorage.getItem('barbershop_name') || 'Barbershop Elite';
             
-            const message = `✅ Buchungsbestätigung
+            // Use custom template if available
+            let template = localStorage.getItem('barbershop_customer_template');
+            if (!template) {
+                template = `✅ Buchungsbestätigung
 
-Hallo ${booking.customer.name}!
+Hallo {name}!
 
 Ihr Termin wurde erfolgreich gebucht:
-📅 ${booking.date} um ${booking.time}
-✂️ ${booking.service.name}
-💰 ${booking.service.price}€
+📅 {date} um {time}
+✂️ {service}
+💰 {price}€
 
 Wir freuen uns auf Ihren Besuch!
 
-${businessName}`;
+{businessName}`;
+            }
+
+            // Replace placeholders
+            const message = template
+                .replace(/{name}/g, booking.customer.name)
+                .replace(/{date}/g, booking.date)
+                .replace(/{time}/g, booking.time)
+                .replace(/{service}/g, booking.service.name)
+                .replace(/{price}/g, booking.service.price)
+                .replace(/{businessName}/g, businessName);
             
             const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
             
@@ -632,15 +1042,29 @@ ${businessName}`;
             const cleanOwnerPhone = ownerPhone.replace(/\D/g, '');
             const businessName = localStorage.getItem('barbershop_name') || 'Barbershop Elite';
             
-            const message = `🔔 Neue Buchung!
+            // Use custom template if available
+            let template = localStorage.getItem('barbershop_owner_template');
+            if (!template) {
+                template = `🔔 Neue Buchung!
 
-Kunde: ${booking.customer.name}
-📞 ${booking.customer.phone}
-📅 ${booking.date} um ${booking.time}
-✂️ ${booking.service.name}
-💰 ${booking.service.price}€
+Kunde: {name}
+📞 {phone}
+📅 {date} um {time}
+✂️ {service}
+💰 {price}€
 
-${businessName} - Admin`;
+{businessName} - Admin`;
+            }
+
+            // Replace placeholders
+            const message = template
+                .replace(/{name}/g, booking.customer.name)
+                .replace(/{phone}/g, booking.customer.phone)
+                .replace(/{date}/g, booking.date)
+                .replace(/{time}/g, booking.time)
+                .replace(/{service}/g, booking.service.name)
+                .replace(/{price}/g, booking.service.price)
+                .replace(/{businessName}/g, businessName);
             
             const whatsappUrl = `https://wa.me/${cleanOwnerPhone}?text=${encodeURIComponent(message)}`;
             
@@ -714,6 +1138,375 @@ ${businessName} - Admin`;
                 loadServices();
                 loadAdminServices();
                 alert('✅ Service hinzugefügt!');
+            });
+        }
+
+        // Working Hours Panel Setup
+        function setupWorkingHoursPanel() {
+            document.getElementById('hoursToggle').addEventListener('click', function() {
+                const hoursPanel = document.getElementById('hoursPanel');
+                hoursPanel.classList.toggle('open');
+                if (hoursPanel.classList.contains('open')) {
+                    loadWorkingHoursSettings();
+                }
+            });
+
+            // Save working hours
+            document.getElementById('saveHours').addEventListener('click', function() {
+                // Save day settings
+                const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                days.forEach(day => {
+                    const checkbox = document.getElementById('day' + day);
+                    localStorage.setItem(`barbershop_day${day}`, checkbox.checked);
+                });
+
+                // Save time settings
+                localStorage.setItem('barbershop_openTime', document.getElementById('openTime').value);
+                localStorage.setItem('barbershop_closeTime', document.getElementById('closeTime').value);
+                localStorage.setItem('barbershop_breakStart', document.getElementById('breakStart').value);
+                localStorage.setItem('barbershop_breakEnd', document.getElementById('breakEnd').value);
+                localStorage.setItem('barbershop_timeInterval', document.getElementById('timeInterval').value);
+
+                alert('✅ Arbeitszeiten gespeichert!');
+                
+                // Refresh time slots if date is selected
+                if (selectedDate) {
+                    generateTimeSlots();
+                }
+            });
+
+            // Reset working hours
+            document.getElementById('resetHours').addEventListener('click', function() {
+                if (confirm('Arbeitszeiten wirklich zurücksetzen?')) {
+                    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                    days.forEach(day => {
+                        localStorage.removeItem(`barbershop_day${day}`);
+                    });
+                    
+                    localStorage.removeItem('barbershop_openTime');
+                    localStorage.removeItem('barbershop_closeTime');
+                    localStorage.removeItem('barbershop_breakStart');
+                    localStorage.removeItem('barbershop_breakEnd');
+                    localStorage.removeItem('barbershop_timeInterval');
+                    localStorage.removeItem('barbershop_customSlots');
+                    
+                    loadWorkingHoursSettings();
+                    alert('✅ Arbeitszeiten zurückgesetzt!');
+                }
+            });
+
+            // Add custom time slot
+            document.getElementById('addTimeSlot').addEventListener('click', function() {
+                const timeSlot = document.getElementById('customTimeSlot').value;
+                if (!timeSlot) {
+                    alert('Bitte eine Zeit eingeben!');
+                    return;
+                }
+
+                let customSlots = JSON.parse(localStorage.getItem('barbershop_customSlots') || '[]');
+                if (!customSlots.includes(timeSlot)) {
+                    customSlots.push(timeSlot);
+                    customSlots.sort();
+                    localStorage.setItem('barbershop_customSlots', JSON.stringify(customSlots));
+                    displayCustomTimeSlots();
+                    document.getElementById('customTimeSlot').value = '';
+                    
+                    // Refresh time slots if date is selected
+                    if (selectedDate) {
+                        generateTimeSlots();
+                    }
+                }
+            });
+        }
+
+        function loadWorkingHoursSettings() {
+            // Load day settings
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            days.forEach(day => {
+                const checkbox = document.getElementById('day' + day);
+                const saved = localStorage.getItem(`barbershop_day${day}`);
+                if (saved !== null) {
+                    checkbox.checked = saved === 'true';
+                } else {
+                    // Default: Monday-Friday enabled, Saturday-Sunday disabled
+                    checkbox.checked = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].includes(day);
+                }
+            });
+
+            // Load time settings
+            document.getElementById('openTime').value = localStorage.getItem('barbershop_openTime') || '09:00';
+            document.getElementById('closeTime').value = localStorage.getItem('barbershop_closeTime') || '18:00';
+            document.getElementById('breakStart').value = localStorage.getItem('barbershop_breakStart') || '12:00';
+            document.getElementById('breakEnd').value = localStorage.getItem('barbershop_breakEnd') || '13:00';
+            document.getElementById('timeInterval').value = localStorage.getItem('barbershop_timeInterval') || '30';
+
+            displayCustomTimeSlots();
+        }
+
+        function displayCustomTimeSlots() {
+            const container = document.getElementById('customTimeSlots');
+            const customSlots = JSON.parse(localStorage.getItem('barbershop_customSlots') || '[]');
+            
+            container.innerHTML = customSlots.map(slot => `
+                <span class="bg-white/10 text-white px-3 py-1 rounded-full text-sm flex items-center gap-2">
+                    ${slot}
+                    <button onclick="removeCustomTimeSlot('${slot}')" class="text-red-400 hover:text-red-300">
+                        ✕
+                    </button>
+                </span>
+            `).join('');
+        }
+
+        function removeCustomTimeSlot(slot) {
+            let customSlots = JSON.parse(localStorage.getItem('barbershop_customSlots') || '[]');
+            customSlots = customSlots.filter(s => s !== slot);
+            localStorage.setItem('barbershop_customSlots', JSON.stringify(customSlots));
+            displayCustomTimeSlots();
+            
+            // Refresh time slots if date is selected
+            if (selectedDate) {
+                generateTimeSlots();
+            }
+        }
+
+        // Text Editing Panel Setup
+        function setupTextEditingPanel() {
+            document.getElementById('textToggle').addEventListener('click', function() {
+                const textPanel = document.getElementById('textPanel');
+                textPanel.classList.toggle('open');
+                if (textPanel.classList.contains('open')) {
+                    loadTextSettings();
+                }
+            });
+
+            // Save texts
+            document.getElementById('saveTexts').addEventListener('click', function() {
+                // Save all text settings
+                const textSettings = {
+                    mainTitle: document.getElementById('editMainTitle').value,
+                    mainTitleSize: document.getElementById('mainTitleSize').value,
+                    mainTitleFont: document.getElementById('mainTitleFont').value,
+                    subtitle: document.getElementById('editSubtitle').value,
+                    subtitleSize: document.getElementById('subtitleSize').value,
+                    subtitleFont: document.getElementById('subtitleFont').value,
+                    bookingTitle: document.getElementById('editBookingTitle').value,
+                    bookingTitleSize: document.getElementById('bookingTitleSize').value,
+                    bookingTitleFont: document.getElementById('bookingTitleFont').value,
+                    buttonText: document.getElementById('editButtonText').value,
+                    buttonTextSize: document.getElementById('buttonTextSize').value,
+                    buttonTextFont: document.getElementById('buttonTextFont').value,
+                    serviceLabel: document.getElementById('editServiceLabel').value,
+                    dateLabel: document.getElementById('editDateLabel').value,
+                    namePlaceholder: document.getElementById('editNamePlaceholder').value,
+                    phonePlaceholder: document.getElementById('editPhonePlaceholder').value,
+                    labelSize: document.getElementById('labelSize').value,
+                    labelFont: document.getElementById('labelFont').value
+                };
+
+                localStorage.setItem('barbershop_textSettings', JSON.stringify(textSettings));
+                applyTextSettings(textSettings);
+                alert('✅ Texte gespeichert!');
+            });
+
+            // Preview texts
+            document.getElementById('previewTexts').addEventListener('click', function() {
+                const textSettings = {
+                    mainTitle: document.getElementById('editMainTitle').value || 'Barbershop Elite',
+                    mainTitleSize: document.getElementById('mainTitleSize').value,
+                    mainTitleFont: document.getElementById('mainTitleFont').value,
+                    subtitle: document.getElementById('editSubtitle').value || 'Professionelle Herrenfriseur-Services',
+                    subtitleSize: document.getElementById('subtitleSize').value,
+                    subtitleFont: document.getElementById('subtitleFont').value,
+                    bookingTitle: document.getElementById('editBookingTitle').value || '🗓️ Termin buchen',
+                    bookingTitleSize: document.getElementById('bookingTitleSize').value,
+                    bookingTitleFont: document.getElementById('bookingTitleFont').value,
+                    buttonText: document.getElementById('editButtonText').value || 'Termin buchen',
+                    buttonTextSize: document.getElementById('buttonTextSize').value,
+                    buttonTextFont: document.getElementById('buttonTextFont').value,
+                    serviceLabel: document.getElementById('editServiceLabel').value || 'Service wählen',
+                    dateLabel: document.getElementById('editDateLabel').value || 'Datum & Uhrzeit',
+                    namePlaceholder: document.getElementById('editNamePlaceholder').value || 'Ihr Name',
+                    phonePlaceholder: document.getElementById('editPhonePlaceholder').value || 'Telefonnummer',
+                    labelSize: document.getElementById('labelSize').value,
+                    labelFont: document.getElementById('labelFont').value
+                };
+
+                applyTextSettings(textSettings);
+            });
+
+            // Reset texts
+            document.getElementById('resetTexts').addEventListener('click', function() {
+                if (confirm('Alle Texte wirklich zurücksetzen?')) {
+                    localStorage.removeItem('barbershop_textSettings');
+                    loadTextSettings();
+                    applyDefaultTextSettings();
+                    alert('✅ Texte zurückgesetzt!');
+                }
+            });
+        }
+
+        function loadTextSettings() {
+            const saved = localStorage.getItem('barbershop_textSettings');
+            if (saved) {
+                const settings = JSON.parse(saved);
+                
+                document.getElementById('editMainTitle').value = settings.mainTitle || '';
+                document.getElementById('mainTitleSize').value = settings.mainTitleSize || '2.5';
+                document.getElementById('mainTitleFont').value = settings.mainTitleFont || 'Squada One';
+                document.getElementById('editSubtitle').value = settings.subtitle || '';
+                document.getElementById('subtitleSize').value = settings.subtitleSize || '1.125';
+                document.getElementById('subtitleFont').value = settings.subtitleFont || 'Inter';
+                document.getElementById('editBookingTitle').value = settings.bookingTitle || '';
+                document.getElementById('bookingTitleSize').value = settings.bookingTitleSize || '1.5';
+                document.getElementById('bookingTitleFont').value = settings.bookingTitleFont || 'Inter';
+                document.getElementById('editButtonText').value = settings.buttonText || '';
+                document.getElementById('buttonTextSize').value = settings.buttonTextSize || '1';
+                document.getElementById('buttonTextFont').value = settings.buttonTextFont || 'Inter';
+                document.getElementById('editServiceLabel').value = settings.serviceLabel || '';
+                document.getElementById('editDateLabel').value = settings.dateLabel || '';
+                document.getElementById('editNamePlaceholder').value = settings.namePlaceholder || '';
+                document.getElementById('editPhonePlaceholder').value = settings.phonePlaceholder || '';
+                document.getElementById('labelSize').value = settings.labelSize || '1';
+                document.getElementById('labelFont').value = settings.labelFont || 'Inter';
+            }
+        }
+
+        function applyTextSettings(settings) {
+            // Apply main title
+            if (settings.mainTitle) {
+                document.getElementById('businessName').textContent = settings.mainTitle;
+                document.getElementById('businessName').style.fontSize = settings.mainTitleSize + 'rem';
+                document.getElementById('businessName').style.fontFamily = settings.mainTitleFont;
+            }
+
+            // Apply subtitle
+            const subtitle = document.querySelector('.text-white\\/80.text-lg');
+            if (subtitle && settings.subtitle) {
+                subtitle.textContent = settings.subtitle;
+                subtitle.style.fontSize = settings.subtitleSize + 'rem';
+                subtitle.style.fontFamily = settings.subtitleFont;
+            }
+
+            // Apply booking title
+            const bookingTitle = document.querySelector('#bookingForm h2');
+            if (bookingTitle && settings.bookingTitle) {
+                bookingTitle.textContent = settings.bookingTitle;
+                bookingTitle.style.fontSize = settings.bookingTitleSize + 'rem';
+                bookingTitle.style.fontFamily = settings.bookingTitleFont;
+            }
+
+            // Apply button text
+            const bookButton = document.getElementById('bookButton');
+            if (bookButton && settings.buttonText) {
+                bookButton.textContent = settings.buttonText;
+                bookButton.style.fontSize = settings.buttonTextSize + 'rem';
+                bookButton.style.fontFamily = settings.buttonTextFont;
+            }
+
+            // Apply labels
+            const labels = document.querySelectorAll('#bookingForm label');
+            labels.forEach((label, index) => {
+                if (index === 0 && settings.serviceLabel) {
+                    label.textContent = settings.serviceLabel;
+                } else if (index === 1 && settings.dateLabel) {
+                    label.textContent = settings.dateLabel;
+                }
+                label.style.fontSize = settings.labelSize + 'rem';
+                label.style.fontFamily = settings.labelFont;
+            });
+
+            // Apply placeholders
+            if (settings.namePlaceholder) {
+                document.getElementById('customerName').placeholder = settings.namePlaceholder;
+            }
+            if (settings.phonePlaceholder) {
+                document.getElementById('customerPhone').placeholder = settings.phonePlaceholder;
+            }
+        }
+
+        function applyDefaultTextSettings() {
+            document.getElementById('businessName').textContent = 'Barbershop Elite';
+            document.getElementById('businessName').style.fontSize = '2.5rem';
+            document.getElementById('businessName').style.fontFamily = 'Squada One';
+            
+            const subtitle = document.querySelector('.text-white\\/80.text-lg');
+            if (subtitle) {
+                subtitle.textContent = 'Professionelle Herrenfriseur-Services';
+                subtitle.style.fontSize = '1.125rem';
+                subtitle.style.fontFamily = 'Inter';
+            }
+            
+            const bookingTitle = document.querySelector('#bookingForm h2');
+            if (bookingTitle) {
+                bookingTitle.textContent = '🗓️ Termin buchen';
+                bookingTitle.style.fontSize = '1.5rem';
+                bookingTitle.style.fontFamily = 'Inter';
+            }
+            
+            document.getElementById('bookButton').textContent = 'Termin buchen';
+            document.getElementById('customerName').placeholder = 'Ihr Name';
+            document.getElementById('customerPhone').placeholder = 'Telefonnummer';
+        }
+
+        // WhatsApp Panel Setup
+        function setupWhatsAppPanel() {
+            document.getElementById('whatsappToggle').addEventListener('click', function() {
+                const whatsappPanel = document.getElementById('whatsappPanel');
+                whatsappPanel.classList.toggle('open');
+            });
+
+            // Test WhatsApp functionality
+            document.getElementById('testWhatsApp').addEventListener('click', function() {
+                const ownerPhone = document.getElementById('ownerWhatsApp').value;
+                if (!ownerPhone) {
+                    alert('Bitte geben Sie zuerst Ihre WhatsApp-Nummer ein!');
+                    return;
+                }
+
+                const businessName = localStorage.getItem('barbershop_name') || 'Barbershop Elite';
+                const testMessage = `🧪 Test-Nachricht
+
+Hallo! Dies ist eine Test-Nachricht von Ihrem Barbershop-System.
+
+Die WhatsApp-Benachrichtigungen funktionieren korrekt! ✅
+
+${businessName} - Admin System`;
+
+                const cleanPhone = ownerPhone.replace(/\D/g, '');
+                const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(testMessage)}`;
+                window.open(whatsappUrl, '_blank');
+            });
+
+            // Save WhatsApp settings
+            document.getElementById('saveWhatsApp').addEventListener('click', function() {
+                const ownerPhone = document.getElementById('ownerWhatsApp').value;
+                const autoNotify = document.getElementById('autoNotifyOwner').checked;
+                const customerTemplate = document.getElementById('customerTemplate').value;
+                const ownerTemplate = document.getElementById('ownerTemplate').value;
+
+                localStorage.setItem('barbershop_owner_whatsapp', ownerPhone);
+                localStorage.setItem('barbershop_auto_notify', autoNotify);
+                localStorage.setItem('barbershop_customer_template', customerTemplate);
+                localStorage.setItem('barbershop_owner_template', ownerTemplate);
+
+                alert('✅ WhatsApp-Einstellungen gespeichert!');
+            });
+
+            // Reset WhatsApp settings
+            document.getElementById('resetWhatsApp').addEventListener('click', function() {
+                if (confirm('WhatsApp-Einstellungen wirklich zurücksetzen?')) {
+                    localStorage.removeItem('barbershop_owner_whatsapp');
+                    localStorage.removeItem('barbershop_auto_notify');
+                    localStorage.removeItem('barbershop_customer_template');
+                    localStorage.removeItem('barbershop_owner_template');
+                    
+                    document.getElementById('ownerWhatsApp').value = '';
+                    document.getElementById('autoNotifyOwner').checked = false;
+                    document.getElementById('customerTemplate').value = '';
+                    document.getElementById('ownerTemplate').value = '';
+                    
+                    alert('✅ WhatsApp-Einstellungen zurückgesetzt!');
+                }
             });
         }
 
@@ -924,11 +1717,22 @@ ${businessName} - Admin`;
             if (savedAutoNotify === 'true') {
                 document.getElementById('autoNotifyOwner').checked = true;
             }
+
+            // Load message templates
+            const savedCustomerTemplate = localStorage.getItem('barbershop_customer_template');
+            if (savedCustomerTemplate) {
+                document.getElementById('customerTemplate').value = savedCustomerTemplate;
+            }
+
+            const savedOwnerTemplate = localStorage.getItem('barbershop_owner_template');
+            if (savedOwnerTemplate) {
+                document.getElementById('ownerTemplate').value = savedOwnerTemplate;
+            }
         }
 
         // Customer info validation
         document.getElementById('customerName').addEventListener('input', checkBookingComplete);
         document.getElementById('customerPhone').addEventListener('input', checkBookingComplete);
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97aed61d631fbe8b',t:'MTc1NzE3MDgzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97aee34a71275da5',t:'MTc1NzE3MTM3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
